@@ -24,7 +24,8 @@ export default class Preoperative extends Component {
         this.state = ({
             fever: true, 
             temp: "", 
-            cough: true
+            cough: true,
+            diabetic: true
         });
     }
 
@@ -38,10 +39,11 @@ export default class Preoperative extends Component {
         if (this.state.temp == "") {
             alert("You need to input your temperature!")
         } else {
-            this.props.navigation.navigate('Result', {
+            this.props.navigation.navigate('PreopResult', {
                 cough: this.state.cough, 
                 temp: this.state.temp, 
-                fever: this.state.fever
+                fever: this.state.fever,
+                diabetic: this.state.diabetic
             })
         }
     }
@@ -76,11 +78,21 @@ export default class Preoperative extends Component {
                 left: this.state.cough ? 50 : 0, 
                 borderRadius: 3 
             }, 
+            diabeticToggle: {
+                height: 40,
+                width: 50,
+                backgroundColor: this.state.diabetic ? "#55acee" : '#CB6161',
+                alignItems: 'center',
+                justifyContent: 'center',
+                left: this.state.diabetic ? 50 : 0,
+                borderRadius: 3 
+            }
         });
         return (
-            <ScrollView>
+            <ScrollView style = {styles.screen}>
             <SafeAreaView style = {styles.container}>
                 <View style = {{marginTop: '10%'}}/>
+
                 <Text style = {styles.choiceText}> Have you had a fever over the last 5 days? </Text>
                 <View style = {toggle.container}>
                     <TouchableOpacity style = {toggle.feverToggle}
@@ -90,23 +102,36 @@ export default class Preoperative extends Component {
                 </View>
                 <Text style = {styles.choiceText}> What is your temperature in Celsius? </Text>
                 <TextInput 
-                    style = {{ height: 40, borderBottomColor: '#000', borderBottomWidth: 2, width: '15%', padding: 3 }}
+                    style = {{ height: 40, borderBottomColor: 'white', borderBottomWidth: 2, width: '15%', padding: 3 }}
                     textAlign={'center'}
-                    keyboardType = 'numeric' 
-                    returnKeyType = 'done' 
+                    keyboardAppearance = "dark"
+                    keyboardType = "numeric"
+                    blurOnSubmit 
+                    returnKeyType = 'done'
+                    maxLength = {100}
+                    color = 'white'
                     onChangeText = {(temp) => this.setState({temp})}
                     value={this.state.temp} /> 
-                <Text style = {styles.choiceText}> Have you had cough? </Text>
 
+                <Text style = {styles.choiceText}> Have you had cough? </Text>
                 <View style = {toggle.container} >
                     <TouchableOpacity style = {toggle.coughToggle}
-                    onPress={this.handleSetState("cough")}
-                    >
+                    onPress={this.handleSetState("cough")}>
                         <Text style = {toggle.toggleLabel}> {this.state.cough ? 'Yes' : 'No' } </Text>
                     </TouchableOpacity>
                 </View>
+
+                    <Text style={styles.choiceText}> Have you been diagnosed with diabetes? </Text>
+                    <View style={toggle.container} >
+                        <TouchableOpacity style={toggle.diabeticToggle}
+                            onPress={this.handleSetState("diabetic")}>
+                            <Text style={toggle.toggleLabel}> {this.state.diabetic ? 'Yes' : 'No'} </Text>
+                        </TouchableOpacity>
+                    </View>
+
                 <TouchableOpacity
                     style = {styles.button}
+                    blurOnSubmit
                     onPress = {() => this.goToResults()}
                 >   
                 <Text style = {styles.buttonText}> Submit </Text>
@@ -118,6 +143,13 @@ export default class Preoperative extends Component {
  }
 
 const styles = StyleSheet.create({
+    screen: {
+        flex: 1,
+        padding: 10,
+        backgroundColor: '#000d1a',
+        alignItems: 'center',
+        marginTop: '10%'
+    },
     container: {
         flex: 1,
         alignItems: 'center',
@@ -131,13 +163,13 @@ const styles = StyleSheet.create({
     choiceText: {
         fontSize: 17,
         fontWeight: "600",
-        color: "black",
+        color: "white",
         marginTop: '16%',
         marginBottom: '5%'
     },
     button: {
         alignItems: 'center',
-        backgroundColor: '#349beb',
+        backgroundColor: '#0059b3',
         padding: 7,
         borderRadius: 7,
         margin: 50,

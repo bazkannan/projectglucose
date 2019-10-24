@@ -11,35 +11,34 @@ export default class Home extends React.Component {
     render() {
         return (
             
-            <ScrollView>
+            <ScrollView style = {styles.screen}>
             <View style = {styles.screen}>
                 <Text style = {styles.title}> Perioperative Assessment In Diabetics </Text>
-                <Text style = {styles.subtitle}> Select as appropriate. </Text>
+                <Text style = {{alignItems: 'center', fontSize: 14, textAlign: 'center', color: 'white', justifyContent: 'center', top: -70}} > This app is for medical professionals. It is used to generate glucose estimates using the ML model. </Text>
+                <Text style = {styles.subtitle}> Select to begin your assessment. </Text>
                 <TouchableOpacity
                     style = {styles.button} 
                     onPress={() => this.props.navigation.navigate('Preoperative')}
                     >
-                    <Text style = {styles.buttonText}> Preoperative Clinic </Text>
+                    <Text style = {styles.buttonText}> Preoperative </Text>
                 </TouchableOpacity>
+                    <Text style={{ alignItems: 'center', fontSize: 14, fontWeight: 'bold', textAlign: 'center', color: 'white', justifyContent: 'center', top: 430 }} > © 2019 </Text>
         
-                    <TouchableOpacity
-                        style={styles.button2}
-                        onPress={() => this.props.navigation.navigate('OnTheDay')}
-                    >
-                        <Text style={styles.buttonText}> On The Day Clinic </Text>
-                    </TouchableOpacity>
-                
+        
             </View>
             </ScrollView>
+            
         );
     }
 }
+
+// #E0FFFF
 
 const styles = StyleSheet.create({
     screen: {
         flex: 1,
         padding: 10,
-        backgroundColor: '#fff',
+        backgroundColor: '#000d1a',
         alignItems: 'center'
     },
     container: {
@@ -59,7 +58,7 @@ const styles = StyleSheet.create({
     button: {
         
         alignItems: 'center', 
-        backgroundColor: '#349beb', 
+        backgroundColor: '#0059b3', 
         padding: 15, 
         borderRadius: 7, 
         borderColor: 'black',
@@ -71,7 +70,7 @@ const styles = StyleSheet.create({
     button2: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#349beb',
+        backgroundColor: '#0059b3',
         padding: 15,
         borderRadius: 7,
         width: '65%',
@@ -88,21 +87,19 @@ const styles = StyleSheet.create({
     }, 
     title: {
         alignItems: 'center', 
-        fontWeight: 'bold', 
-        fontStyle: 'italic',
+        fontWeight: "580", 
         fontSize: 24,
         textAlign: 'center',
-        color: 'red',
+        color: 'white',
         justifyContent: 'center',
-        top: 30,
-        marginVertical: 100
+        marginVertical: 90
     }, 
     subtitle: {
         alignItems: 'center', 
         fontWeight: "40",
-        fontSize: 14, 
+        fontSize: 12, 
         textAlign: 'center', 
-        color: 'black', 
+        color: 'white', 
         justifyContent: 'center',
         top: 100
     
