@@ -9,7 +9,9 @@ import {
     TextInput, 
     TouchableOpacity, 
     ScrollView, 
-    StatusBar 
+    StatusBar,
+    TouchableWithoutFeedback,
+    Keyboard
 } from 'react-native'
 
 export default class Signup extends Component {
@@ -17,12 +19,12 @@ export default class Signup extends Component {
         super(props);
         this.state = { 
             username: "",
-            occupation: "",
             firstName: "", 
             lastName: "",
             passWord: "", 
             reTypePassword: "",
-            email: "" 
+            email: "",
+            phone: ""
         }
     }
     handleSubmit = (event) => {
@@ -36,14 +38,14 @@ export default class Signup extends Component {
 
         let data = {
             "Username": this.state.username,
-            "Occupation": this.state.occupation,
             "FirstName": this.state.firstName, 
             "LastName": this.state.lastName, 
             "Password": this.state.passWord,
-            "Email": this.state.email
+            "Email": this.state.email,
+            "Phone": this.state.phone
         };
 
-        fetch('', {
+        fetch('http://192.168.0.39:3000/users', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -60,6 +62,11 @@ export default class Signup extends Component {
 
             if (jsonResponse.emailError) {
                 alert('Error. This email already exists')
+                return;
+            }
+
+            if (jsonResponse.phoneError) {
+                alert('Error. This phone number is already taken')
                 return;
             }
 
@@ -84,9 +91,6 @@ export default class Signup extends Component {
             case "username" : {
                 this.setState ({username: text})
             }
-            case "occupation" : {
-                this.setState ({occupation: text})
-            }
             case "firstName" : {
                 this.setState ({firstName: text})
             }
@@ -102,21 +106,27 @@ export default class Signup extends Component {
             case "Email" : {
                 this.setState ({Email: text})
             }
+            case "Phone" : {
+                this.setState ({Phone: text})
+            }
         }
     }
 
     render() {
         return (
             <KeyboardAvoidingView behavior = "padding" style = {styles.container}>
+                <ScrollView>
+                <TouchableWithoutFeedback>
                 <View style = {styles.container}>
                     <StatusBar barStyle = 'default' />
-                    <ScrollView>
-                        <Text style = {styles.heading}> Sign Up! </Text>
+                    
+                        <Text style = {styles.heading}> Sign Up to FastAid! </Text>
 
                         <TextInput style = {styles.input} 
-                        placeholder = "Username minimum 5 characters"
+                        placeholder = "Username"
                         onChangeText = {(text) => this.validation(text, 'username')}
                         returnKeyType = "next"
+                        onPress = {Keyboard.dismiss}
                         onSubmitEditing = {() => this.firstNameInput.focus()}
                         />
 
@@ -124,6 +134,7 @@ export default class Signup extends Component {
                         onChangeText = {(text) => this.validation(text, 'FirstName')}
                         returnKeyType = "next"
                         ref = {(input) => this.firstNameInput = input}
+                        onPress={Keyboard.dismiss}
                         onSubmitEditing = {() => this.lastNameInput.focus()}
                         />
 
@@ -131,29 +142,51 @@ export default class Signup extends Component {
                         onChangeText={(text) => this.validation(text, 'LastName')}
                         returnKeyType = "next"
                         ref = {(input) => this.lastNameInput = input}
-                        onSubmitEditing = {() => this.repasswordInput.focus()}
+                        onPress={Keyboard.dismiss}
+                        onSubmitEditing = {() => this.passwordInput.focus()}
                         />
 
                         <Text style = {styles.passwordText}> Password must contain at least one letter and number </Text>
 
+                        <TextInput style={styles.input} placeholder="Password"
+                        onChangeText={(text) => this.validation(text, 'Password')}
+                        secureTextEntry={true}
+                        returnKeyType="next"
+                        onPress={Keyboard.dismiss}
+                        ref={(input) => this.passwordInput = input}
+                        onSubmitEditing={() => this.emailInput.focus()}
+
+                        />
+
                         <TextInput style = {styles.input} placeholder = "Re-type Password"
                         onChangeText = {(text) => this.validation(text, 'RetypePassword')}
-                        secureTextEntry
+                        secureTextEntry={true}
                         returnKeyType = "next"
+                        onPress={Keyboard.dismiss}
                         ref = {(input) => this.repasswordInput = input}
                         onSubmitEditing = {() => this.emailInput.focus()}
 
                         />
 
-                        <TextInput style = {styles.input} placeholder = "Email"
+                        <TextInput style = {styles.input} placeholder = "E-mail"
                         onChangeText = {(text) => this.validation(text, 'Email')}
-                        returnKeyType = "done"
+                        returnKeyType = "next"
+                        onPress={Keyboard.dismiss}
                         ref = {(input) => this.emailInput = input}
                         
                         />
 
+                        <TextInput style={styles.input} placeholder="Phone"
+                        onChangeText={(text) => this.validation(text, 'Phone')}
+                        returnKeyType="done"
+                        keyboardType = "numeric"
+                        onPress={Keyboard.dismiss}
+                        ref={(input) => this.phoneInput = input}
+
+                        />
+
                         <TouchableOpacity style = {styles.buttonContainer} onPress={this.handleSubmit}>
-                        <Button onPress = {this.handleSubmit} color = 'white' title="SUBMIT" testID = "submitButton" />
+                        <Button onPress = {this.handleSubmit} color = 'white' title="Submit" testID = "submitButton" />
                         </TouchableOpacity>
 
                         <Button onPress = {() => this.props.navigation.navigate('Login')}
@@ -161,10 +194,12 @@ export default class Signup extends Component {
                         color = "white"
                         title = "Already registered? Login"
                         testID = "submitButton"
+                        fontSize = {12}
                         />
 
-                    </ScrollView>
-                </View>             
+                </View>    
+                </TouchableWithoutFeedback>
+                </ScrollView>         
             </KeyboardAvoidingView>
         )
     }
@@ -174,8 +209,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'center',
-        backgroundColor: '#00a8ff',
-        padding: 15,
+        backgroundColor: '#000d1a',
+        padding: 30,
+        marginTop: 60
     }, 
     input : {
         height: 40,
@@ -183,9 +219,11 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(255, 255, 255, 0.8)',
         marginBottom: 20,
         padding: 8,
+        borderRadius: 5,
     }, 
     buttonContainer: {
-        backgroundColor: 'green', 
+        backgroundColor: '#0059b3', 
+        borderRadius: 10,
     }, 
     text: {
         fontWeight: '400', 
@@ -202,7 +240,7 @@ const styles = StyleSheet.create({
     }, 
     heading: {
         fontWeight: '800',
-        fontSize: 30,
+        fontSize: 20,
         textAlign: 'center',
         marginTop: 35, 
         marginBottom: 30,
@@ -215,8 +253,10 @@ const styles = StyleSheet.create({
         padding: 8
     }, 
     passwordText: {
-        fontSize: 13,
+        fontSize: 12,
         marginBottom: 10,
-        fontStyle: 'italic'
+        fontStyle: 'italic',
+        color: 'white',
+        textAlign: 'center'
     }
 });

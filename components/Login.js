@@ -16,147 +16,220 @@
      TextInput,
      ScrollView,
      TouchableOpacity,
-     AsyncStorage
+     AsyncStorage,
+     Keyboard,
+     TouchableWithoutFeedback
  } from 'react-native';
+ import { StackNavigator } from 'react-navigation-stack';
 
  export default class Login extends Component {
-     static navigationOptions = {
-         headerStyle: {backgroundcolor: '00a8ff'},
-     }; 
-     constructor(props) {
-         super(props);
-         this.state = {username: "", 
-         password: ""
+
+    static navigationOptions = {
+        headerStyle: {backgroundColor: '00a8ff'},
+    };
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: '',
+            password: '',
         }
-     }
+    }
 
-     handleSubmit = (event) => {
-         event.preventDefault(); 
-            const userName = this.state.username;
-            const passWord = this.state.password;
+    handleSubmit = (event) => {
+        event.preventDefault();
+        const username = this.state.username;
+        const password = this.state.password;
 
-            if (userName == '' || passWord == '') {
-                alert('Incorrect Username and/or Password');
+        if (username == '' || password == '') {
+            alert("Incorrect Username and/or Password. Please try again");
+            return;
+        }
+
+        fetch('http://192.168.0.39:3000/users', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            }, 
+            body: JSON.stringify({
+                user_name: username,
+                user_password: password
+            })
+        }).then(async (result) => {
+            let jsonRes = await result.json();
+            console.log(jsonRes);
+
+            if (!jsonRes.token) {
+                alert('Username or password is invalid');
                 return;
             }
+            await AsyncStorage.setItem('token', jsonRes.token);
+            await AsyncStorage.setItem('userId', jsonRes._id);
+            this.props.navigation.navigate('Home');
+        }).catch(error => {
+            console.log(error);
+        });
 
-            fetch('', {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/json',
-                    'Content-Type': 'application/json',
-                }, 
-                body: JSON.stringify({
-                    user_name: userName,
-                    user_password : passWord
-                })
-            }).then(async (result) => {
-                let jsonRes = await result.json();
-                    console.log(jsonRes);
+        this.setState({
+            username: '',
+            password: '',
+        })
+    }
 
-                    if (!jsonRes.token) {
-                        alert('Username or password is invalid!')
-                        return;
-                    }
+    componentDidMount() {
+        this._loadInitialState().done();
+    }
 
-                    await AsyncStorage.setItem('token', jsonRes.token);
-                    await AsyncStorage.setItem('userId', jsonRes._id);
-                    this.props.navigation.navigate('Home');
-            }).catch(error => {
-                console.log(error);
-            });
+    _loadInitialState = async() => {
 
-            this.setState({
-                username: '',
-                password: '',
-            })
+        var value = await AsyncStorage.getItem('user')
+        if (value !== null) {
+            this.props.navigation.navigate('Home');
         }
 
+    }
+
+    // login = () => {
+
+    //     fetch('http://192.168.0.39:3000/users',
+    //         {
+    //             method: 'POST',
+    //             headers: {
+    //                 Accept: 'application/json',
+    //                 'Content-Type': 'application/json',
+
+    //             },
+    //             body: JSON.stringify({
+    //                 username: this.state.username,
+    //                 password: this.state.password,
+    //             })
+    //         }).then((response) => response.json())
+    //         .then((res) => {
+
+    //             if (res.success === true) {
+    //                 AsyncStorange.setItem('user', res.user);
+    //                 this.props.navigate('Profile');
+    //             }
+
+    //             else {
+    //                 alert(res.message);
+    //             }
+    //         })
+    //         .done();
+     
+    // }
+
+
+    signup = () => {
+        alert('Sign in pressed');
+    }
+     
         render() {
-            <KeyboardAvoidingView behavior = "padding" style = {styles.container}>
-                <View style = {styles.container}>
-                    <View>
-                        <Image />
-                    </View>
-                    <Text style = {styles.heading}> Perioperative Glucose Management </Text>
-
-                    <Text style = {styles.text}> Username </Text>
-                    <TextInput style = {styles.input} 
-                    placeholder = "Username"
-                    onChangeText = {text => this.setState({username: text})}
-                    value = {this.state.username}
-                    returnKeyType = "next"
-                    onSubmitEditing = {() => this.passwordInput.focus()}
-                    />
-
-                    <Text style = {styles.text}> Password </Text>
-                    <TextInput style = {styles.input} 
-                    placeholder = "Password"
-                    onchangeText = {text => this.setState({password: text})}
-                    value = {this.state.password}
-                    secureTextEntry
-                    returnKeyType = "done"
-                    ref = {(input) => this.passwordInput = input}
-                    />
-
-                    <TouchableOpacity style = {styles.buttonContainer} onPress = {this.handleSubmit}>
-                        <View style = {{flexDirection: 'row', alignSelf: 'center'}}>
-                            <View style = {{marginTop: 5, marginRight: 5}}>
-                                <Icon name = "sign-in" size = {25} color = "white" />
-                            </View>
-                            <Button color = "white" onPress = {this.handleSubmit} title = "LOGIN" />
-                        </View>
-                    </TouchableOpacity>
-
+            return (
+                <KeyboardAvoidingView behavior = 'padding' style = {styles.wrapper}>
                     
-                        <Button onPress = {() => this.props.navigation.navigate('SignUp')}
-                        color = 'white'
-                        title = "Sign up" />
-                </View>
+                    <TouchableWithoutFeedback>
+                    <View style = {styles.container}>
 
-            </KeyboardAvoidingView>
-            
+                        <Text style = {styles.topText}> This is an app for medical professionals and patients. </Text>
+
+                        <Text style = {styles.header}>- FastAID -</Text>
+
+                        <TextInput style = {styles.textInput} placeholder = 'Username / E-mail / Phone'
+                        onChangeText={ (username) => this.setState({username}) }
+                        onPress={Keyboard.dismiss}
+                        underlineColorAndroid='transparent' 
+                        returnKeyType = "next"
+                        
+                        />
+
+                        <TextInput style={styles.textInput} placeholder='Password'
+                            onChangeText={(password) => this.setState({ password })}
+                            onPress={Keyboard.dismiss}
+                            secureTextEntry={true}
+                            returnKeyType = "done"
+                            underlineColorAndroid='transparent'
+                            
+                        />
+
+                        <View style = {{flexDirection: 'column'}}>
+                        <TouchableOpacity 
+                        style = {styles.button}
+                        onPress={this.handleSubmit} {...Keyboard.dismiss}>
+                        
+                        <Text style = {{fontWeight: 'bold', color: 'white'}}> Log In </Text>
+                        </TouchableOpacity>
+
+                        <Text style = {{color: 'white', alignItems: 'center', fontSize: 18, textAlign: 'center', top: 65}}
+                        
+                        > Don't have an account? Create one now! </Text>
+
+                        <TouchableOpacity
+                            style={styles.signupButton}
+                            onPress={() => this.props.navigation.navigate('Signup')}>
+                            <Text style = {{fontWeight: 'bold', color: 'white'}}> Sign Up </Text>
+                        </TouchableOpacity>
+                        </View>
+
+                    </View>
+                    </TouchableWithoutFeedback>
+                    
+                </KeyboardAvoidingView>
+            );
         }
- }
+    }
 
- const styles = StyleSheet.create({
+// #01c853
+const styles = StyleSheet.create({
+    wrapper: {
+        flex: 1
+    }, 
     container: {
         flex: 1,
-        padding: 15,
+        alignItems: 'center',
         justifyContent: 'center',
-         backgroundColor: '#000d1a'
+        backgroundColor: '#000d1a',
+        paddingLeft: 40,
+        paddingRight: 40
     }, 
-    input: {
-        height: 40,
-        fontSize: 20,
-        backgroundColor: 'rgba(255, 255, 255, 0.8)',
-        marginBottom: 10,
-        padding: 10
-    }, 
-    buttonContainer: {
-        backgroundColor: 'green',
-        marginTop: 20,
-        marginBottom: 20
-    }, 
-    text: {
-        fontWeight: '400',
-        fontSize: 20,
-        marginBottom: 10
-    }, 
-    account: {
-        color: 'white',
+    topText: {
+        color: '#fff',
         textAlign: 'center',
-        padding: 20, 
-        fontWeight: '400', 
-        fontSize: 20,
-        textDecorationLine: 'underline'
+        top: -150,
+        fontWeight: '40'
+    },
+    header: {
+        fontSize: 24,
+        marginBottom: 60,
+        color: '#fff',
+        fontWeight: 'bold',
+        top: 40
     }, 
-    heading: {
-        fontWeight: '800',
-        fontSize: 30,
-        textAlign: 'center',
-        marginTop: 120,
-        marginBottom: 30,
-        color: 'white'
+    textInput: {
+        alignSelf: 'stretch',
+        padding: 16,
+        marginBottom: 20,
+        backgroundColor: '#fff',
+        borderRadius: 5
+    },
+    button: {
+        alignSelf: 'stretch',
+        backgroundColor: '#0059b3', 
+        padding: 20,
+        alignItems: 'center',
+        borderRadius: 10,
+        fontWeight: 60,
+        width: 335
+    },
+    signupButton: {
+        alignSelf: 'stretch',
+        backgroundColor: '#0059b3',
+        padding: 20,
+        alignItems: 'center',
+        borderRadius: 10,
+        fontWeight: 60,
+        top: 75
     }
- });
+});
+            

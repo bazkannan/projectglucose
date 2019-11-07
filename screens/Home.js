@@ -14,13 +14,13 @@ export default class Home extends React.Component {
             <ScrollView style = {styles.screen}>
             <View style = {styles.screen}>
                 <Text style = {styles.title}> Perioperative Assessment In Diabetics </Text>
-                <Text style = {{alignItems: 'center', fontSize: 14, textAlign: 'center', color: 'white', justifyContent: 'center', top: -70}} > This app is for medical professionals. It is used to generate glucose estimates using the ML model. </Text>
-                <Text style = {styles.subtitle}> Select to begin your assessment. </Text>
+                <Text style = {{alignItems: 'center', fontSize: 14, textAlign: 'center', color: 'white', justifyContent: 'center', top: -160}} > You can choose to generate glucose estimates using the ML model or attend to patient requests. </Text>
+                <Text style = {styles.subtitle}> Select options. </Text>
                 <TouchableOpacity
                     style = {styles.button} 
                     onPress={() => this.props.navigation.navigate('Preoperative')}
                     >
-                    <Text style = {styles.buttonText}> Preoperative </Text>
+                    <Text style = {styles.buttonText}> Preoperative Clinic </Text>
                 </TouchableOpacity>
                     <Text style={{ alignItems: 'center', fontSize: 14, fontWeight: 'bold', textAlign: 'center', color: 'white', justifyContent: 'center', top: 430 }} > © 2019 </Text>
         
@@ -92,7 +92,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: 'white',
         justifyContent: 'center',
-        marginVertical: 90
+        marginVertical: 90,
+        top: 225
     }, 
     subtitle: {
         alignItems: 'center', 
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
         textAlign: 'center', 
         color: 'white', 
         justifyContent: 'center',
-        top: 100
+        top: 107
     
     }
 });

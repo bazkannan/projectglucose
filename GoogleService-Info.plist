@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>626380421552-62jg0fggpb8mo21n0jq9clkl8380q6c0.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.626380421552-62jg0fggpb8mo21n0jq9clkl8380q6c0</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBfkbWPaJV1iNKuPv7XxTJkHpRM2hwqfpo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>626380421552</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.glucoseapp</string>
+	<key>PROJECT_ID</key>
+	<string>perioperative-diabetes</string>
+	<key>STORAGE_BUCKET</key>
+	<string>perioperative-diabetes.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:626380421552:ios:8c6403f92d0551e9f2be75</string>
+	<key>DATABASE_URL</key>
+	<string>https://perioperative-diabetes.firebaseio.com</string>
+</dict>
+</plist>

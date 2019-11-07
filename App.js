@@ -26,10 +26,44 @@ export default class App extends React.Component {
 
 const AppNavigator = createStackNavigator({
 
+  Login: {
+    screen: Login,
+    navigationOptions: {
+      headerTransparent: true,
+      header: false,
+      headerStyle: {
+        backgroundColor: '#000d1a',
+      },
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        color: 'black',
+        tintColor: 'white'
+      }
+    },
+  },
+  Signup: {
+    screen: Signup,
+    navigationOptions: {
+      headerTransparent: true,
+      headerTitle: 'Sign Up',
+      headerStyle: {
+        backgroundColor: '#fafafa',
+        borderColor: 'black',
+        shadowRadius: 3,
+        tintColor: 'white',
+        shadowOpacity: 1
+      },
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        color: 'black',
+        tintColor: 'white'
+      }
+    },
+  },
   Home: {
     screen: Home, 
     navigationOptions: {
-      headerTitle: 'PAiD V1.0',
+      headerTitle: 'FastAid',
       headerStyle: {
         backgroundColor: '#fafafa',
         borderColor: 'black',
