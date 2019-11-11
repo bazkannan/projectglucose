@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TouchableHighlight} from 'react-native';
+import { AppRegistry, StyleSheet, Text, View, TouchableOpacity, TouchableHighlight} from 'react-native';
 import { createAppContainer, NavigationBar } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
@@ -9,10 +9,25 @@ import Home from './screens/Home';
 import Preoperative from './screens/Preoperative'; 
 import OnTheDay from './screens/OnTheDay';
 import PreopResult from './screens/PreopResult';
-import Login from './components/Login';
-import Signup from './components/Signup';
+import Login from './screens/Login';
+import Signup from './screens/Signup';
+import Booking from './screens/Booking';
+import * as firebase from 'firebase';
 
 export default class App extends React.Component {
+
+componentWillMount() {
+  const config = {
+    apiKey: "AIzaSyBltajktleDT461vk7OIL6_ghPj0sfa57A",
+    authDomain: "perioperative-diabetes.firebaseapp.com",
+    databaseURL: "https://perioperative-diabetes.firebaseio.com/",
+    projectId: "perioperative-diabetes",
+    storageBucket: "gs://perioperative-diabetes.appspot.com/",
+    messagingSenderId: "626380421552"
+  };
+
+  firebase.initializeApp(config);
+}
 
   render() {
     return (
@@ -26,50 +41,48 @@ export default class App extends React.Component {
 
 const AppNavigator = createStackNavigator({
 
-  Login: {
-    screen: Login,
+  // Login: {
+  //   screen: Login,
+  //   navigationOptions: {
+  //     headerTransparent: true,
+  //     header: false,
+  //     headerStyle: {
+  //       backgroundColor: '#000d1a',
+  //     },
+  //     headerTitleStyle: {
+  //       fontWeight: 'bold',
+  //       color: 'black',
+  //       tintColor: 'white'
+  //     }
+  //   },
+  // },
+  // Signup: {
+  //   screen: Signup,
+  //   navigationOptions: {
+  //     headerTransparent: true,
+  //     headerTitle: 'Sign Up',
+  //     headerStyle: {
+  //       backgroundColor: '#fafafa',
+  //       borderColor: 'black',
+  //       shadowRadius: 3,
+  //       tintColor: 'white',
+  //       shadowOpacity: 1
+  //     },
+  //     headerTitleStyle: {
+  //       fontWeight: 'bold',
+  //       color: 'black',
+  //       tintColor: 'white'
+  //     }
+  //   },
+  // },
+  Home: {
+    screen: Home, 
     navigationOptions: {
+      
       headerTransparent: true,
       header: false,
       headerStyle: {
         backgroundColor: '#000d1a',
-      },
-      headerTitleStyle: {
-        fontWeight: 'bold',
-        color: 'black',
-        tintColor: 'white'
-      }
-    },
-  },
-  Signup: {
-    screen: Signup,
-    navigationOptions: {
-      headerTransparent: true,
-      headerTitle: 'Sign Up',
-      headerStyle: {
-        backgroundColor: '#fafafa',
-        borderColor: 'black',
-        shadowRadius: 3,
-        tintColor: 'white',
-        shadowOpacity: 1
-      },
-      headerTitleStyle: {
-        fontWeight: 'bold',
-        color: 'black',
-        tintColor: 'white'
-      }
-    },
-  },
-  Home: {
-    screen: Home, 
-    navigationOptions: {
-      headerTitle: 'FastAid',
-      headerStyle: {
-        backgroundColor: '#fafafa',
-        borderColor: 'black',
-        shadowRadius: 3,
-        tintColor: 'white',
-        shadowOpacity: 1
       }, 
       headerTitleStyle: {
         fontWeight: 'bold',
@@ -78,6 +91,9 @@ const AppNavigator = createStackNavigator({
       }
     },
   }, 
+  Booking: {
+    screen: Booking
+  },
   PreopResult: {
     screen: PreopResult,
     navigationOptions: {
@@ -117,9 +133,11 @@ const AppNavigator = createStackNavigator({
 });
 
 const bottomTab = createBottomTabNavigator({
-    Home: Home,
+    
+    Booking: Booking,
     Preoperative: Preoperative,
     PreopResult: PreopResult
+    
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -128,15 +146,23 @@ const bottomTab = createBottomTabNavigator({
         icon = <Icon name="home" size={25} />
         switch (routeName) {
           case "Home":
+            title = "Home"
             icon = <Icon name="home" size={25} color={tintColor} />
             break;
 
+          case "Booking":
+            title = "Request"
+            icon = <Icon name="mobile" size = {25} color = {tintColor} />
+            break;
+
           case "Preoperative":
-            icon = <Icon name="left" size={25} color={tintColor} />
+            title = "Diabetes"
+            icon = <Icon name="heartbeat" size={25} color={tintColor} />
             break;
 
           case "PreopResult":
-            icon = <Icon name = "right" size = {25} color = {tintColor} />
+            title = "Result"
+            icon = <Icon name = "info" size = {25} color = {tintColor} />
             break;
         }
 
@@ -150,28 +176,32 @@ const bottomTab = createBottomTabNavigator({
   }
 );
 
-const RootStack = createStackNavigator (
+const rootStack = createStackNavigator (
   { 
-    LoginScreen: Login, 
-    SignupScreen: Signup,
+//    LoginScreen: Login, 
+//    SignupScreen: Signup,
     Homepage: Home, 
       Tabs: {
         screen: bottomTab,
         navigationOptions: {
-          header: null
+          headerTitle: "FastAid",
+          
         }
       }
   },
   {
-    initialRouteName: 'Login', defaultNavigationOptions: {
+ //   initialRouteName: "Home",
+    defaultNavigationOptions: {
         headerStyle: {
-          backgroundColor: '#1289A7'
+          backgroundColor: '#fafafa'
         }
     }
   }
 );
   
-const AppContainer = createAppContainer(AppNavigator);
+const AppContainer = createAppContainer(rootStack);
+
+AppRegistry.registerComponent("App", () => App);
 
 const styles = StyleSheet.create({
   screen: {

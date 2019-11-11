@@ -13,17 +13,51 @@ export default class Home extends React.Component {
             
             <ScrollView style = {styles.screen}>
             <View style = {styles.screen}>
-                <Text style = {styles.title}> Perioperative Assessment In Diabetics </Text>
-                <Text style = {{alignItems: 'center', fontSize: 14, textAlign: 'center', color: 'white', justifyContent: 'center', top: -160}} > You can choose to generate glucose estimates using the ML model or attend to patient requests. </Text>
-                <Text style = {styles.subtitle}> Select options. </Text>
+                
+                <Text style = {styles.title}> Select options. </Text>
+                <Text style = {{alignItems: 'center', fontSize: 18, textAlign: 'center', color: 'white', justifyContent: 'center', top: -120}} > Welcome to FastAid! Below you can select the options either as a patient or a doctor. </Text>
+                
+
+                <Text style = {{
+                        alignItems: 'center',
+                        fontWeight: "bold",
+                        fontSize: 54,
+                        textAlign: 'center',
+                        color: 'white',
+                        justifyContent: 'center',
+                        top: -90
+                }}> Patients </Text>
+                <Text style = {{
+                        alignItems: 'center',
+                        fontWeight: "bold",
+                        fontSize: 54,
+                        textAlign: 'center',
+                        color: 'white',
+                        justifyContent: 'center',
+                        top: 100
+                }}> Doctors </Text>
+
+                    <TouchableOpacity
+                        style={{ alignItems: 'center', backgroundColor: '#0059b3', padding: 15, borderRadius: 7, borderColor: 'black', width: '65%', justifyContent: 'center', top: -150 }}
+                        onPress={() => this.props.navigation.navigate('Booking')}
+                    >
+                        <Text style={styles.buttonText}> Request Doctor </Text>
+                    </TouchableOpacity>
+                   
                 <TouchableOpacity
                     style = {styles.button} 
                     onPress={() => this.props.navigation.navigate('Preoperative')}
                     >
                     <Text style = {styles.buttonText}> Preoperative Clinic </Text>
                 </TouchableOpacity>
-                    <Text style={{ alignItems: 'center', fontSize: 14, fontWeight: 'bold', textAlign: 'center', color: 'white', justifyContent: 'center', top: 430 }} > © 2019 </Text>
+                    <Text style={{ alignItems: 'center', fontSize: 14, fontWeight: 'bold', textAlign: 'center', color: 'white', justifyContent: 'center', top: 290 }} > © 2019 </Text>
         
+                    <TouchableOpacity
+                        style={{ alignItems: 'center', backgroundColor: 'maroon', padding: 15, borderRadius: 7, borderColor: 'black', width: '35%', justifyContent: 'center', top: 300}}
+                        onPress={() => this.props.navigation.navigate('Login')}
+                    >
+                        <Text style={styles.buttonText}> Sign Out </Text>
+                    </TouchableOpacity>
         
             </View>
             </ScrollView>
@@ -39,7 +73,7 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 10,
         backgroundColor: '#000d1a',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     container: {
         flex: 1, 
@@ -64,7 +98,7 @@ const styles = StyleSheet.create({
         borderColor: 'black',
         width: '65%',
         justifyContent: 'center',
-        top: 120
+        top: 55
 
     }, 
     button2: {
@@ -88,12 +122,12 @@ const styles = StyleSheet.create({
     title: {
         alignItems: 'center', 
         fontWeight: "580", 
-        fontSize: 24,
+        fontSize: 12,
         textAlign: 'center',
         color: 'white',
         justifyContent: 'center',
         marginVertical: 90,
-        top: 225
+        top: 40
     }, 
     subtitle: {
         alignItems: 'center', 
@@ -102,7 +136,7 @@ const styles = StyleSheet.create({
         textAlign: 'center', 
         color: 'white', 
         justifyContent: 'center',
-        top: 107
+        top: -110
     
     }
 });

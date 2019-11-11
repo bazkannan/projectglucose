@@ -13,7 +13,7 @@ import {
     Platform, 
     SafeAreaView
 } from "react-native";
-
+import { CheckBox } from 'react-native-elements';
 import { FlatList } from "react-native-gesture-handler";
 
 
@@ -24,6 +24,7 @@ export default class Preoperative extends Component {
         headerStyle: { borderBottomWidth: 0 }
     }; 
 
+   
     constructor() {
         super();
         this.state = ({
@@ -41,6 +42,12 @@ export default class Preoperative extends Component {
             [state]: !this.state[state]
         })
     };
+
+    state = {
+        termsAccepted: false
+    }
+
+    handleCheckBox = () => this.setState({ termsAccepted: !this.state.termsAccepted })
 
     goToResults = () => {
         if (this.state.temp == "") {
@@ -117,7 +124,7 @@ export default class Preoperative extends Component {
                         fontSize: 12,
                         fontWeight: "600",
                         color: "white",
-                        top: 20
+                        top: 0
                         }}> Click on the toggle to select your choice </Text>
 
                 <Text style={styles.choiceText}> Patient is taking medications for diabetes? </Text>
@@ -151,6 +158,92 @@ export default class Preoperative extends Component {
                         left: -93
                         }}> Choose all that apply </Text>
 
+                    <View>
+                        <Text> Option 1 </Text>
+                        <CheckBox 
+                        center
+                        title= "Metformin"
+                        selected = {this.state.termsAccepted}
+                        onPress = {this.handleCheckBox}
+                        checkedIcon = 'dot-circle-o'
+                        uncheckedIcon = 'circle-o'
+                        style = {{alignItems: 'left', textAlign: 'left'}}
+                        checked={this.state.checked}
+                        />
+
+                        <CheckBox
+                            center
+                            title="Short acting Insulin (e.g. Humulin S, Apidra, Novorapid)"
+                            style = {{alignItems: 'left'}}
+                            checkedIcon='dot-circle-o'
+                            uncheckedIcon='circle-o'
+                            checked={this.state.checked}
+                        />
+
+                        <CheckBox
+                            center
+                            title="Intermediate or Long acting Insulin (incl combination insulins)"
+                            checkedIcon='dot-circle-o'
+                            uncheckedIcon='circle-o'
+                            checked={this.state.checked}
+                        />
+
+                        <CheckBox
+                            center
+                            title="Alpha Glucosidase inhibitors (Acarbose, Miglitol)"
+                            checkedIcon='dot-circle-o'
+                            uncheckedIcon='circle-o'
+                            checked={this.state.checked}
+                        />
+
+                        <CheckBox
+                            center
+                            title="DPP 4 inhibitors (Gliptins)"
+                            checkedIcon='dot-circle-o'
+                            uncheckedIcon='circle-o'
+                            checked={this.state.checked}
+                        />
+
+                        <CheckBox
+                            center
+                            title="GLP receptor antagonists (Glutides and Exenatide)"
+                            checkedIcon='dot-circle-o'
+                            uncheckedIcon='circle-o'
+                            checked={this.state.checked}
+                        />
+
+                        <CheckBox
+                            center
+                            title="Meglitinides (Glinides like Nateglinide etc)"
+                            checkedIcon='dot-circle-o'
+                            uncheckedIcon='circle-o'
+                            checked={this.state.checked}
+                        />
+
+                        <CheckBox
+                            center
+                            title="SGLT 2 inhibitors (Flozins)"
+                            checkedIcon='dot-circle-o'
+                            uncheckedIcon='circle-o'
+                            checked={this.state.checked}
+                        />
+
+                        <CheckBox
+                            center
+                            title="Sulphonyureas (Glicazide, Glipizide, Glibanclamide, Glyburide, Glimepiride)"
+                            checkedIcon='dot-circle-o'
+                            uncheckedIcon='circle-o'
+                            checked={this.state.checked}
+                        />
+
+                        <CheckBox
+                            center
+                            title="Thiasolidinediones (Glitazones)"
+                            checkedIcon='dot-circle-o'
+                            uncheckedIcon='circle-o'
+                            checked={this.state.checked}
+                        />
+                    </View>
                     
 
                     <Text style={styles.choiceText}> HbA1c levels done within last 3 months? </Text>
@@ -178,7 +271,11 @@ export default class Preoperative extends Component {
                     </View>
 
             
-
+                <View style = {{flexDirection: 'row'}}>
+                        <TouchableOpacity style={{ alignItems: 'center', backgroundColor: "maroon", justifyContent: 'center', borderRadius: 7, width: 150, height: 40, top: 30, padding: 7, left: 20}}
+                        >
+                            <Text style={styles.buttonText}> Reset </Text>
+                        </TouchableOpacity>
                 <TouchableOpacity
                     style = {styles.button}
                     blurOnSubmit
@@ -186,6 +283,7 @@ export default class Preoperative extends Component {
                 >   
                 <Text style = {styles.buttonText}> Submit </Text>
                 </TouchableOpacity>
+                </View>
             </SafeAreaView>
             </ScrollView>
         );
@@ -198,7 +296,7 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: '#000d1a',
         alignItems: 'center',
-        marginTop: '10%'
+        marginTop: '0%'
     },
     container: {
         flex: 1,
@@ -231,7 +329,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#0059b3',
         padding: 7,
         borderRadius: 7,
-        margin: 50,
+        margin: 30,
         width: 150,
         height: 40,
         justifyContent: 'center'
@@ -240,4 +338,8 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 19
     },
+    checkBox: {
+        flexDirection: 'column',
+        alignItems: 'center'
+    }
 });
