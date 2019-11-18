@@ -73,7 +73,7 @@ export default class PreopResult extends Component {
         resultText: {
             fontSize: 17, 
             fontWeight: "200",
-            color: "black",
+            color: "white",
             margin: '5%',
             
         }

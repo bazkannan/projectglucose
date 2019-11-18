@@ -4,7 +4,7 @@ import styles from './styles';
 import { TouchableOpacity, Text } from 'react-native';
 
 const CheckBox = ({ selected, onPress, textStyle, size = 30, color = '#211f30', text = '', ...props}) => (
-    <TouchableOpacity
+    <TouchableOpacity style = {[styles.checkBox, style]} 
     onPress = {onPress} {...props}>
         <Icon
         size = {size}

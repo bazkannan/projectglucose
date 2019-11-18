@@ -43,6 +43,14 @@ export default class Preoperative extends Component {
         })
     };
 
+    diabetesQuestion = state => event => {
+        if (this.state.fever === false) {
+            alert("If you've selected 'No', please note this section is only for diabetics on medication!")
+        } else {
+            this.handleSetState;
+        }
+    }
+
     state = {
         termsAccepted: false
     }
@@ -51,9 +59,9 @@ export default class Preoperative extends Component {
 
     goToResults = () => {
         if (this.state.temp == "") {
-            alert("You need to input your temperature!")
-        } else if (this.state.fever == "No") {
-            alert ("This app is only for diabetics on medication!")
+            alert("You need to input your blood sugar level!")
+        } else if (this.state.fever == false) {
+            alert ("If you answered 'No' for the first question, please note this section is only for diabetics on medication!")
         } else {
             this.props.navigation.navigate('PreopResult', {
                 cough: this.state.cough, 
@@ -124,27 +132,28 @@ export default class Preoperative extends Component {
                         fontSize: 12,
                         fontWeight: "600",
                         color: "white",
-                        top: 0
+                        top: 10
                         }}> Click on the toggle to select your choice </Text>
 
                 <Text style={styles.choiceText}> Patient is taking medications for diabetes? </Text>
                 <View style = {toggle.container}>
                     <TouchableOpacity style = {toggle.feverToggle}
                     onPress = {this.handleSetState("fever")}>
+                    {/* onPress = {this.diabetesQuestion("fever")}>  */}
                         <Text style = {toggle.toggleLabel}> {this.state.fever ? 'Yes' : 'No' } </Text>
                     </TouchableOpacity>
                 </View>
 
                 <Text style = {styles.choiceText}> What is your blood sugar level? </Text>
                 <TextInput 
-                    style = {{ height: 40, borderBottomColor: 'white', borderBottomWidth: 2, width: '15%', padding: 3 }}
+                    style = {{ height: 40, backgroundColor: 'white', borderColor: 'white', borderWidth: 2, borderRadius: 5, width: '15%', padding: 3 }}
                     textAlign={'center'}
                     keyboardAppearance = "dark"
                     keyboardType = "numeric"
                     blurOnSubmit 
                     returnKeyType = 'done'
                     maxLength = {100}
-                    color = 'white'
+                    color = 'black'
                     onChangeText = {(temp) => this.setState({temp})}
                     value={this.state.temp} /> 
 
@@ -159,7 +168,7 @@ export default class Preoperative extends Component {
                         }}> Choose all that apply </Text>
 
                     <View>
-                        <Text> Option 1 </Text>
+                        
                         <CheckBox 
                         center
                         title= "Metformin"
@@ -272,9 +281,24 @@ export default class Preoperative extends Component {
 
             
                 <View style = {{flexDirection: 'row'}}>
-                        <TouchableOpacity style={{ alignItems: 'center', backgroundColor: "maroon", justifyContent: 'center', borderRadius: 7, width: 150, height: 40, top: 30, padding: 7, left: 20}}
+                        <TouchableOpacity 
+                        style={{ alignItems: 'center', 
+                        backgroundColor: "maroon", 
+                        justifyContent: 'center', 
+                        borderRadius: 7, 
+                        width: 150, 
+                        height: 40, 
+                        top: 30, 
+                        padding: 7, 
+                        left: 20}}
+                        onPress={() => this.setState({ temp: '', diabetic: true, fever: true, cough: true, anaesthesia: true})}
                         >
-                            <Text style={styles.buttonText}> Reset </Text>
+                            <Text 
+                            style={styles.buttonText}
+                                onPress={() => this.setState({ temp: '', diabetic: true, fever: true, cough: true, anaesthesia: true})}
+                            > 
+                            Reset 
+                            </Text>
                         </TouchableOpacity>
                 <TouchableOpacity
                     style = {styles.button}

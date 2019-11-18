@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View, TouchableOpacity, TouchableHighlight} from 'react-native';
-import { createAppContainer, NavigationBar } from 'react-navigation';
+import { AppRegistry, StyleSheet, Text, View, TouchableOpacity, TouchableHighlight, Dimensions, Image, Button, SaveAreaView, ScrollView} from 'react-native';
+import { createAppContainer, NavigationBar, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Header from './components/Header';
 import Home from './screens/Home';
 import Preoperative from './screens/Preoperative'; 
 import OnTheDay from './screens/OnTheDay';
@@ -12,9 +11,16 @@ import PreopResult from './screens/PreopResult';
 import Login from './screens/Login';
 import Signup from './screens/Signup';
 import Booking from './screens/Booking';
+import Loading from './screens/Loading';
+import AccountCreated from './screens/AccountCreated';
 import * as firebase from 'firebase';
+import { Header } from 'react-native-elements';
+import { Left, Right } from 'native-base';
+import { createDrawerNavigator, DrawerItems } from 'react-navigation-drawer';
+import DestinationButton from './components/DestinationButton';
 
 export default class App extends React.Component {
+
 
 componentWillMount() {
   const config = {
@@ -39,42 +45,44 @@ componentWillMount() {
 
 // #800000
 
+
+
 const AppNavigator = createStackNavigator({
 
-  // Login: {
-  //   screen: Login,
-  //   navigationOptions: {
-  //     headerTransparent: true,
-  //     header: false,
-  //     headerStyle: {
-  //       backgroundColor: '#000d1a',
-  //     },
-  //     headerTitleStyle: {
-  //       fontWeight: 'bold',
-  //       color: 'black',
-  //       tintColor: 'white'
-  //     }
-  //   },
-  // },
-  // Signup: {
-  //   screen: Signup,
-  //   navigationOptions: {
-  //     headerTransparent: true,
-  //     headerTitle: 'Sign Up',
-  //     headerStyle: {
-  //       backgroundColor: '#fafafa',
-  //       borderColor: 'black',
-  //       shadowRadius: 3,
-  //       tintColor: 'white',
-  //       shadowOpacity: 1
-  //     },
-  //     headerTitleStyle: {
-  //       fontWeight: 'bold',
-  //       color: 'black',
-  //       tintColor: 'white'
-  //     }
-  //   },
-  // },
+  Login: {
+    screen: Login,
+    navigationOptions: {
+      headerTransparent: true,
+      header: false,
+      headerStyle: {
+        backgroundColor: '#000d1a',
+      },
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        color: 'black',
+        tintColor: 'white'
+      }
+    },
+  },
+  Signup: {
+    screen: Signup,
+    navigationOptions: {
+      headerTransparent: true,
+      headerTitle: 'Sign Up',
+      headerStyle: {
+        backgroundColor: '#fafafa',
+        borderColor: 'black',
+        shadowRadius: 3,
+        tintColor: 'white',
+        shadowOpacity: 1
+      },
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        color: 'black',
+        tintColor: 'white'
+      }
+    },
+  },
   Home: {
     screen: Home, 
     navigationOptions: {
@@ -132,9 +140,81 @@ const AppNavigator = createStackNavigator({
   },
 });
 
-const bottomTab = createBottomTabNavigator({
+const CustomDrawerNavigation = (props) => {
+  return (
+    <SaveAreaView style = {{ flex: 1 }}>
+      <View style = {{ height: 250, 
+        backgroundColor: '#d2d2d2',
+        opacity: 0.9
+        }}>
+          <View style = {{ height: 200,
+          backgroundColor: 'green',
+          alignItems: 'center',
+          justifyContent: 'center'
+          }}>
+  
+          </View>
+          <View style = {{ height: 50, 
+          backgroundColor: 'Green',
+          alignItems: 'center',
+          justifyContent: 'center'
+          }}>
+          <Text> FastAid </Text>
+
+          </View>
+      </View>
+      <ScrollView>
+        <DrawerItems {...props} />
+      </ScrollView>
+      <View style = {{ alignItems: 'center', 
+      bottom: 20
+      }}>
+        <View style = {{ flexDirection: 'row'}}>
+          <View style = {{flexDirection: 'column', marginRight: 15 }}>
+            <Icon name = "flask" style = {{ fontSize: 24 }}
+            onPress = {() => console.log("Tikladin")} />
+          </View>
+          <View style = {{ flexDireection: 'column' }}>
+            <Icon name = "call" style = {{ 
+              fontSize: 24 }} onPress = {() => console.log("Tikladin")} />
+          
+          </View>
+        </View>
+      </View>
+    </SaveAreaView>
+  );
+}
+
+const Drawer = createDrawerNavigator({
+  
+ Home: {
+  screen: Home,
+  navigationOptions: {
+    title: 'Home'
+  }
+ },
+  Booking: {
+    screen: Booking,
+    navigationOptions: {
+      title: 'Patient'
+    }
+  },
+  Preoperative: {
+    screen: Preoperative,
+    navigationOptions: {
+      title: 'Doctor'
+    }
+  },
+  Login: {
+    screen: Login,
+    navigationOptions: {
+      title: 'Sign Out'
+    },
+  }
+});
+
+const bottomTabPreop = createBottomTabNavigator({
     
-    Booking: Booking,
     Preoperative: Preoperative,
     PreopResult: PreopResult
     
@@ -176,21 +256,117 @@ const bottomTab = createBottomTabNavigator({
   }
 );
 
+const Switch = createSwitchNavigator(
+  {
+    Loading,
+    AccountCreated,
+    Signup,
+    Login,
+    Home
+  }, 
+  {
+    initialRouteName: 'Loading'
+  }
+)
+
+
 const rootStack = createStackNavigator (
   { 
-//    LoginScreen: Login, 
-//    SignupScreen: Signup,
-    Homepage: Home, 
-      Tabs: {
-        screen: bottomTab,
-        navigationOptions: {
-          headerTitle: "FastAid",
-          
+    // LoginScreen: Login, 
+    // SignupScreen: Signup,
+
+    Login: {
+      screen: Login,
+      navigationOptions: {
+        headerLeft: null,
+        headerTransparent: true,
+        header: false,
+        headerMode: null,
+        headerStyle: {
+          backgroundColor: '#000d1a',
+        },
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          color: 'black',
+          tintColor: 'white'
         }
+      },
+    },
+    AccountCreated: {
+      screen: AccountCreated,
+      navigationOptions: {
+        headerLeft: null,
+        headerTransparent: true,
+        headerStyle: {
+          backgroundColor: '#000d1a',
+        },
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          color: 'black',
+          tintColor: 'white'
+        }
+      }
+    },
+    Signup: {
+      screen: Signup,
+      navigationOptions: {
+        headerTransparent: true,
+        headerLeft: null,
+        headerMode: 'none',
+        headerStyle: {
+          backgroundColor: '#000d1a',
+        },
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          color: 'black',
+          tintColor: 'white'
+        }
+      },
+    },
+
+    Home: {
+      
+      screen: Home,
+      navigationOptions: {
+        headerLeft: <Icon name="bars" style = {{left: 15}}size = {24} onPress={() => this.props.navigation.navigate('DrawerOpen')} />,
+        headerRight: <Icon name="info" style = {{right: 15}} size = {24} onPress = {() => this.props.navigation.navigate('Preoperative')}/>,
+        headerTransparent: true,
+        header: false,
+        headerBackImage: false,
+        headerTitle: "Home",
+        headerStyle: {
+          backgroundColor: '#fafafa',
+        },
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          color: 'black',
+          tintColor: 'white'
+        }
+      },
+    }, 
+    Booking: {
+      screen: Booking,
+      navigationOptions: {
+        headerTransparent: true,
+        headerStyle: {
+          backgroundColor: 'white'
+        }
+      }
+    },
+    Switch,
+    
+
+    Homepage: Home, 
+      
+      Tabs: {
+        screen: bottomTabPreop,
+        navigationOptions: {
+          headerTitle: "Preoperative Clinic",
+        },
       }
   },
   {
- //   initialRouteName: "Home",
+    initialRouteName: "Login",
     defaultNavigationOptions: {
         headerStyle: {
           backgroundColor: '#fafafa'

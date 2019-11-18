@@ -18,125 +18,110 @@
      TouchableOpacity,
      AsyncStorage,
      Keyboard,
-     TouchableWithoutFeedback
+     TouchableWithoutFeedback,
+     ActivityIndicator
  } from 'react-native';
  import { StackNavigator } from 'react-navigation-stack';
-import * as firebase from 'firebase';
+ import * as firebase from 'firebase';
+
 
  export default class Login extends Component {
 
     static navigationOptions = {
+        header: null,
         headerStyle: {backgroundColor: '00a8ff'},
     };
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            username: '',
+    // constructor(props) {
+    //     super(props);
+    //     this.state
+        state = {
             email: '',
             password: '',
-            error: '',
-            loading: false,
+            errorMessage: null,
+            loading: false
         }
+    
+    componentDidUpdate() {
+        setTimeout(() => this.setState({errorMessage: ''}), 20000);
+        
     }
 
-    onLoginPress() {
-        this.state({error: '', loading: true});
+    onLoginPress = (event) => {
 
-        const{email, password} = this.state;
-        firebase.auth().signInWithEmailAndPassword(email, password)
-        .then(() => {
-            this.state({error:'', loading: false});
-            this.props.navigation.navigate('Home');
-        }).catch(() =>  {
-            this.state({error: 'Authentication failed', loading: false});
-        })
-    }
-
-    handleSubmit = (event) => {
         event.preventDefault();
-        const username = this.state.username;
-        const password = this.state.password;
-
-        if (username == '' || password == '') {
-            alert("Incorrect Username and/or Password. Please try again");
+        if (this.state.email == "" || this.state.password == "") {
+            alert("Please enter your login details");
             return;
         }
-
-        fetch('http://192.168.0.39:3000/users', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            }, 
-            body: JSON.stringify({
-                user_name: username,
-                user_password: password
-            })
-        }).then(async (result) => {
-            let jsonRes = await result.json();
-            console.log(jsonRes);
-
-            
-
-            if (!jsonRes.token) {
-                alert('Username or password is invalid');
-                return;
-            }
-            await AsyncStorage.setItem('token', jsonRes.token);
-            await AsyncStorage.setItem('user', jsonRes.username);
-            this.props.navigation.navigate('Home');
-        }).catch(error => {
-            console.log(error);
-        });
-
-        this.setState({
-            username: '',
-            password: '',
-        })
+ 
+        this.setState({ loading: true });
+        const{email, password} = this.state;
+        firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(() => this.props.navigation.navigate('Home'))
+        .then(() => this.setState({ email: ''}))
+        .then(() => this.setState({ password: '' }))
+        .catch(error => this.setState({ errorMessage: error.message, loading: false}))
+        console.log("Loading Status: " + this.state.loading)
+        
     }
 
-    renderButtonOrLoading() {
-        if (this.state.loading) {
-            return <Text> Loading </Text>
-        }
-    }
      
         render() {
+            let loading = null;
+            if (this.state.loading) {
+                loading = <ActivityIndicator 
+                size = "large"
+                animating = {this.state.beginJob}
+                />
+            }
             return (
-                <KeyboardAvoidingView behavior = 'padding' style = {styles.wrapper}>
+                <KeyboardAvoidingView behavior = 'padding' enabled style = {styles.wrapper}>
                     
-                    <TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback onPress = {Keyboard.dismiss}>
+                    
                     <View style = {styles.container}>
 
-                        <Text style = {styles.topText}> This is an app for medical professionals and patients. </Text>
+                        <Text style = {styles.topText}> FastAID is an app for medical professionals and patients. </Text>
 
                         <Text style = {styles.header}>- FastAID -</Text>
 
-                        <TextInput style = {styles.textInput} placeholder = 'Username / E-mail'
-                        onChangeText={ (email) => this.state({email}) }
+                        <TextInput 
+                        style = {styles.textInput} 
+                        placeholder = 'E-mail'
+                        autoCapitalize = "none"
+                        onChangeText={ (email) => this.setState({email}) }
+                        value = {this.state.email}
                         onPress={Keyboard.dismiss}
                         underlineColorAndroid='transparent' 
                         returnKeyType = "next"
                         
                         />
 
-                        <TextInput style={styles.textInput} placeholder='Password'
-                            onChangeText={(password) => this.state({ password })}
-                            onPress={Keyboard.dismiss}
-                            secureTextEntry={true}
-                            returnKeyType = "done"
-                            underlineColorAndroid='transparent'
+                        <TextInput 
+                        style={styles.textInput} 
+                        placeholder='Password'
+                        autoCapitalize = "none"
+                        onChangeText={(password) => this.setState({ password })}
+                        value = {this.state.password}
+                        onPress={Keyboard.dismiss}
+                        secureTextEntry={true}
+                        returnKeyType = "done"
+                        underlineColorAndroid='transparent'
                             
                         />
 
                         <View style = {{flexDirection: 'column'}}>
                         <TouchableOpacity 
                         style = {styles.button}
-                        onPress={this.onLoginPress} {...Keyboard.dismiss}>
+                        onPress={this.onLoginPress}>
                         
                         <Text style = {{fontWeight: 'bold', color: 'white'}}> Log In </Text>
                         </TouchableOpacity>
+
+                        <Text style = {{ color: 'red', textAlign: 'center', alignItems: 'center', justifyContent: 'center', top: 10 }}> {this.state.errorMessage} </Text>
 
                         <Text style = {{color: 'white', alignItems: 'center', fontSize: 18, textAlign: 'center', top: 65}}
                         
@@ -148,7 +133,7 @@ import * as firebase from 'firebase';
                             <Text style = {{fontWeight: 'bold', color: 'white'}}> Sign Up </Text>
                         </TouchableOpacity>
                         </View>
-                        {this.renderButtonOrLoading()}
+                        
 
                     </View>
                     </TouchableWithoutFeedback>
@@ -174,7 +159,7 @@ const styles = StyleSheet.create({
     topText: {
         color: '#fff',
         textAlign: 'center',
-        top: -150,
+        top: -130,
         fontWeight: '40'
     },
     header: {
@@ -196,7 +181,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#0059b3', 
         padding: 20,
         alignItems: 'center',
-        borderRadius: 10,
+        borderRadius: 5,
         fontWeight: 60,
         width: 335
     },
@@ -205,7 +190,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#0059b3',
         padding: 20,
         alignItems: 'center',
-        borderRadius: 10,
+        borderRadius: 5,
         fontWeight: 60,
         top: 75
     }

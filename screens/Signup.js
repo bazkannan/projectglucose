@@ -15,20 +15,27 @@ import {
 } from 'react-native'
 import * as firebase from 'firebase';
 
+
 export default class Signup extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { 
-            username: "",
-            firstName: "", 
-            lastName: "",
-            passWord: "", 
-            reTypePassword: "",
-            email: "",
-            phone: ""
+    // constructor(props) {
+    //     super(props);
+  //      this.state
+        state = { 
+            firstName: '',
+            lastName: '',
+            email: '',
+            passWord: '', 
+            reTypePassword: '',
+            errorMessage: null,
         }
+    
+
+    componentDidUpdate() {
+        setTimeout(() => this.setState({errorMessage: ''}), 10000);
     }
-    handleSubmit = (event) => {
+
+    onSignupPress = (event) => {
+
         event.preventDefault();
         console.log('handle the sign up submit');
 
@@ -38,169 +45,126 @@ export default class Signup extends Component {
         }
 
         let data = {
-            "Username": this.state.username,
             "FirstName": this.state.firstName, 
             "LastName": this.state.lastName, 
-            "Password": this.state.passWord,
             "Email": this.state.email,
-            "Phone": this.state.phone
+            "Password": this.state.passWord,
+            "Re-type Password": this.state.reTypePassword,
         };
 
-        fetch('http://192.168.0.39:3000/users', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            }, 
-            body: JSON.stringify(data)
-        }).then (async (result) => {
-            let jsonResponse = await result.json();
-
-            if (jsonResponse.error) {
-                alert('This username is already taken');
-                return;
-            }
-
-            if (jsonResponse.emailError) {
-                alert('Error. This email already exists')
-                return;
-            }
-
-            if (jsonResponse.phoneError) {
-                alert('Error. This phone number is already taken')
-                return;
-            }
-
-            if (jsonResponse.success) {
-                this.props.navigation.navigate('Login');
-                return;
-            } else {
-                alert('Register unsuccessful. Please check your inputs');
-                return;
-            }
-        }).catch(error => {
-            console.log(error);
-        });
-    }
-
-    static navigationOptions = {
-        headerStyle: {backgroundColor: '#00a8ff'},
-    };
-
-    validation (text, type) {
-        switch (type) {
-            case "username" : {
-                this.setState ({username: text})
-            }
-            case "firstName" : {
-                this.setState ({firstName: text})
-            }
-            case "lastName" : {
-                this.setState ({lastName: text})
-            }
-            case "passWord" : {
-                this.setState ({passWord: text})
-            }
-            case "reTypePassword" : {
-                this.setState ({reTypePassword: text})
-            }
-            case "Email" : {
-                this.setState ({Email: text})
-            }
-            case "Phone" : {
-                this.setState ({Phone: text})
-            }
+        if (this.state.email == "" || this.state.passWord == "" || this.state.firstName == "" || this.state.lastName == "") {
+            alert("Empty fields. Please input some text before submitting");
+            return;
         }
-    }
 
-    onSignupPress() {
-        this.setState({ error: '', loading: true });
-        const { username, firstname, lastname, password, email, phone } = this.state;
-        firebase.auth().createUserWithEmailAndPassword(username, firstname, lastname, password, email, phone)
-            .then(() => {
-                this.state({ error: '', loading: false });
-                this.props.navigation.navigate('Home');
-            })
-            .catch(() => {
-                this.state({ error: 'Authentication failed', loading: false });
-            })
-
-    }
+        firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.state.email, this.state.passWord)
+            .then(() => 
+                this.props.navigation.navigate('AccountCreated'))
+                .catch(error => this.setState({ errorMessage: error.message}))
+        }
+    
 
     render() {
         return (
             <KeyboardAvoidingView behavior = "padding" style = {styles.container}>
-                <ScrollView>
-                <TouchableWithoutFeedback>
+                
+                <TouchableWithoutFeedback onPress = {Keyboard.dismiss}>
                 <View style = {styles.container}>
                     <StatusBar barStyle = 'default' />
                     
-                        <Text style = {styles.heading}> Sign Up to FastAid! </Text>
+                        <Text style = {styles.heading}> Sign Up to FastAID! </Text>
 
-                        <TextInput style = {styles.input} 
+                        {/* <TextInput style = {styles.input} 
                         placeholder = "Username"
                         onChangeText = {(text) => this.validation(text, 'username')}
                         returnKeyType = "next"
                         onPress = {Keyboard.dismiss}
+                        autoCapitalize = "none"
                         onSubmitEditing = {() => this.firstNameInput.focus()}
-                        />
+                        /> */}
 
                         <TextInput style = {styles.input} placeholder = "First Name"
-                        onChangeText = {(text) => this.validation(text, 'FirstName')}
+                        // onChangeText = {(text) => this.validation(text, 'FirstName')}
+                        onChangeText = {firstName => this.setState({firstName})}
+                        value={this.state.firstName}
                         returnKeyType = "next"
-                        ref = {(input) => this.firstNameInput = input}
+                        // ref = {(input) => this.firstNameInput = input}
+
                         onPress={Keyboard.dismiss}
-                        onSubmitEditing = {() => this.lastNameInput.focus()}
+                        autoCapitalize = "none"
+                        // onSubmitEditing = {() => this.lastNameInput.focus()}
                         />
 
                         <TextInput style = {styles.input} placeholder = "Last Name"
-                        onChangeText={(text) => this.validation(text, 'LastName')}
+                        // onChangeText={(text) => this.validation(text, 'LastName')}
+                        onChangeText = {lastName => this.setState({lastName})}
+                        value = {this.state.lastName}
                         returnKeyType = "next"
-                        ref = {(input) => this.lastNameInput = input}
+                        // ref = {(input) => this.lastNameInput = input}
                         onPress={Keyboard.dismiss}
-                        onSubmitEditing = {() => this.passwordInput.focus()}
-                        />
+                        autoCapitalize = "none"
+                        // onSubmitEditing = {() => this.passwordInput.focus()}
+                        /> 
 
-                        <Text style = {styles.passwordText}> Password must contain at least one letter and number </Text>
+                            <TextInput
+                                style={styles.input}
+                                placeholder="E-mail"
+                                // onChangeText = {(text) => this.validation(text, 'Email')}
+                                onChangeText={email => this.setState({ email })}
+                                value={this.state.email}
+                                returnKeyType="next"
+                                onPress={Keyboard.dismiss}
+                                autoCapitalize="none"
+                                // ref={(input) => this.emailInput = input}
 
-                        <TextInput style={styles.input} placeholder="Password"
-                        onChangeText={(text) => this.validation(text, 'Password')}
+                            />
+
+                        {/* <Text style = {styles.passwordText}> Password must contain at least one letter and number </Text> */}
+
+                        <TextInput 
+                        style={styles.input} 
+                        placeholder="Password"
+                        // onChangeText={(text) => this.validation(text, 'Password')}
+                        onChangeText = {passWord => this.setState({ passWord })}
+                        value = {this.state.passWord}
                         secureTextEntry={true}
-                        returnKeyType="next"
+                        // returnKeyType="next"
                         onPress={Keyboard.dismiss}
-                        ref={(input) => this.passwordInput = input}
-                        onSubmitEditing={() => this.emailInput.focus()}
+                        autoCapitalize = "none"
+                        // ref={(input) => this.passwordInput = input}
+                        // onSubmitEditing={() => this.emailInput.focus()}
 
                         />
 
-                        <TextInput style = {styles.input} placeholder = "Re-type Password"
-                        onChangeText = {(text) => this.validation(text, 'RetypePassword')}
+                        <TextInput 
+                        style = {styles.input} 
+                        placeholder = "Confirm Password"
+                        // onChangeText = {(text) => this.validation(text, 'RetypePassword')}
+                        onChangeText = {reTypePassword => this.setState({reTypePassword})}
+                        value = {this.state.reTypePassword}
                         secureTextEntry={true}
                         returnKeyType = "next"
                         onPress={Keyboard.dismiss}
-                        ref = {(input) => this.repasswordInput = input}
-                        onSubmitEditing = {() => this.emailInput.focus()}
+                        autoCapitalize = "none"
+                        // ref = {(input) => this.repasswordInput = input}
+                        // onSubmitEditing = {() => this.emailInput.focus()}
 
                         />
 
-                        <TextInput style = {styles.input} placeholder = "E-mail"
-                        onChangeText = {(text) => this.validation(text, 'Email')}
-                        returnKeyType = "next"
-                        onPress={Keyboard.dismiss}
-                        ref = {(input) => this.emailInput = input}
-                        
-                        />
-
-                        <TextInput style={styles.input} placeholder="Phone"
+                        {/* <TextInput style={styles.input} placeholder="Phone"
                         onChangeText={(text) => this.validation(text, 'Phone')}
                         returnKeyType="done"
                         keyboardType = "numeric"
                         onPress={Keyboard.dismiss}
                         ref={(input) => this.phoneInput = input}
 
-                        />
+                        /> */}
 
-                        <TouchableOpacity style = {styles.buttonContainer} onPress={this.handleSubmit}>
+                            <Text style={{ color: 'red', textAlign: 'center', alignItems: 'center', justifyContent: 'center', top: -10 }}> {this.state.errorMessage} </Text>
+
+                        <TouchableOpacity style = {styles.buttonContainer} onPress={this.onSignupPress}>
                         <Button onPress = {this.onSignupPress} color = 'white' title="Submit" testID = "submitButton" />
                         </TouchableOpacity>
 
@@ -214,7 +178,7 @@ export default class Signup extends Component {
 
                 </View>    
                 </TouchableWithoutFeedback>
-                </ScrollView>         
+                         
             </KeyboardAvoidingView>
         )
     }
@@ -238,7 +202,7 @@ const styles = StyleSheet.create({
     }, 
     buttonContainer: {
         backgroundColor: '#0059b3', 
-        borderRadius: 10,
+        borderRadius: 5,
     }, 
     text: {
         fontWeight: '400', 
