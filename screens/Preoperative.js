@@ -21,6 +21,7 @@ export default class Preoperative extends Component {
 
     static navigationOptions = {
         headerTransparent: true, 
+        title: 'Pre-operative Clinic',
         headerStyle: { borderBottomWidth: 0 }
     }; 
 
@@ -28,12 +29,21 @@ export default class Preoperative extends Component {
     constructor() {
         super();
         this.state = ({
-            fever: true, 
+            patient: true, 
             temp: "", 
-            cough: true,
-            diabetic: true,
+            levels: true,
+            surgery: true,
             anaesthesia: true,
-            medications: []
+            metformin: false,
+            shortInsulin: false,
+            intermediateInsulin: false,
+            alpha: false,
+            dppFour: false,
+            glpReceptor: false,
+            meglitinides: false,
+            sgltTwo: false,
+            sulphonyureas: false,
+            thiasolidinediones: false,
         });
     }
 
@@ -44,32 +54,37 @@ export default class Preoperative extends Component {
     };
 
     diabetesQuestion = state => event => {
-        if (this.state.fever === false) {
+        if (this.state.patient === false) {
             alert("If you've selected 'No', please note this section is only for diabetics on medication!")
         } else {
             this.handleSetState;
         }
     }
 
-    state = {
-        termsAccepted: false
-    }
-
-    handleCheckBox = () => this.setState({ termsAccepted: !this.state.termsAccepted })
-
     goToResults = () => {
         if (this.state.temp == "") {
-            alert("You need to input your blood sugar level!")
-        } else if (this.state.fever == false) {
+            alert("You need to input your HbA1c level!")
+        } else if (this.state.patient == false) {
             alert ("If you answered 'No' for the first question, please note this section is only for diabetics on medication!")
+        } else if (this.state.temp < 31 || this.state.temp > 125) {
+            alert ("Values must be within the range (31 - 125) mmol / mol")
         } else {
             this.props.navigation.navigate('PreopResult', {
-                cough: this.state.cough, 
+                levels: this.state.levels, 
                 temp: this.state.temp, 
-                fever: this.state.fever,
-                diabetic: this.state.diabetic,
+                patient: this.state.patient,
+                surgery: this.state.surgery,
                 anaesthesia: this.state.anaesthesia,
-                medications: this.state.medications
+                metformin: this.state.metformin,
+                shortInsulin: this.state.shortInsulin,
+                intermediateInsulin: this.state.intermediateInsulin,
+                alpha: this.state.alpha,
+                dppFour: this.state.dppFour,
+                glpReceptor: this.state.glpReceptor,
+                meglitinides: this.state.meglitinides,
+                sgltTwo: this.state.sgltTwo,
+                sulphonyureas: this.state.sulphonyureas,
+                thiasolidinediones: this.state.thiasolidinediones
             })
         }
     }
@@ -82,35 +97,35 @@ export default class Preoperative extends Component {
                 backgroundColor: '#C7C1C1', 
                 borderRadius: 3
             }, 
-            feverToggle: {
+            patientToggle: {
                 height: 40, 
                 width: 50, 
-                backgroundColor: this.state.fever ? "#55acee" : '#CB6161', 
+                backgroundColor: this.state.patient ? "#55acee" : '#CB6161', 
                 alignItems: 'center', 
                 justifyContent: 'center', 
-                left: this.state.fever ? 50: 0, 
+                left: this.state.patient ? 50: 0, 
                 borderRadius: 3
             }, 
             toggleLabel: {
                 fontSize: 15,
                 color: '#FFF'
             }, 
-            coughToggle: {
+            levelsToggle: {
                 height: 40, 
                 width: 50, 
-                backgroundColor: this.state.cough ? "#55acee" : '#CB6161', 
+                backgroundColor: this.state.levels ? "#55acee" : '#CB6161', 
                 alignItems: 'center', 
                 justifyContent: 'center', 
-                left: this.state.cough ? 50 : 0, 
+                left: this.state.levels ? 50 : 0, 
                 borderRadius: 3 
             }, 
-            diabeticToggle: {
+            surgeryToggle: {
                 height: 40,
                 width: 250,
-                backgroundColor: this.state.diabetic ? "#55acee" : '#CB6161',
+                backgroundColor: this.state.surgery ? "#55acee" : '#CB6161',
                 alignItems: 'center',
                 justifyContent: 'center',
-                left: this.state.diabetic ? 0 : 0,
+                left: this.state.surgery ? 0 : 0,
                 borderRadius: 3 
             }, 
             anaesthesiaToggle: {
@@ -128,150 +143,180 @@ export default class Preoperative extends Component {
             <ScrollView style = {styles.screen}>
             <SafeAreaView style = {styles.container}>
                 <View style = {{marginTop: '10%'}}/>
+
                     <Text style={{
-                        fontSize: 12,
+                        fontSize: 28,
+                        fontWeight: "bold",
+                        fontStyle: "italic",
+                        color: "maroon",
+                        top: -10,
+                        textAlign: 'center',
+                        alignItems: 'center'}}> --PRE-OPERATIVE CLINIC-- </Text>
+
+                    <Text style={{
+                        fontSize: 32,
                         fontWeight: "600",
                         color: "white",
-                        top: 10
-                        }}> Click on the toggle to select your choice </Text>
+                        top: 20,
+                        textAlign: 'center',
+                        alignItems: 'center'
+                        }}> Tap on the toggle to select your choice </Text>
 
                 <Text style={styles.choiceText}> Patient is taking medications for diabetes? </Text>
                 <View style = {toggle.container}>
-                    <TouchableOpacity style = {toggle.feverToggle}
-                    onPress = {this.handleSetState("fever")}>
-                    {/* onPress = {this.diabetesQuestion("fever")}>  */}
-                        <Text style = {toggle.toggleLabel}> {this.state.fever ? 'Yes' : 'No' } </Text>
+                    <TouchableOpacity style = {toggle.patientToggle}
+                    onPress = {this.handleSetState("patient")}>
+                    {/* onPress = {this.diabetesQuestion("patient")}>  */}
+                        <Text style = {toggle.toggleLabel}> {this.state.patient ? 'Yes' : 'No' } </Text>
                     </TouchableOpacity>
                 </View>
 
-                <Text style = {styles.choiceText}> What is your blood sugar level? </Text>
-                <TextInput 
-                    style = {{ height: 40, backgroundColor: 'white', borderColor: 'white', borderWidth: 2, borderRadius: 5, width: '15%', padding: 3 }}
-                    textAlign={'center'}
-                    keyboardAppearance = "dark"
-                    keyboardType = "numeric"
-                    blurOnSubmit 
-                    returnKeyType = 'done'
-                    maxLength = {100}
-                    color = 'black'
-                    onChangeText = {(temp) => this.setState({temp})}
-                    value={this.state.temp} /> 
-
+                
                     <Text style={styles.choiceText}> Medications (including drug combinations) </Text>
                     <Text style={{
                         fontSize: 15,
                         fontWeight: "bold",
                         color: "white",
-                        textAlign: 'left',
+                        textAlign: 'center',
                         top: -15,
-                        left: -93
                         }}> Choose all that apply </Text>
 
                     <View>
                         
                         <CheckBox 
-                        center
+                        left
                         title= "Metformin"
-                        selected = {this.state.termsAccepted}
-                        onPress = {this.handleCheckBox}
+                        onPress = {() => this.setState({metformin: !this.state.metformin})}
                         checkedIcon = 'dot-circle-o'
                         uncheckedIcon = 'circle-o'
                         style = {{alignItems: 'left', textAlign: 'left'}}
-                        checked={this.state.checked}
+                        checked={this.state.metformin}
                         />
 
                         <CheckBox
-                            center
+                            left
                             title="Short acting Insulin (e.g. Humulin S, Apidra, Novorapid)"
                             style = {{alignItems: 'left'}}
                             checkedIcon='dot-circle-o'
                             uncheckedIcon='circle-o'
-                            checked={this.state.checked}
+                            onPress = {() => this.setState({shortInsulin: !this.state.shortInsulin})}
+                            checked={this.state.shortInsulin}
                         />
 
                         <CheckBox
-                            center
+                            left
                             title="Intermediate or Long acting Insulin (incl combination insulins)"
                             checkedIcon='dot-circle-o'
                             uncheckedIcon='circle-o'
-                            checked={this.state.checked}
+                            onPress = {() => this.setState({intermediateInsulin: !this.state.intermediateInsulin})}
+                            checked={this.state.intermediateInsulin}
                         />
 
                         <CheckBox
-                            center
+                            left
                             title="Alpha Glucosidase inhibitors (Acarbose, Miglitol)"
                             checkedIcon='dot-circle-o'
                             uncheckedIcon='circle-o'
-                            checked={this.state.checked}
+                            onPress = {() => this.setState({alpha: !this.state.alpha})}
+                            checked={this.state.alpha}
                         />
 
                         <CheckBox
-                            center
+                            left
                             title="DPP 4 inhibitors (Gliptins)"
                             checkedIcon='dot-circle-o'
                             uncheckedIcon='circle-o'
-                            checked={this.state.checked}
+                            onPress={() => this.setState({ dppFour: !this.state.dppFour })}
+                            checked={this.state.dppFour}
                         />
 
                         <CheckBox
-                            center
+                            left
                             title="GLP receptor antagonists (Glutides and Exenatide)"
                             checkedIcon='dot-circle-o'
                             uncheckedIcon='circle-o'
-                            checked={this.state.checked}
+                            onPress={() => this.setState({ glpReceptor: !this.state.glpReceptor })}
+                            checked={this.state.glpReceptor}
                         />
 
                         <CheckBox
-                            center
+                            left
                             title="Meglitinides (Glinides like Nateglinide etc)"
                             checkedIcon='dot-circle-o'
                             uncheckedIcon='circle-o'
-                            checked={this.state.checked}
+                            onPress={() => this.setState({ meglitinides: !this.state.meglitinides })}
+                            checked={this.state.meglitinides}
                         />
 
                         <CheckBox
-                            center
+                            left
                             title="SGLT 2 inhibitors (Flozins)"
                             checkedIcon='dot-circle-o'
                             uncheckedIcon='circle-o'
-                            checked={this.state.checked}
+                            onPress={() => this.setState({ sgltTwo: !this.state.sgltTwo })}
+                            checked={this.state.sgltTwo}
                         />
 
                         <CheckBox
-                            center
+                            left
                             title="Sulphonyureas (Glicazide, Glipizide, Glibanclamide, Glyburide, Glimepiride)"
                             checkedIcon='dot-circle-o'
                             uncheckedIcon='circle-o'
-                            checked={this.state.checked}
+                            onPress={() => this.setState({ sulphonyureas: !this.state.sulphonyureas })}
+                            checked={this.state.sulphonyureas}
                         />
 
                         <CheckBox
-                            center
+                            left
                             title="Thiasolidinediones (Glitazones)"
                             checkedIcon='dot-circle-o'
                             uncheckedIcon='circle-o'
-                            checked={this.state.checked}
+                            onPress={() => this.setState({ thiasolidinediones: !this.state.thiasolidinediones })}
+                            checked={this.state.thiasolidinediones}
                         />
                     </View>
                     
 
                     <Text style={styles.choiceText}> HbA1c levels done within last 3 months? </Text>
                 <View style = {toggle.container} >
-                    <TouchableOpacity style = {toggle.coughToggle}
-                    onPress={this.handleSetState("cough")}>
-                        <Text style = {toggle.toggleLabel}> {this.state.cough ? 'Yes' : 'No' } </Text>
+                    <TouchableOpacity style = {toggle.levelsToggle}
+                    onPress={this.handleSetState("levels")}>
+                        <Text style = {toggle.toggleLabel}> {this.state.levels ? 'Yes' : 'No' } </Text>
                     </TouchableOpacity>
                 </View>
 
-                    <Text style={styles.choiceText}> Type of Surgery </Text>
+                    <Text style={styles.choiceText}> If 'Yes' to the previous question, input the HbA1c level (Accepted values 31 - 125)</Text>
+                    <View style = {{flexDirection: 'row'}}>
+                    <TextInput
+                        style={{ height: 40, backgroundColor: 'white', borderColor: 'white', borderWidth: 2, borderRadius: 5, width: '15%', padding: 3 }}
+                        textAlign={'center'}
+                        keyboardAppearance="dark"
+                        keyboardType="numeric"
+                        blurOnSubmit
+                        placeholder = "69"
+                        returnKeyType='done'
+                        maxLength={100}
+                        color='black'
+                        onChangeText={(temp) => this.setState({ temp })}
+                        value={this.state.temp} /> 
+                        <Text style={{
+                            fontSize: 17,
+                            fontWeight: "600",
+                            color: "white",
+                            top: 8,
+                            left: 5
+                         }}> mmol / mol </Text>
+                    </View>
+
+                    <Text style={styles.choiceText}> Type of Surgery (TAP TO SELECT) </Text>
                     <View style={toggle.container2} >
-                        <TouchableOpacity style={toggle.diabeticToggle}
-                            onPress={this.handleSetState("diabetic")}>
-                            <Text style={toggle.toggleLabel}> {this.state.diabetic ? 'Day case / Overnight stay' : 'In-patient (>2 nights stay)'} </Text>
+                        <TouchableOpacity style={toggle.surgeryToggle}
+                            onPress={this.handleSetState("surgery")}>
+                            <Text style={toggle.toggleLabel}> {this.state.surgery ? 'Day case / Overnight stay' : 'In-patient (>2 nights stay)'} </Text>
                         </TouchableOpacity>
                     </View>
 
-                    <Text style={styles.choiceText}> Type of Anaesthesia </Text>
+                    <Text style={styles.choiceText}> Type of Anaesthesia (TAP TO SELECT) </Text>
                     <View style={toggle.container2} >
                         <TouchableOpacity style={toggle.anaesthesiaToggle}
                             onPress={this.handleSetState("anaesthesia")}>
@@ -291,11 +336,11 @@ export default class Preoperative extends Component {
                         top: 30, 
                         padding: 7, 
                         left: 20}}
-                        onPress={() => this.setState({ temp: '', diabetic: true, fever: true, cough: true, anaesthesia: true})}
+                        onPress={() => this.setState({ temp: '', surgery: true, patient: true, levels: true, anaesthesia: true, metformin: false, shortInsulin: false, intermediateInsulin: false, alpha: false, dppFour: false, glpReceptor: false, meglitinides: false, sgltTwo: false, sulphonyureas: false, thiasolidinediones: false})}
                         >
                             <Text 
                             style={styles.buttonText}
-                                onPress={() => this.setState({ temp: '', diabetic: true, fever: true, cough: true, anaesthesia: true})}
+                                onPress={() => this.setState({ temp: '', surgery: true, patient: true, levels: true, anaesthesia: true, metformin: false, shortInsulin: false, intermediateInsulin: false, alpha: false, dppFour: false, glpReceptor: false, meglitinides: false, sgltTwo: false, sulphonyureas: false, thiasolidinediones: false})}
                             > 
                             Reset 
                             </Text>
@@ -346,7 +391,8 @@ const styles = StyleSheet.create({
         fontWeight: "600",
         color: "white",
         marginTop: '16%',
-        marginBottom: '5%'
+        marginBottom: '5%',
+        textAlign: 'center',
     },
     button: {
         alignItems: 'center',

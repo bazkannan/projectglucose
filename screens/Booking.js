@@ -13,6 +13,12 @@ const WIDTH = Dimensions.get('window').width;
 
 export default class Booking extends Component {
 
+    static navigationOptions = {
+        headerTransparent: true,
+        title: 'Request Doctor',
+        headerStyle: { borderBottomWidth: 0 }
+    }; 
+
     constructor(props) {
         super(props);
 

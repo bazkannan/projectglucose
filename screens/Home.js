@@ -1,27 +1,41 @@
 import React, { Component } from 'react'; 
-import { View, Text, TouchableOpacity, StyleSheet, TouchableHighlight, ScrollView } from 'react-native'; 
+import { View, Text, TouchableOpacity, StyleSheet, TouchableHighlight, ScrollView, AppDrawerNavigator } from 'react-native'; 
 import { createAppContainer } from 'react-navigation'; 
 import { createStackNavigator } from 'react-navigation-stack';
 import MenuButton from '../components/MenuButton';
 import MapView from 'react-native-maps';
-import { Icon, Button, Container, Header, Content, Left } from 'native-base';
+import { Button, Container, Header, Content, Left } from 'native-base';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import * as firebase from 'firebase';
 
 export default class Home extends React.Component {
-    static navigationOptions = {
+    static navigationOptions = ({navigation}) => {
+        return {
         headerTransparent: true, 
-        headerStyle: { borderBottomWidth: 0 } 
-    };
+        headerTitle: 'Home',
+        navigationOptions: {
+            headerVisible: true,
+            
+        },
+        headerStyle: { borderBottomWidth: 0 },
+        // headerLeft: <TouchableOpacity style={{ marginLeft: 15, marginTop: 3 }} onPress={() => alert('Menu button pressed')}><Icon name="bars" style={{}} size={24} /></TouchableOpacity>,
+    }
+};
 
     state = { currentUser: null }
     
+    signOutUser = () => 
+       { 
+        this.props.navigation.navigate('Login') }
 
     render() {
         const { currentUser } = this.state 
+
         return (
             <Container>
-            
             <ScrollView style = {styles.screen}>
             <View style = {styles.screen}>
+            
                 
                 {/* <Text style = {styles.title}> Select options. </Text> */}
                 <Text style = {{alignItems: 'center', fontSize: 18, textAlign: 'center', color: 'white', justifyContent: 'center', top: -95}} > Welcome to FastAID! Select any of the available services shown below. </Text>
@@ -47,9 +61,12 @@ export default class Home extends React.Component {
                 }}> Doctors </Text>
 
                     <TouchableOpacity
-                        style={{ alignItems: 'center', backgroundColor: '#0059b3', padding: 15, borderRadius: 7, borderColor: 'black', width: '165%', justifyContent: 'center', top: -150 }}
+                        style={{ alignItems: 'center', backgroundColor: '#0059b3', padding: 15, borderRadius: 7, borderColor: 'white', borderWidth: 1, width: '165%', justifyContent: 'center', top: -150 }}
                         onPress={() => this.props.navigation.navigate('Booking')}
                     >
+                            <View style={{ marginTop: 0, top: -5 }}>
+                                <Icon name="medkit" size={25} color="white" />
+                            </View>
                         <Text style={styles.buttonText}> Request Doctor </Text>
                     </TouchableOpacity>
                    
@@ -57,14 +74,31 @@ export default class Home extends React.Component {
                     style = {styles.button} 
                     onPress={() => this.props.navigation.navigate('Preoperative')}
                     >
+                            <View style={{ marginTop: 0, top: -5 }}>
+                                <Icon name="heartbeat" size={25} color="white" />
+                            </View>
                     <Text style = {styles.buttonText}> Perioperative Assessment for Diabetics </Text>
                 </TouchableOpacity>
-                    <Text style={{ alignItems: 'center', fontSize: 14, fontWeight: 'bold', textAlign: 'center', color: 'white', justifyContent: 'center', top: 290 }} > © FastAID 2019 </Text>
+
+                        <TouchableOpacity
+                            style={{ alignItems: 'center', backgroundColor: '#0059b3', padding: 15, borderRadius: 7, borderColor: 'white', borderWidth: 1, width: '165%', justifyContent: 'center', top: 35 }}
+                            onPress={() => this.props.navigation.navigate('Regression')}
+                        >
+                            <View style={{ marginTop: 0, top: -5 }}>
+                                <Icon name="line-chart" size={25} color="white" />
+                            </View>
+                            <Text style={styles.buttonText}> Regression Analysis </Text>
+                        </TouchableOpacity>
+                        
+                    <Text style={{ alignItems: 'center', fontSize: 14, fontWeight: 'bold', textAlign: 'center', color: 'white', justifyContent: 'center', top: 160 }} > © FastAID 2019 </Text>
         
                     <TouchableOpacity
-                        style={{ alignItems: 'center', backgroundColor: 'maroon', padding: 15, borderRadius: 7, borderColor: 'black', width: '135%', justifyContent: 'center', top: 300}}
-                        onPress={() => this.props.navigation.navigate('Login')}
+                        style={{ alignItems: 'center', backgroundColor: 'maroon', padding: 15, borderRadius: 7, borderColor: '#fff', width: '135%', justifyContent: 'center', top: 170}}
+                        onPress={() => this.signOutUser()}
                     >
+                            <View style={{ marginTop: 0, top: -5 }}>
+                                <Icon name="sign-out" size={25} color="white" />
+                            </View>
                         <Text style={styles.buttonText}> Sign Out </Text>
                     </TouchableOpacity>
         
@@ -106,10 +140,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#0059b3', 
         padding: 15, 
         borderRadius: 7, 
-        borderColor: 'black',
+        borderColor: 'white',
+        borderWidth: 1,
         width: '165%',
         justifyContent: 'center',
-        top: 55
+        top: 30
 
     }, 
     button2: {
@@ -118,6 +153,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#0059b3',
         padding: 15,
         borderRadius: 7,
+        borderColor: 'white',
+        borderWidth: 1,
         width: '65%',
         justifyContent: 'center',
         top: 130

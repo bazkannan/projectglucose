@@ -12,7 +12,8 @@ import {
     StatusBar,
     TouchableWithoutFeedback,
     Keyboard
-} from 'react-native'
+} from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import * as firebase from 'firebase';
 
 
@@ -165,7 +166,10 @@ export default class Signup extends Component {
                             <Text style={{ color: 'red', textAlign: 'center', alignItems: 'center', justifyContent: 'center', top: -10 }}> {this.state.errorMessage} </Text>
 
                         <TouchableOpacity style = {styles.buttonContainer} onPress={this.onSignupPress}>
-                        <Button onPress = {this.onSignupPress} color = 'white' title="Submit" testID = "submitButton" />
+                            <View>
+                                <Icon name="user-plus" style={{ margin: 5, top: 5, alignItems: 'center', left: 130 }} size={25} color="white" />
+                            </View>
+                        <Button onPress = {this.onSignupPress} color = 'white' title="Create Account" testID = "submitButton" />
                         </TouchableOpacity>
 
                         <Button onPress = {() => this.props.navigation.navigate('Login')}

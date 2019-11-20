@@ -117,7 +117,9 @@
                         <TouchableOpacity 
                         style = {styles.button}
                         onPress={this.onLoginPress}>
-                        
+                                    <View style={{ marginTop: 0, top: -5 }}>
+                                        <Icon name="sign-in" size={25} color="white" />
+                                    </View>
                         <Text style = {{fontWeight: 'bold', color: 'white'}}> Log In </Text>
                         </TouchableOpacity>
 
@@ -126,12 +128,17 @@
                         <Text style = {{color: 'white', alignItems: 'center', fontSize: 18, textAlign: 'center', top: 65}}
                         
                         > Don't have an account? Create one now! </Text>
-
+                        
+                        
                         <TouchableOpacity
                             style={styles.signupButton}
                             onPress={() => this.props.navigation.navigate('Signup')}>
+                                <View>
+                                        <Icon name="user" style = {{margin: 5, top: -5}} size={25} color="white" />
+                                </View>
                             <Text style = {{fontWeight: 'bold', color: 'white'}}> Sign Up </Text>
                         </TouchableOpacity>
+                        
                         </View>
                         
 
@@ -159,8 +166,10 @@ const styles = StyleSheet.create({
     topText: {
         color: '#fff',
         textAlign: 'center',
-        top: -130,
-        fontWeight: '40'
+        top: -70,
+        fontWeight: '40',
+        fontSize: 24
+
     },
     header: {
         fontSize: 24,
@@ -178,7 +187,7 @@ const styles = StyleSheet.create({
     },
     button: {
         alignSelf: 'stretch',
-        backgroundColor: '#0059b3', 
+        backgroundColor: '#006700', 
         padding: 20,
         alignItems: 'center',
         borderRadius: 5,

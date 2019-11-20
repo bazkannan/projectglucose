@@ -5,6 +5,8 @@ import axios from 'axios';
 export default class PreopResult extends Component {
     static navigationOptions = {
         headerTransparent: true,
+        headerTitle: 'Result',
+        title: 'Result',
         headerStyle: { borderBottomWidth: 0 }
     };
     constructor() {
@@ -17,15 +19,14 @@ export default class PreopResult extends Component {
     async componentDidMount() {
         try {
             const { navigation } = this.props;
-            const fever = await JSON.stringify(navigation.getParam('fever', 'null'));
+            const patient = await JSON.stringify(navigation.getParam('patient', 'null'));
             const temp = await navigation.getParam('temp', 'null');
-            const cough = await JSON.stringify(navigation.getParam('cough', 'null'));
-            const diabetic = await JSON.stringify(navigation.getParam('diabetic', 'null'));
-            const response = await axios.post('http://18.189.31.11:3000/preoperative', {
-                "fever": fever,
+            const levels = await JSON.stringify(navigation.getParam('levels', 'null'));
+            const response = await axios.post('http://192.168.0.39:3000/preoperative', {
+                "patient": patient,
                 "temp": temp,
-                "cough": cough,
-                "diabetic": diabetic 
+                "levels": levels,
+                
             })
             this.setState({result: response.data.response})
             } catch (error) {

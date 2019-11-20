@@ -3,6 +3,7 @@ import { Platform, Dimensions } from 'react-native';
 import { createDrawerNavigator, createAppContainer } from 'react-navigation';
 
 import Home from '../screens/Home';
+import Login from '../screens/Login';
 
 const WIDTH = Dimensions.get('window').width;
 
@@ -16,6 +17,9 @@ const DrawerNavigator = createDrawerNavigator(
     {
         Home: {
             screen: Home
+        },
+        Login: {
+            screen: Login
         },
     },
     DrawerConfig
