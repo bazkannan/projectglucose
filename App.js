@@ -52,32 +52,32 @@ componentWillMount() {
 
 
 
-const MyNavScreen = ({ props }) => ({
-  Home: {
-    screen: Home,
-    navigationOptions: {
-      title: 'Home'
-    }
-  },
-  Booking: {
-    screen: Booking,
-    navigationOptions: {
-      title: 'Patient'
-    }
-  },
-  Preoperative: {
-    screen: Preoperative,
-    navigationOptions: {
-      title: 'Doctor'
-    }
-  },
-  Login: {
-    screen: Login,
-    navigationOptions: {
-      title: 'Sign Out'
-    },
-  }
-});
+// const MyNavScreen = ({ props }) => ({
+//   Home: {
+//     screen: Home,
+//     navigationOptions: {
+//       title: 'Home'
+//     }
+//   },
+//   Booking: {
+//     screen: Booking,
+//     navigationOptions: {
+//       title: 'Patient'
+//     }
+//   },
+//   Preoperative: {
+//     screen: Preoperative,
+//     navigationOptions: {
+//       title: 'Doctor'
+//     }
+//   },
+//   Login: {
+//     screen: Login,
+//     navigationOptions: {
+//       title: 'Sign Out'
+//     },
+//   }
+// });
 
 const AppNavigator = createStackNavigator({
 
@@ -377,7 +377,7 @@ const rootStack = createStackNavigator (
       navigationOptions: {
         headerLeft: null,
         headerTransparent: true,
-        header: false,
+        header: null,
         headerMode: null,
         headerStyle: {
           backgroundColor: '#000d1a',
@@ -409,6 +409,7 @@ const rootStack = createStackNavigator (
       navigationOptions: {
         headerTransparent: true,
         headerLeft: null,
+        header: null,
         headerMode: 'none',
         headerStyle: {
           backgroundColor: '#000d1a',
@@ -426,7 +427,8 @@ const rootStack = createStackNavigator (
       screen: Home,
       navigationOptions: ({navigation}) => ({
         
-        headerLeft: <TouchableOpacity style={{ marginLeft: 15, marginTop: 3 }} onPress={() => navigation.dispatch(DrawerActions.openDrawer())}><Icon name="bars" style={{}} size={24}  /></TouchableOpacity>,
+        headerLeft: <TouchableOpacity style={{ marginLeft: 15, marginTop: 3 }} onPress={() => navigation.openDrawer()}><Icon name="bars" style={{}} size={24}  /></TouchableOpacity>,
+        headerRight: <TouchableOpacity style={{ marginRight: 15, marginTop: 3 }} onPress={() => navigation.navigate('Settings')}><Icon name="gear" style={{}} size={24} /></TouchableOpacity>,
         headerTransparent: true,
         headerBackImage: false,
         headerStyle: {
@@ -464,7 +466,7 @@ const rootStack = createStackNavigator (
         screen: bottomTab,
         navigationOptions: {
           headerTransparent: false,
-          headerTitle: 'FastAID'
+          headerTitle: 'FastAID',
         },
       },
       

@@ -25,7 +25,7 @@ export const DestinationButton = function(props) {
             
             <View style = {styles.centerCol}>
                 <Text style = {{fontFamily: 'sans-serif-thin', fontSize: 21, color: '#545454'}}>
-                    How can I help you?
+                    Where to?
                 </Text>
             </View>
 

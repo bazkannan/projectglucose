@@ -22,11 +22,13 @@ export default class Home extends React.Component {
     }
 };
 
-    state = { currentUser: null }
+    state = { currentUser: null, loading: true }
     
     signOutUser = () => 
        { 
-        this.props.navigation.navigate('Login') }
+        this.props.navigation.navigate('Login');
+        console.log('Signed out');
+    }
 
     render() {
         const { currentUser } = this.state 
@@ -40,7 +42,7 @@ export default class Home extends React.Component {
                 {/* <Text style = {styles.title}> Select options. </Text> */}
                 <Text style = {{alignItems: 'center', fontSize: 18, textAlign: 'center', color: 'white', justifyContent: 'center', top: -95}} > Welcome to FastAID! Select any of the available services shown below. </Text>
                 
-
+            <View style = {{flex: 1}}>
                 <Text style = {{
                         alignItems: 'center',
                         fontWeight: "bold",
@@ -48,9 +50,10 @@ export default class Home extends React.Component {
                         textAlign: 'center',
                         color: 'white',
                         justifyContent: 'center',
-                        top: -90
-                }}> Patients </Text>
-                <Text style = {{
+                        top: -95
+                }}> Doctors </Text>
+                </View>
+                {/* <Text style = {{
                         alignItems: 'center',
                         fontWeight: "bold",
                         fontSize: 54,
@@ -58,16 +61,17 @@ export default class Home extends React.Component {
                         color: 'white',
                         justifyContent: 'center',
                         top: 100
-                }}> Doctors </Text>
+                }}> Analysis </Text> */}
 
+                <View style = {{flexDirection: 'row', top: -90}}>
                     <TouchableOpacity
-                        style={{ alignItems: 'center', backgroundColor: '#0059b3', padding: 15, borderRadius: 7, borderColor: 'white', borderWidth: 1, width: '165%', justifyContent: 'center', top: -150 }}
+                        style={{ alignItems: 'center', backgroundColor: '#0059b3', padding: 15, borderRadius: 7, borderColor: 'white', borderWidth: 1, width: '50%', justifyContent: 'center', top: 0 }}
                         onPress={() => this.props.navigation.navigate('Booking')}
                     >
                             <View style={{ marginTop: 0, top: -5 }}>
                                 <Icon name="medkit" size={25} color="white" />
                             </View>
-                        <Text style={styles.buttonText}> Request Doctor </Text>
+                        <Text style={styles.buttonText}> Attend Requests </Text>
                     </TouchableOpacity>
                    
                 <TouchableOpacity
@@ -79,9 +83,11 @@ export default class Home extends React.Component {
                             </View>
                     <Text style = {styles.buttonText}> Perioperative Assessment for Diabetics </Text>
                 </TouchableOpacity>
+                </View>
 
+                <View style = {{flex: 1, flexDirection: 'row', top: -75}}>
                         <TouchableOpacity
-                            style={{ alignItems: 'center', backgroundColor: '#0059b3', padding: 15, borderRadius: 7, borderColor: 'white', borderWidth: 1, width: '165%', justifyContent: 'center', top: 35 }}
+                            style={{ alignItems: 'center', backgroundColor: '#0059b3', padding: 15, borderRadius: 7, borderColor: 'white', borderWidth: 1, width: '50%', justifyContent: 'center', top: 0 }}
                             onPress={() => this.props.navigation.navigate('Regression')}
                         >
                             <View style={{ marginTop: 0, top: -5 }}>
@@ -89,18 +95,21 @@ export default class Home extends React.Component {
                             </View>
                             <Text style={styles.buttonText}> Regression Analysis </Text>
                         </TouchableOpacity>
-                        
-                    <Text style={{ alignItems: 'center', fontSize: 14, fontWeight: 'bold', textAlign: 'center', color: 'white', justifyContent: 'center', top: 160 }} > © FastAID 2019 </Text>
+                
+                 
+                    
         
                     <TouchableOpacity
-                        style={{ alignItems: 'center', backgroundColor: 'maroon', padding: 15, borderRadius: 7, borderColor: '#fff', width: '135%', justifyContent: 'center', top: 170}}
-                        onPress={() => this.signOutUser()}
+                                style={{ alignItems: 'center', backgroundColor: '#0059b3', padding: 15, borderRadius: 7, borderColor: 'white', borderWidth: 1, width: '50%', justifyContent: 'center', top: 0, marginLeft: 10}}
+                        onPress={() => this.props.navigation.navigate('Settings')}
                     >
                             <View style={{ marginTop: 0, top: -5 }}>
-                                <Icon name="sign-out" size={25} color="white" />
+                                <Icon name="gear" size={25} color="white" />
                             </View>
-                        <Text style={styles.buttonText}> Sign Out </Text>
+                        <Text style={styles.buttonText}> Settings </Text>
                     </TouchableOpacity>
+
+                </View>  
         
             </View>
             </ScrollView>
@@ -142,9 +151,10 @@ const styles = StyleSheet.create({
         borderRadius: 7, 
         borderColor: 'white',
         borderWidth: 1,
-        width: '165%',
+        width: '50%',
         justifyContent: 'center',
-        top: 30
+        top: 0,
+        marginLeft: 10
 
     }, 
     button2: {

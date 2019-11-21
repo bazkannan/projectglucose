@@ -11,13 +11,19 @@ import {
     ScrollView, 
     StatusBar,
     TouchableWithoutFeedback,
-    Keyboard
+    Keyboard, 
+    ImageBackground
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as firebase from 'firebase';
 
 
 export default class Signup extends Component {
+
+    static navigationOptions = {
+        header: null,
+        headerStyle: { backgroundColor: '00a8ff' },
+    };
     // constructor(props) {
     //     super(props);
   //      this.state
@@ -57,7 +63,7 @@ export default class Signup extends Component {
             alert("Empty fields. Please input some text before submitting");
             return;
         }
-
+        console.log('Account Created');
         firebase
         .auth()
         .createUserWithEmailAndPassword(this.state.email, this.state.passWord)
@@ -73,6 +79,7 @@ export default class Signup extends Component {
                 
                 <TouchableWithoutFeedback onPress = {Keyboard.dismiss}>
                 <View style = {styles.container}>
+                        
                     <StatusBar barStyle = 'default' />
                     
                         <Text style = {styles.heading}> Sign Up to FastAID! </Text>
@@ -179,7 +186,7 @@ export default class Signup extends Component {
                         testID = "submitButton"
                         fontSize = {12}
                         />
-
+                        
                 </View>    
                 </TouchableWithoutFeedback>
                          

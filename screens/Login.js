@@ -19,7 +19,8 @@
      AsyncStorage,
      Keyboard,
      TouchableWithoutFeedback,
-     ActivityIndicator
+     ActivityIndicator,
+     ImageBackground
  } from 'react-native';
  import { StackNavigator } from 'react-navigation-stack';
  import * as firebase from 'firebase';
@@ -29,7 +30,7 @@
 
     static navigationOptions = {
         header: null,
-        headerStyle: {backgroundColor: '00a8ff'},
+        
     };
 
     // constructor(props) {
@@ -54,7 +55,7 @@
             alert("Please enter your login details");
             return;
         }
- 
+        console.log('Logged in');
         this.setState({ loading: true });
         const{email, password} = this.state;
         firebase
@@ -81,10 +82,19 @@
                 <KeyboardAvoidingView behavior = 'padding' enabled style = {styles.wrapper}>
                     
                     <TouchableWithoutFeedback onPress = {Keyboard.dismiss}>
-                    
+                        
                     <View style = {styles.container}>
-
-                        <Text style = {styles.topText}> FastAID is an app for medical professionals and patients. </Text>
+                            <ImageBackground
+                                source={require('../assets/doctor.jpg')}
+                                style={{
+                                    flex: 1,
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    padding: 40,
+                                    opacity: '1',
+                                    }}
+                           >   
+                        <Text style = {styles.topText}> FastAID is an app for medical professionals. </Text>
 
                         <Text style = {styles.header}>- FastAID -</Text>
 
@@ -114,6 +124,14 @@
                         />
 
                         <View style = {{flexDirection: 'column'}}>
+
+                                <TouchableOpacity>
+                                    <Text
+                                    style={{ color: 'white', alignItems: 'center', fontSize: 12, textAlign: 'right', top: -10 }}
+
+                                    > Forgot Password? </Text>
+                                </TouchableOpacity>
+
                         <TouchableOpacity 
                         style = {styles.button}
                         onPress={this.onLoginPress}>
@@ -124,8 +142,9 @@
                         </TouchableOpacity>
 
                         <Text style = {{ color: 'red', textAlign: 'center', alignItems: 'center', justifyContent: 'center', top: 10 }}> {this.state.errorMessage} </Text>
-
-                        <Text style = {{color: 'white', alignItems: 'center', fontSize: 18, textAlign: 'center', top: 65}}
+                            
+                        
+                                    <Text style={{ color: 'white', alignItems: 'center', fontSize: 18, fontWeight: '60', textAlign: 'center', top: 65, textShadowRadius: 10,}}
                         
                         > Don't have an account? Create one now! </Text>
                         
@@ -141,8 +160,10 @@
                         
                         </View>
                         
-
+                            <Text style={{ alignItems: 'center', fontSize: 14, fontWeight: 'bold', textAlign: 'center', color: 'white', justifyContent: 'center', top: 140 }} > © FastAID 2019 </Text>
+                            </ImageBackground>
                     </View>
+                    
                     </TouchableWithoutFeedback>
                     
                 </KeyboardAvoidingView>
@@ -166,9 +187,16 @@ const styles = StyleSheet.create({
     topText: {
         color: '#fff',
         textAlign: 'center',
-        top: -70,
-        fontWeight: '40',
-        fontSize: 24
+        top: -40,
+        fontWeight: 'bold',
+        fontSize: 24,
+        justifyContent: 'space-around',
+        textShadowRadius: 10,
+        shadowRadius: 10,
+        shadowColor: 'black',
+        textShadowColor: 'rgba(0, 0, 0, 0.75)',
+        textShadowOffset: { width: -1, height: 1 },
+        
 
     },
     header: {
@@ -183,7 +211,9 @@ const styles = StyleSheet.create({
         padding: 16,
         marginBottom: 20,
         backgroundColor: '#fff',
-        borderRadius: 5
+        borderRadius: 5,
+        shadowRadius: 10,
+        shadowColor: 'rgba(0, 0, 0, 0.75)'
     },
     button: {
         alignSelf: 'stretch',
@@ -192,7 +222,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 5,
         fontWeight: 60,
-        width: 335
+        width: 335,
+        shadowRadius: 20,
+        shadowColor: 'rgba(0, 0, 0, 0.75)'
     },
     signupButton: {
         alignSelf: 'stretch',
@@ -201,7 +233,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 5,
         fontWeight: 60,
-        top: 75
+        top: 50,
+        shadowRadius: 20,
+        shadowColor: 'rgba(0, 0, 0, 0.75)'
     }
 });
             

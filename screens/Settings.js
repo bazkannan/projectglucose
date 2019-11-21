@@ -13,6 +13,7 @@ export default class Settings extends Component {
 
     logout = () => {
         this.props.navigation.navigate('Login');
+        console.log('Signed out');
     }
     
     
