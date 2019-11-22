@@ -174,7 +174,7 @@ export default class Signup extends Component {
 
                         <TouchableOpacity style = {styles.buttonContainer} onPress={this.onSignupPress}>
                             <View>
-                                <Icon name="user-plus" style={{ margin: 5, top: 5, alignItems: 'center', left: 130 }} size={25} color="white" />
+                                <Icon name="user-plus" style={{ margin: 5, top: 5, alignItems: 'center', left: 110 }} size={25} color="white" />
                             </View>
                         <Button onPress = {this.onSignupPress} color = 'white' title="Create Account" testID = "submitButton" />
                         </TouchableOpacity>

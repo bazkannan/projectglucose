@@ -146,7 +146,7 @@ export default class Preoperative extends Component {
                 <View style = {{marginTop: '10%'}}/>
 
                     <Text style={{
-                        fontSize: 28,
+                        fontSize: 26,
                         fontWeight: "bold",
                         fontStyle: "italic",
                         color: "red",
@@ -326,7 +326,7 @@ export default class Preoperative extends Component {
                     </View>
 
             
-                <View style = {{flexDirection: 'row'}}>
+                <View style = {{flexDirection: 'row', top: -10}}>
                         <TouchableOpacity 
                         style={{ alignItems: 'center', 
                         backgroundColor: "maroon", 

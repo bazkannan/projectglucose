@@ -283,6 +283,9 @@ const Root = createDrawerNavigator({
 
 const MyApp = createDrawerNavigator({
 
+  Loading: {
+    screen: Loading,
+  },
   Home: {
     screen: Home,
     navigationOptions: {
