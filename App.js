@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View, TouchableOpacity, TouchableHighlight, Dimensions, Image, Button, SaveAreaView, ScrollView} from 'react-native';
-import { createAppContainer, NavigationBar, createSwitchNavigator, withNavigation } from 'react-navigation';
+import { createAppContainer, NavigationBar, createSwitchNavigator, withNavigation, DrawerNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -16,7 +16,7 @@ import AccountCreated from './screens/AccountCreated';
 import * as firebase from 'firebase';
 import { Header } from 'react-native-elements';
 import { Left, Right } from 'native-base';
-import { createDrawerNavigator, DrawerActions } from 'react-navigation-drawer';
+import { createDrawerNavigator, DrawerActions} from 'react-navigation-drawer';
 import DestinationButton from './components/DestinationButton';
 import { SettingsNavigation } from './components/stackNavigator';
 import Settings from './screens/Settings';
@@ -42,6 +42,7 @@ componentWillMount() {
 
   render() {
     return (
+      
       <AppContainer />
       
     );
@@ -255,11 +256,11 @@ const HomeStack = createStackNavigator({
   }
 });
 
-const LoginStack = createStackNavigator({
-  Login: {
-    screen: Login,
+const SettingsStack = createStackNavigator({
+  Settings: {
+    screen: Settings,
     navigationOptions: ({ navigation }) => ({
-      title: 'Home',
+      
       headerLeft: <Icon name="bars" size={35} onPress={() => navigation.toggleDrawer()} />,
     })
   }
@@ -272,12 +273,32 @@ const Root = createDrawerNavigator({
       title: 'Home'
     }
   },
-  Login: {
-    screen: LoginStack,
+  Settings: {
+    screen: SettingsStack,
     navigationOptions: {
-      title: 'Logout',
+      title: 'Settings',
     }
   }
+});
+
+const MyApp = createDrawerNavigator({
+
+  Home: {
+    screen: Home,
+    navigationOptions: {
+      
+      headerTitle: 'Home',
+      title: 'Home'
+    }
+  },
+  Settings: {
+    screen: Settings,
+    navigationOptions: {
+      headerTransparent: false,
+      header: null
+    }
+  },
+  
 });
 
 const bottomTab = createBottomTabNavigator({
@@ -285,51 +306,57 @@ const bottomTab = createBottomTabNavigator({
     Booking: {
       screen: Booking,
       navigationOptions: {
-        headerTitle: 'Request Doctor',
-        title: 'Request Doctor'
+        headerTitle: 'On-Call',
+        title: 'On-Call'
       }
     },
     Preoperative: {
       screen: Preoperative,
       navigationOptions: {
-        headerTitle: 'Pre-operative Clinic',
-        title: 'Pre-operative Clinic'
+        headerTitle: 'Pre-op Clinic',
+        title: 'Pre-op Clinic'
       }
     },
   Regression: {
     screen: Regression,
     navigationOptions: {
       headerLeft: null,
+      headerTitle: 'Display',
+      title: 'Display'
     }
   },
-    Settings: {
-      screen: Settings,
-      navigationOptions: {
-        headerLeft: null,
-      }
-    },
-    
-    // PreopResult: PreopResult
-    
+    // Settings: {
+    //   screen: Settings,
+    //   navigationOptions: {
+    //     headerLeft: null,
+    //     headerTitle: 'Settings',
+    //     title: 'Settings',
+        
+    //   }
+    // },
+   
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, horizontal, tintColor }) => {
+      tabBarIcon: ({ tintColor }) => {
         const { routeName } = navigation.state;
         icon = <Icon name="home" size={25} />
         switch (routeName) {
           case "Home":
             title = "Home"
+            headerTitle = "Home"
             icon = <Icon name="home" size={25} color={tintColor} />
             break;
 
           case "Booking":
-            title = "Request"
+            title = "On-Call"
+            headerTitle = "On-Call"
             icon = <Icon name="medkit" size = {25} color = {tintColor} />
             break;
 
           case "Preoperative":
             title = "Diabetes"
+            headerTitle = "Diabetes"
             icon = <Icon name="heartbeat" size={25} color={tintColor} />
             break;
 
@@ -339,10 +366,14 @@ const bottomTab = createBottomTabNavigator({
             break;
 
           case "Settings":
+            title = "Settings"
+            headerTitle = "Settings"
             icon = <Icon name="gear" size={25} color={tintColor} />
             break;
 
           case "Regression": 
+          title = "Regression"
+          headerTitle = "Regression"
             icon = <Icon name = "line-chart" />
             break;
         }
@@ -367,7 +398,6 @@ const Switch = createSwitchNavigator(
     initialRouteName: 'Loading'
   }
 )
-
 
 const rootStack = createStackNavigator (
   { 
@@ -424,10 +454,11 @@ const rootStack = createStackNavigator (
 
     Home: {
       
-      screen: Home,
+      screen: MyApp,
       navigationOptions: ({navigation}) => ({
         
-        headerLeft: <TouchableOpacity style={{ marginLeft: 15, marginTop: 3 }} onPress={() => navigation.openDrawer()}><Icon name="bars" style={{}} size={24}  /></TouchableOpacity>,
+        headerLeft: <TouchableOpacity style={{ marginLeft: 15, marginTop: 3 }} onPress={() => navigation.openDrawer()}><Icon name="bars" style={{}} size={24} /></TouchableOpacity>,
+        headerTitle: 'FastAID',
         headerRight: <TouchableOpacity style={{ marginRight: 15, marginTop: 3 }} onPress={() => navigation.navigate('Settings')}><Icon name="gear" style={{}} size={24} /></TouchableOpacity>,
         headerTransparent: true,
         headerBackImage: false,
@@ -459,17 +490,19 @@ const rootStack = createStackNavigator (
         }
       }
     },
+
     
     Homepage: Home, 
       
       Tabs: {
         screen: bottomTab,
-        navigationOptions: {
+        navigationOptions: ({ navigation }) => ({
           headerTransparent: false,
-          headerTitle: 'FastAID',
-        },
+          
+          headerTitle: bottomTab.routeName
+        }),
       },
-      
+    
   },
   {
     initialRouteName: "Login",

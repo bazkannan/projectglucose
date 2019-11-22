@@ -5,6 +5,7 @@ import { VictoryLine, VictoryChart, VictoryTheme } from "victory-native";
 export default class Regression extends Component {
     static navigationOptions = {
         title: 'Display',
+        headerTitle: 'Display',
         headerStyle: { backgroundColor: '#179bbd' },
         headerTitleStyle: { color: 'white' }
     };

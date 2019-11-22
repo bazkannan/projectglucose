@@ -201,7 +201,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#000d1a',
         padding: 30,
-        marginTop: 0
+        marginTop: 0,
     }, 
     input : {
         height: 40,

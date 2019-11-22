@@ -1,5 +1,5 @@
 import React, { Component } from 'react'; 
-import { View, Text, TouchableOpacity, StyleSheet, TouchableHighlight, ScrollView, AppDrawerNavigator } from 'react-native'; 
+import { View, Text, TouchableOpacity, StyleSheet, TouchableHighlight, ScrollView, AppDrawerNavigator, ImageBackground } from 'react-native'; 
 import { createAppContainer } from 'react-navigation'; 
 import { createStackNavigator } from 'react-navigation-stack';
 import MenuButton from '../components/MenuButton';
@@ -11,14 +11,13 @@ import * as firebase from 'firebase';
 export default class Home extends React.Component {
     static navigationOptions = ({navigation}) => {
         return {
-        headerTransparent: true, 
+        headerTransparent: false,
         headerTitle: 'Home',
         navigationOptions: {
             headerVisible: true,
-            
         },
         headerStyle: { borderBottomWidth: 0 },
-        // headerLeft: <TouchableOpacity style={{ marginLeft: 15, marginTop: 3 }} onPress={() => alert('Menu button pressed')}><Icon name="bars" style={{}} size={24} /></TouchableOpacity>,
+        headerLeft: null
     }
 };
 
@@ -35,23 +34,43 @@ export default class Home extends React.Component {
 
         return (
             <Container>
+                
             <ScrollView style = {styles.screen}>
             <View style = {styles.screen}>
-            
+                    
+                        <ImageBackground
+                            source={require('../assets/doctor2.jpg')}
+                            style={{
+                                flex: 1,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                borderRadius: 7,
+                                top: 60,
+                                opacity: '1',
+                                
+                                
+                            }}
+                        >  
+                    
                 
                 {/* <Text style = {styles.title}> Select options. </Text> */}
-                <Text style = {{alignItems: 'center', fontSize: 18, textAlign: 'center', color: 'white', justifyContent: 'center', top: -95}} > Welcome to FastAID! Select any of the available services shown below. </Text>
+                            <Text style={{
+                                alignItems: 'center', fontSize: 18, textAlign: 'center', color: 'white', justifyContent: 'center', top: 5, textShadowColor: 'rgba(0, 0, 0, 0.75)',
+                                textShadowOffset: { width: -1, height: 1 }, textShadowRadius: 10, }} > Welcome to FastAID! </Text>
                 
             <View style = {{flex: 1}}>
                 <Text style = {{
                         alignItems: 'center',
                         fontWeight: "bold",
-                        fontSize: 54,
+                        fontSize: 42,
                         textAlign: 'center',
                         color: 'white',
                         justifyContent: 'center',
-                        top: -95
-                }}> Doctors </Text>
+                        top: 240, 
+                        textShadowColor: 'rgba(0, 0, 0, 0.75)',
+                        textShadowOffset: { width: -1, height: 1 },
+                        textShadowRadius: 10,
+                }}> Select services </Text>
                 </View>
                 {/* <Text style = {{
                         alignItems: 'center',
@@ -63,7 +82,7 @@ export default class Home extends React.Component {
                         top: 100
                 }}> Analysis </Text> */}
 
-                <View style = {{flexDirection: 'row', top: -90}}>
+                <View style = {{flexDirection: 'row', marginTop: 10, top: 250}}>
                     <TouchableOpacity
                         style={{ alignItems: 'center', backgroundColor: '#0059b3', padding: 15, borderRadius: 7, borderColor: 'white', borderWidth: 1, width: '50%', justifyContent: 'center', top: 0 }}
                         onPress={() => this.props.navigation.navigate('Booking')}
@@ -85,7 +104,7 @@ export default class Home extends React.Component {
                 </TouchableOpacity>
                 </View>
 
-                <View style = {{flex: 1, flexDirection: 'row', top: -75}}>
+                <View style = {{flex: 1, flexDirection: 'row', marginTop: 10, top: 250}}>
                         <TouchableOpacity
                             style={{ alignItems: 'center', backgroundColor: '#0059b3', padding: 15, borderRadius: 7, borderColor: 'white', borderWidth: 1, width: '50%', justifyContent: 'center', top: 0 }}
                             onPress={() => this.props.navigation.navigate('Regression')}
@@ -110,7 +129,7 @@ export default class Home extends React.Component {
                     </TouchableOpacity>
 
                 </View>  
-        
+                </ImageBackground>
             </View>
             </ScrollView>
             </Container>
@@ -126,7 +145,7 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: '#000d1a',
         alignItems: 'center',
-        top: 88,
+        top: 0
         
     },
     container: {
@@ -185,7 +204,7 @@ const styles = StyleSheet.create({
         color: 'white',
         justifyContent: 'center',
         marginVertical: 90,
-        top: 40
+        top: 0
     }, 
     subtitle: {
         alignItems: 'center', 
@@ -194,7 +213,7 @@ const styles = StyleSheet.create({
         textAlign: 'center', 
         color: 'white', 
         justifyContent: 'center',
-        top: -110
+        top: 0
     
     }
 });

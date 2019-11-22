@@ -127,7 +127,7 @@
 
                                 <TouchableOpacity>
                                     <Text
-                                    style={{ color: 'white', alignItems: 'center', fontSize: 12, textAlign: 'right', top: -10 }}
+                                    style={{ color: 'white', alignItems: 'center', fontSize: 10, textAlign: 'right', top: -10 }}
 
                                     > Forgot Password? </Text>
                                 </TouchableOpacity>
@@ -144,7 +144,7 @@
                         <Text style = {{ color: 'red', textAlign: 'center', alignItems: 'center', justifyContent: 'center', top: 10 }}> {this.state.errorMessage} </Text>
                             
                         
-                                    <Text style={{ color: 'white', alignItems: 'center', fontSize: 18, fontWeight: '60', textAlign: 'center', top: 65, textShadowRadius: 10,}}
+                                    <Text style={{ color: 'white', alignItems: 'center', fontSize: 18, fontWeight: '60', textAlign: 'center', top: 20, textShadowRadius: 10,}}
                         
                         > Don't have an account? Create one now! </Text>
                         
@@ -160,7 +160,7 @@
                         
                         </View>
                         
-                            <Text style={{ alignItems: 'center', fontSize: 14, fontWeight: 'bold', textAlign: 'center', color: 'white', justifyContent: 'center', top: 140 }} > © FastAID 2019 </Text>
+                            <Text style={{ alignItems: 'center', fontSize: 14, fontWeight: 'bold', textAlign: 'center', color: 'white', justifyContent: 'center', top: 30 }} > © FastAID 2019 </Text>
                             </ImageBackground>
                     </View>
                     
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
     topText: {
         color: '#fff',
         textAlign: 'center',
-        top: -40,
+        top: 0,
         fontWeight: 'bold',
         fontSize: 24,
         justifyContent: 'space-around',
@@ -233,7 +233,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 5,
         fontWeight: 60,
-        top: 50,
+        top: 5,
         shadowRadius: 20,
         shadowColor: 'rgba(0, 0, 0, 0.75)'
     }

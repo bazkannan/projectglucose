@@ -6,6 +6,7 @@ export default class Settings extends Component {
 
     static navigationOptions = {
         title: 'Settings',
+        headerTitle: 'Settings',
         headerStyle: { backgroundColor: '#179bbd' },
         headerTitleStyle: { color: 'white' },
         headerLeft: null
@@ -21,7 +22,7 @@ export default class Settings extends Component {
         return (
             <ScrollView style = {styles.container}>
             <View style={styles.container}>
-
+            <View style = {{flex: 1, marginTop: 50}}>
             <TouchableOpacity onPress = {() => this.props.navigation.navigate('Home')}>
                 <View style={styles.border}>
                     <Text style={styles.textStyle}> <Icon name="home" size={25} /> Home  </Text>
@@ -42,7 +43,7 @@ export default class Settings extends Component {
                         <Button onPress={() => { this.logout() }} color='white' title="SIGN OUT" />
                     </View>
                 </TouchableOpacity>
-
+            </View>
             </View>
             </ScrollView>
         )
@@ -53,6 +54,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#000d1a',
         padding: 10,
+        
     },
     buttonContainer: {
         backgroundColor: 'maroon',

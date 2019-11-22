@@ -21,7 +21,8 @@ export default class Preoperative extends Component {
 
     static navigationOptions = {
         headerTransparent: true, 
-        title: 'Pre-operative Clinic',
+        title: 'Pre-op Clinic',
+        headerTitle: 'Pre-op Clinic',
         headerStyle: { borderBottomWidth: 0 }
     }; 
 
@@ -148,7 +149,7 @@ export default class Preoperative extends Component {
                         fontSize: 28,
                         fontWeight: "bold",
                         fontStyle: "italic",
-                        color: "maroon",
+                        color: "red",
                         top: -10,
                         textAlign: 'center',
                         alignItems: 'center'}}> --PRE-OPERATIVE CLINIC-- </Text>

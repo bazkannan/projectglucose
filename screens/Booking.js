@@ -15,7 +15,8 @@ export default class Booking extends Component {
 
     static navigationOptions = {
         headerTransparent: true,
-        title: 'Request Doctor',
+        title: 'On-Call',
+        headerTitle: 'On-Call',
         headerStyle: { borderBottomWidth: 0 }
     }; 
 
