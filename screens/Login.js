@@ -160,7 +160,7 @@
                         
                         </View>
                         
-                            <Text style={{ alignItems: 'center', fontSize: 14, fontWeight: 'bold', textAlign: 'center', color: 'white', justifyContent: 'center', top: 30 }} > © FastAID 2019 </Text>
+                            <Text style={{ alignItems: 'center', fontSize: 14, fontWeight: 'bold', textAlign: 'center', color: 'white', justifyContent: 'center', top: 20, opacity: 0.1, marginBottom: 30 }} > © FastAID 2019 </Text>
                             </ImageBackground>
                     </View>
                     
@@ -187,7 +187,8 @@ const styles = StyleSheet.create({
     topText: {
         color: '#fff',
         textAlign: 'center',
-        top: 0,
+        top: 10,
+        marginTop: 20,
         fontWeight: 'bold',
         fontSize: 24,
         justifyContent: 'space-around',
