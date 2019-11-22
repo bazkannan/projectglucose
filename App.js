@@ -511,6 +511,7 @@ const rootStack = createStackNavigator (
     initialRouteName: "Login",
     defaultNavigationOptions: {
       Switch,
+      gesturesEnabled: false,
         headerStyle: {
           backgroundColor: '#fafafa'
         }

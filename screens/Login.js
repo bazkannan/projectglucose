@@ -96,7 +96,7 @@
                            >   
                         <Text style = {styles.topText}> FastAID is an app for medical professionals. </Text>
 
-                        <Text style = {styles.header}>- FastAID -</Text>
+                        <Text style = {styles.header}>- Doctors Login -</Text>
 
                         <TextInput 
                         style = {styles.textInput} 

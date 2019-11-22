@@ -11,6 +11,7 @@ import * as firebase from 'firebase';
 export default class Home extends React.Component {
     static navigationOptions = ({navigation}) => {
         return {
+        
         headerTransparent: false,
         headerTitle: 'Home',
         navigationOptions: {
