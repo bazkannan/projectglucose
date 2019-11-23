@@ -96,10 +96,10 @@ export default class Home extends React.Component {
                    
                 <TouchableOpacity
                     style = {styles.button} 
-                    onPress={() => this.props.navigation.navigate('Preoperative')}
+                    onPress={() => this.props.navigation.navigate('PerioperativeOptions')}
                     >
                             <View style={{ marginTop: 0, top: -5 }}>
-                                <Icon name="heartbeat" size={25} color="white" />
+                                <Icon name="stethoscope" size={25} color="white" />
                             </View>
                     <Text style = {styles.buttonText}> Perioperative Assessment for Diabetics </Text>
                 </TouchableOpacity>
@@ -113,7 +113,7 @@ export default class Home extends React.Component {
                             <View style={{ marginTop: 0, top: -5 }}>
                                 <Icon name="line-chart" size={25} color="white" />
                             </View>
-                            <Text style={styles.buttonText}> Regression Analysis </Text>
+                            <Text style={styles.buttonText}> Diabetes Prediction </Text>
                         </TouchableOpacity>
                 
                  

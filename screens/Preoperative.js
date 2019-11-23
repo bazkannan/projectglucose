@@ -21,8 +21,8 @@ export default class Preoperative extends Component {
 
     static navigationOptions = {
         headerTransparent: true, 
-        title: 'Pre-op Clinic',
-        headerTitle: 'Pre-op Clinic',
+        title: 'Pre-Op Clinic',
+        headerTitle: 'Pre-Op Clinic',
         headerStyle: { borderBottomWidth: 0 }
     }; 
 

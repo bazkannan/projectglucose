@@ -5,6 +5,16 @@ import * as firebase from 'firebase';
 
 export default class AccountCreated extends Component {
 
+    static navigationOptions = ({ navigation }) => {
+        return {
+
+            header: null,
+            navigationOptions: {
+                headerVisible: false,
+            },
+        }
+    };
+
     state = { currentUser: null }
 
     render() {

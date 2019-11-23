@@ -8,6 +8,7 @@ import Home from './screens/Home';
 import Preoperative from './screens/Preoperative'; 
 import OnTheDay from './screens/OnTheDay';
 import PreopResult from './screens/PreopResult';
+import OnTheDayResult from './screens/OnTheDayResult';
 import Login from './screens/Login';
 import Signup from './screens/Signup';
 import Booking from './screens/Booking';
@@ -21,7 +22,7 @@ import DestinationButton from './components/DestinationButton';
 import { SettingsNavigation } from './components/stackNavigator';
 import Settings from './screens/Settings';
 import Regression from './screens/Regression';
-
+import PerioperativeOptions from './screens/PerioperativeOptions';
 
 
 export default class App extends React.Component {
@@ -294,6 +295,13 @@ const MyApp = createDrawerNavigator({
       title: 'Home'
     }
   },
+  PerioperativeOptions: {
+    screen: PerioperativeOptions,
+    navigationOptions: {
+      headerTitle: 'Perioperative Assessment',
+      title: 'Perioperative Assessment'
+    }
+  },
   Settings: {
     screen: Settings,
     navigationOptions: {
@@ -316,28 +324,27 @@ const bottomTab = createBottomTabNavigator({
     Preoperative: {
       screen: Preoperative,
       navigationOptions: {
-        headerTitle: 'Pre-op Clinic',
-        title: 'Pre-op Clinic'
+        headerTitle: 'Pre-Op Clinic',
+        title: 'Pre-Op Clinic'
       }
     },
-  Regression: {
-    screen: Regression,
-    navigationOptions: {
-      headerLeft: null,
-      headerTitle: 'Display',
-      title: 'Display'
-    }
-  },
-    // Settings: {
-    //   screen: Settings,
-    //   navigationOptions: {
-    //     headerLeft: null,
-    //     headerTitle: 'Settings',
-    //     title: 'Settings',
-        
-    //   }
-    // },
-   
+    OnTheDay: {
+      screen: OnTheDay,
+      navigationOptions: {
+        headerTitle: 'On-The-Day Clinic',
+        title: 'On-The-Day'
+      }
+    },
+    Regression: {
+      screen: Regression,
+      navigationOptions: {
+        headerLeft: null,
+        headerTitle: 'Display',
+        title: 'Display'
+      }
+    },
+    
+  
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
@@ -358,9 +365,15 @@ const bottomTab = createBottomTabNavigator({
             break;
 
           case "Preoperative":
-            title = "Diabetes"
-            headerTitle = "Diabetes"
+            title = "Pre-operative"
+            headerTitle = "Pre-operative"
             icon = <Icon name="heartbeat" size={25} color={tintColor} />
+            break;
+
+          case "OnTheDay":
+            title = "On The Day"
+            headerTitle = "On The Day"
+            icon = <Icon name = "stethoscope" size = {25} color = {tintColor} />
             break;
 
           case "PreopResult":
@@ -487,7 +500,16 @@ const rootStack = createStackNavigator (
     PreopResult: {
       screen: PreopResult,
       navigationOptions: {
-        headerTitle: "Result",
+        headerTitle: "Pre-Operative Result",
+        headerStyle: {
+          backgroundColor: '#fafafa',
+        }
+      }
+    },
+    OnTheDayResult: {
+      screen: OnTheDayResult, 
+      navigationOptions: {
+        headerTitle: "On-The-Day Result",
         headerStyle: {
           backgroundColor: '#fafafa',
         }

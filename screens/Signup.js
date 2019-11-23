@@ -79,7 +79,7 @@ export default class Signup extends Component {
                 
                 <TouchableWithoutFeedback onPress = {Keyboard.dismiss}>
                 <View style = {styles.container}>
-                        
+                    <View style = {{marginBottom: 50}}>  
                     <StatusBar barStyle = 'default' />
                     
                         <Text style = {styles.heading}> Sign Up to FastAID! </Text>
@@ -186,7 +186,7 @@ export default class Signup extends Component {
                         testID = "submitButton"
                         fontSize = {12}
                         />
-                        
+                    </View>         
                 </View>    
                 </TouchableWithoutFeedback>
                          
