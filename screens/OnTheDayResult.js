@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
         margin: '10%',
         marginTop: '50%',
         color: "white",
+        textAlign: 'center',
 
     },
     resultText: {

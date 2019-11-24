@@ -69,6 +69,8 @@ export default class PreopResult extends Component {
             margin: '10%',
             marginTop: '50%',
             color: "white",
+            textAlign: 'center',
+            
             
         }, 
         resultText: {

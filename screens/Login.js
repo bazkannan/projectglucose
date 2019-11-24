@@ -40,7 +40,8 @@
             email: '',
             password: '',
             errorMessage: null,
-            loading: false
+            loading: false,
+            
         }
     
     componentDidUpdate() {
@@ -181,8 +182,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#000d1a',
+        
         paddingLeft: 40,
-        paddingRight: 40
+        paddingRight: 40,
+        
     }, 
     topText: {
         color: '#fff',

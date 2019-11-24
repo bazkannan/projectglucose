@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View, TouchableOpacity, TouchableHighlight, Dimensions, Image, Button, SaveAreaView, ScrollView} from 'react-native';
+import { AppRegistry, StyleSheet, Text, View, TouchableOpacity, TouchableHighlight, Dimensions, Image, Button, SaveAreaView, SafeAreaView, ScrollView} from 'react-native';
 import { createAppContainer, NavigationBar, createSwitchNavigator, withNavigation, DrawerNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
+import DrawerItems from 'react-navigation-drawer';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Home from './screens/Home';
 import Preoperative from './screens/Preoperative'; 
@@ -54,32 +55,7 @@ componentWillMount() {
 
 
 
-// const MyNavScreen = ({ props }) => ({
-//   Home: {
-//     screen: Home,
-//     navigationOptions: {
-//       title: 'Home'
-//     }
-//   },
-//   Booking: {
-//     screen: Booking,
-//     navigationOptions: {
-//       title: 'Patient'
-//     }
-//   },
-//   Preoperative: {
-//     screen: Preoperative,
-//     navigationOptions: {
-//       title: 'Doctor'
-//     }
-//   },
-//   Login: {
-//     screen: Login,
-//     navigationOptions: {
-//       title: 'Sign Out'
-//     },
-//   }
-// });
+
 
 const AppNavigator = createStackNavigator({
 
@@ -174,113 +150,7 @@ const AppNavigator = createStackNavigator({
   },
 });
 
-// const CustomDrawerComponent = (props) => {
-//   <SafeAreaView style = {{flex: 1}}>
-//     <View style = {{height: 150, backgroundColor: 'white'}}>
-      
-//     </View>
-//     <ScrollView>
-//       <DrawerItems {...props} />
-//     </ScrollView>
-//   </SafeAreaView>
-// };
 
-
-// const CustomDrawerNavigation = (props) => {
-//   return (
-//     <SaveAreaView style = {{ flex: 1 }}>
-//       <View style = {{ height: 250, 
-//         backgroundColor: '#d2d2d2',
-//         opacity: 0.9
-//         }}>
-//           <View style = {{ height: 200,
-//           backgroundColor: 'green',
-//           alignItems: 'center',
-//           justifyContent: 'center'
-//           }}>
-  
-//           </View>
-//           <View style = {{ height: 50, 
-//           backgroundColor: 'Green',
-//           alignItems: 'center',
-//           justifyContent: 'center'
-//           }}>
-//           <Text> FastAid </Text>
-
-//           </View>
-//       </View>
-//       <ScrollView>
-//         <DrawerItems {...props} />
-//       </ScrollView>
-//       <View style = {{ alignItems: 'center', 
-//       bottom: 20
-//       }}>
-//         <View style = {{ flexDirection: 'row'}}>
-//           <View style = {{flexDirection: 'column', marginRight: 15 }}>
-//             <Icon name = "flask" style = {{ fontSize: 24 }}
-//             onPress = {() => console.log("Tikladin")} />
-//           </View>
-//           <View style = {{ flexDireection: 'column' }}>
-//             <Icon name = "call" style = {{ 
-//               fontSize: 24 }} onPress = {() => console.log("Tikladin")} />
-          
-//           </View>
-//         </View>
-//       </View>
-//     </SaveAreaView>
-//   );
-// }
- 
-// const AppDrawerNavigator = createDrawerNavigator(
-//   {
-//     Home: Home,
-//     Settings: Settings,
-//   }, 
-//   {
-//     hideStatusBar: true,
-//     drawerBackgroundColor: 'rgba(255, 255, 255, .9)',
-//     overlayColor: '#6b52ae',
-//     contentOptions: {
-//       activeTintColor: '#fff',
-//       activeBackgroundColor: '#6b52ae',
-//     },
-//   }
-// );
-
-const HomeStack = createStackNavigator({
-  Home: {
-    screen: Home,
-    navigationOptions: ({ navigation }) => ({
-      title: 'Home', 
-      headerLeft: <Icon name = "bars" size = {35} onPress = {() => navigation.toggleDrawer()} />,
-    })
-  }
-});
-
-const SettingsStack = createStackNavigator({
-  Settings: {
-    screen: Settings,
-    navigationOptions: ({ navigation }) => ({
-      
-      headerLeft: <Icon name="bars" size={35} onPress={() => navigation.toggleDrawer()} />,
-    })
-  }
-});
-
-const Root = createDrawerNavigator({
-  Home: {
-    screen: HomeStack,
-    navigationOptions: {
-      title: 'Home'
-    }
-  },
-  Settings: {
-    screen: SettingsStack,
-    navigationOptions: {
-      title: 'Settings',
-    }
-  }
-});
 
 const MyApp = createDrawerNavigator({
 
@@ -308,6 +178,7 @@ const MyApp = createDrawerNavigator({
     screen: Booking, 
     navigationOptions: {
       headerTitle: 'On-Call',
+      headerTransparent: true,
       title: 'Attend Requests',
       drawerIcon: ({ tintColor }) => <Icon name="medkit" size={25} color={tintColor} />
     }
@@ -327,7 +198,8 @@ const MyApp = createDrawerNavigator({
       title: 'About',
       drawerIcon: ({ tintColor }) => <Icon name="question-circle" size={25} color={tintColor} />
     }
-  }
+  },
+  
   
 });
 
@@ -571,6 +443,24 @@ const styles = StyleSheet.create({
   header: {
     flex: 1,
     color: 'red'
+  },
+  item: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  label: {
+    margin: 16,
+    fontWeight: 'bold',
+    color: 'rgba(0, 0, 0, .87)',
+  },
+  iconContainer: {
+    marginHorizontal: 16,
+    width: 24,
+    alignItems: 'center',
+  },
+  icon: {
+    width: 24,
+    height: 24,
   }
 });
 

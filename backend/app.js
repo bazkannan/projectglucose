@@ -33,17 +33,14 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
+});
+
   // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
-
-
-
-// app.listen(3000, (err) => {
-//   if (err) { console.log(err)};
-//   console.log("Server running on port 3000");
-// });
 
 module.exports = app;
 
@@ -54,4 +51,4 @@ module.exports = app;
 //   console.log("Server running on port 3000");
 // });
 
-// module.export = app;
+// module.exports = app;

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, Button, TouchableOpacity, AsyncStorage, ScrollView, Alert } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
+import * as firebase from 'firebase';
 
 export default class Settings extends Component {
 
@@ -21,13 +22,14 @@ export default class Settings extends Component {
                 {
                 text: 'Yes', 
                 onPress: () => AsyncStorage.clear()
+                
                 .then(() => this.props.navigation.navigate('Login'))
                 .then(console.log('Signed out')),
                 style: 'cancel'
                 },
                 {
                 text: 'No',
-                onPress: () => console.log('Cancel'),
+                onPress: () => { return null },
                 
                 },
             ],
