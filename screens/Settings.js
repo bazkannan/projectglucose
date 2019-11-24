@@ -16,7 +16,7 @@ export default class Settings extends Component {
     logout = () => {
     
         Alert.alert(
-            'Warning!',
+            'Alert',
             'Are you sure you want to log out?',
             [
                 {

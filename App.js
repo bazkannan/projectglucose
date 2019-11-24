@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View, TouchableOpacity, TouchableHighlight, Dimensions, Image, Button, SaveAreaView, SafeAreaView, ScrollView} from 'react-native';
+import { AppRegistry, StyleSheet, Text, View, TouchableOpacity, TouchableHighlight, Dimensions, Image, Button, SaveAreaView, SafeAreaView, ScrollView, Alert} from 'react-native';
 import { createAppContainer, NavigationBar, createSwitchNavigator, withNavigation, DrawerNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
@@ -53,8 +53,29 @@ componentWillMount() {
 
 // #800000
 
+logout = () => {
 
+  Alert.alert(
+    'Warning!',
+    'Are you sure you want to log out?',
+    [
+      {
+        text: 'Yes',
+        onPress: () => AsyncStorage.clear()
 
+          .then(() => this.props.navigation.navigate('Login'))
+          .then(console.log('Signed out')),
+        style: 'cancel'
+      },
+      {
+        text: 'No',
+        onPress: () => { return null },
+
+      },
+    ],
+    { cancelable: false },
+  );
+}
 
 
 const AppNavigator = createStackNavigator({
@@ -197,10 +218,9 @@ const MyApp = createDrawerNavigator({
       headerTransparent: false,
       title: 'About',
       drawerIcon: ({ tintColor }) => <Icon name="question-circle" size={25} color={tintColor} />
-    }
-  },
-  
-  
+      }
+    },
+    
 });
 
 const bottomTab = createBottomTabNavigator({
