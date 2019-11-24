@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, Button, TouchableOpacity, AsyncStorage, ScrollView } from 'react-native'
+import { Text, View, StyleSheet, Button, TouchableOpacity, AsyncStorage, ScrollView, Alert } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default class Settings extends Component {
@@ -13,8 +13,26 @@ export default class Settings extends Component {
     }
 
     logout = () => {
-        this.props.navigation.navigate('Login');
-        console.log('Signed out');
+    
+        Alert.alert(
+            'Warning!',
+            'Are you sure you want to log out?',
+            [
+                {
+                text: 'Yes', 
+                onPress: () => AsyncStorage.clear()
+                .then(() => this.props.navigation.navigate('Login'))
+                .then(console.log('Signed out')),
+                style: 'cancel'
+                },
+                {
+                text: 'No',
+                onPress: () => console.log('Cancel'),
+                
+                },
+            ],
+            {cancelable: false},
+        );
     }
     
     
@@ -29,7 +47,7 @@ export default class Settings extends Component {
                 </View>
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress = {() => this.props.navigation.navigate('About')}>
                 <View style={styles.border}>
                     <Text style={styles.textStyle}> <Icon name="question-circle" size={25} /> About </Text>
                 </View>

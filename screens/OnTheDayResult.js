@@ -46,7 +46,7 @@ export default class OnTheDayResult extends Component {
         return (
             <ScrollView style={styles.scrollColor}>
                 <View style={styles.container}>
-                    <Text style={styles.title}> On-The-Day Result: </Text>
+                    <Text style={styles.title}> On-The-Day Clinic Results: </Text>
                     {display}
                 </View>
             </ScrollView>

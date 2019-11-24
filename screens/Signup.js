@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
     input : {
         height: 40,
         fontSize: 20,
-        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+        backgroundColor: '#fafafa',
         marginBottom: 20,
         padding: 8,
         borderRadius: 5,

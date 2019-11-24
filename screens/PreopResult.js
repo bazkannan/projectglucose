@@ -46,7 +46,7 @@ export default class PreopResult extends Component {
             return (
                 <ScrollView style = {styles.scrollColor}>
                 <View style = {styles.container}>
-                    <Text style = {styles.title}> Pre-Operative Result: </Text>
+                    <Text style = {styles.title}> Pre-Operative Clinic Results: </Text>
                     {display}
                 </View>
                 </ScrollView>

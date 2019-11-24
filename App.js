@@ -23,7 +23,7 @@ import { SettingsNavigation } from './components/stackNavigator';
 import Settings from './screens/Settings';
 import Regression from './screens/Regression';
 import PerioperativeOptions from './screens/PerioperativeOptions';
-
+import About from './screens/About';
 
 export default class App extends React.Component {
 
@@ -292,35 +292,54 @@ const MyApp = createDrawerNavigator({
     navigationOptions: {
       
       headerTitle: 'Home',
-      title: 'Home'
+      title: 'Home',
+      drawerIcon: ({ tintColor }) => <Icon name = "home" size = {25} color = {tintColor} />
     }
   },
   PerioperativeOptions: {
     screen: PerioperativeOptions,
     navigationOptions: {
       headerTitle: 'Perioperative Assessment',
-      title: 'Perioperative Assessment'
+      title: 'Perioperative Assessment',
+      drawerIcon: ({ tintColor }) => <Icon name="stethoscope" size={25} color={tintColor} />
+    }
+  },
+  Booking: {
+    screen: Booking, 
+    navigationOptions: {
+      headerTitle: 'On-Call',
+      title: 'Attend Requests',
+      drawerIcon: ({ tintColor }) => <Icon name="medkit" size={25} color={tintColor} />
     }
   },
   Settings: {
     screen: Settings,
     navigationOptions: {
       headerTransparent: false,
-      header: null
+      header: null, 
+      drawerIcon: ({ tintColor }) => <Icon name="gear" size={25} color={tintColor} />
     }
   },
+  About: {
+    screen: About,
+    navigationOptions: {
+      headerTransparent: false,
+      title: 'About',
+      drawerIcon: ({ tintColor }) => <Icon name="question-circle" size={25} color={tintColor} />
+    }
+  }
   
 });
 
 const bottomTab = createBottomTabNavigator({
     
-    Booking: {
-      screen: Booking,
-      navigationOptions: {
-        headerTitle: 'On-Call',
-        title: 'On-Call'
-      }
-    },
+    // Booking: {
+    //   screen: Booking,
+    //   navigationOptions: {
+    //     headerTitle: 'On-Call',
+    //     title: 'On-Call'
+    //   }
+    // },
     Preoperative: {
       screen: Preoperative,
       navigationOptions: {
