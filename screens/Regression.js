@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, ScrollView, AsyncStorage } from 'react-native'
-import { VictoryLine, VictoryChart, VictoryTheme } from "victory-native";
+import { VictoryBar, VictoryLine, VictoryChart, VictoryPie, VictoryTheme } from "victory-native";
+
 
 export default class Regression extends Component {
     static navigationOptions = {
@@ -15,8 +16,8 @@ export default class Regression extends Component {
             myKey: '',
             token: '',
             data: [
-                { _id: 'Preoperative', second: 0 },
-                { _id: 'OnTheDay', second: 0 },
+                { first: 'Preoperative', second: 0 },
+                { first: 'OnTheDay', second: 0 },
             ],
             // data for regression
         };
@@ -137,13 +138,13 @@ export default class Regression extends Component {
 
     render() {
         this.state.data.forEach((element) => {
-            if (element._id === 1) {
-                element._id = 'First'
-                return element._id
+            if (element.first === 1) {
+                element.first = 'First'
+                return element.first
             }
-            if (element._id === 2) {
-                element._id = 'Second'
-                return element._id
+            if (element.first === 2) {
+                element.first = 'Second'
+                return element.first
             } else {
             return;
         }
@@ -163,18 +164,18 @@ export default class Regression extends Component {
                     <Text style={{ fontSize: 15, textAlign: 'center', color: '#109bad', marginTop: 15 }}> Perioperative Assessment Chart </Text>
                     <Text style={{ color: '#585759', marginLeft: 5 }}> X-Variable </Text>
 
-                    <VictoryChart theme={VictoryTheme.material}>
+                    {/* <VictoryChart theme={VictoryTheme.material}>
                         <VictoryLine
                             style={{
                                 data: { stroke: "#c43a31" },
                                 parent: { border: "1px solid #ccc" }
                             }}
                             data={this.state.data}
-                            x="_id"
+                            x="first"
                             y="second"
                         
                         />
-                    </VictoryChart>
+                    </VictoryChart> */}
                     
 
                     </View>
@@ -198,6 +199,7 @@ const styles = StyleSheet.create({
     text: {
         flex: 1,
         fontSize: 15,
+        
         color: 'white',
         marginLeft: 15,
         marginBottom: 10,
@@ -207,6 +209,7 @@ const styles = StyleSheet.create({
         flex: 1,
         color: '#000000',
         fontSize: 15,
+        
         marginRight: 20,
         marginBottom: 10,
         marginTop: 10,

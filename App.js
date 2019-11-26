@@ -25,6 +25,7 @@ import Settings from './screens/Settings';
 import Regression from './screens/Regression';
 import PerioperativeOptions from './screens/PerioperativeOptions';
 import About from './screens/About';
+import DiabetesCharts from './screens/DiabetesCharts';
 
 export default class App extends React.Component {
 
@@ -187,12 +188,28 @@ const MyApp = createDrawerNavigator({
       drawerIcon: ({ tintColor }) => <Icon name = "home" size = {25} color = {tintColor} />
     }
   },
+  About: {
+    screen: About,
+    navigationOptions: {
+      headerTransparent: false,
+      title: 'About',
+      drawerIcon: ({ tintColor }) => <Icon name="question-circle" size={25} color={tintColor} />
+    }
+  },
   PerioperativeOptions: {
     screen: PerioperativeOptions,
     navigationOptions: {
       headerTitle: 'Perioperative Assessment',
       title: 'Perioperative Assessment',
       drawerIcon: ({ tintColor }) => <Icon name="stethoscope" size={25} color={tintColor} />
+    }
+  },
+  DiabetesCharts: {
+    screen: DiabetesCharts,
+    navigationOptions: {
+      headerTitle: 'Diabetes Charts',
+      title: 'Diabetes Charts',
+      drawerIcon: ({ tintColor }) => <Icon name="line-chart" size={25} color={tintColor} />
     }
   },
   Booking: {
@@ -212,14 +229,7 @@ const MyApp = createDrawerNavigator({
       drawerIcon: ({ tintColor }) => <Icon name="gear" size={25} color={tintColor} />
     }
   },
-  About: {
-    screen: About,
-    navigationOptions: {
-      headerTransparent: false,
-      title: 'About',
-      drawerIcon: ({ tintColor }) => <Icon name="question-circle" size={25} color={tintColor} />
-      }
-    },
+  
     
 });
 

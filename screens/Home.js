@@ -108,7 +108,7 @@ export default class Home extends React.Component {
                 <View style = {{flex: 1, flexDirection: 'row', marginTop: 10, top: 250}}>
                         <TouchableOpacity
                             style={{ alignItems: 'center', backgroundColor: '#0059b3', padding: 15, borderRadius: 7, borderColor: 'white', borderWidth: 1, width: '50%', justifyContent: 'center', top: 0 }}
-                            onPress={() => this.props.navigation.navigate('Regression')}
+                            onPress={() => this.props.navigation.navigate('DiabetesCharts')}
                         >
                             <View style={{ marginTop: 0, top: -5 }}>
                                 <Icon name="line-chart" size={25} color="white" />
