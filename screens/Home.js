@@ -67,7 +67,7 @@ export default class Home extends React.Component {
                         textAlign: 'center',
                         color: 'white',
                         justifyContent: 'center',
-                        top: 240, 
+                        top: 220, 
                         textShadowColor: 'rgba(0, 0, 0, 0.75)',
                         textShadowOffset: { width: -1, height: 1 },
                         textShadowRadius: 10,
@@ -83,7 +83,7 @@ export default class Home extends React.Component {
                         top: 100
                 }}> Analysis </Text> */}
 
-                <View style = {{flexDirection: 'row', marginTop: 10, top: 250}}>
+                <View style = {{flexDirection: 'row', marginTop: 10, top: 230}}>
                     <TouchableOpacity
                         style={{ alignItems: 'center', backgroundColor: '#0059b3', padding: 15, borderRadius: 7, borderColor: 'white', borderWidth: 1, width: '50%', justifyContent: 'center', top: 0 }}
                         onPress={() => this.props.navigation.navigate('Booking')}
@@ -105,7 +105,7 @@ export default class Home extends React.Component {
                 </TouchableOpacity>
                 </View>
 
-                <View style = {{flex: 1, flexDirection: 'row', marginTop: 10, top: 250}}>
+                <View style = {{flex: 1, flexDirection: 'row', marginTop: 10, top: 230}}>
                         <TouchableOpacity
                             style={{ alignItems: 'center', backgroundColor: '#0059b3', padding: 15, borderRadius: 7, borderColor: 'white', borderWidth: 1, width: '50%', justifyContent: 'center', top: 0 }}
                             onPress={() => this.props.navigation.navigate('DiabetesCharts')}
@@ -113,7 +113,7 @@ export default class Home extends React.Component {
                             <View style={{ marginTop: 0, top: -5 }}>
                                 <Icon name="line-chart" size={25} color="white" />
                             </View>
-                            <Text style={styles.buttonText}> Diabetes Prediction </Text>
+                            <Text style={styles.buttonText}> Other Features </Text>
                         </TouchableOpacity>
                 
                  

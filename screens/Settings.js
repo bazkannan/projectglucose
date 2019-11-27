@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View, StyleSheet, Button, TouchableOpacity, AsyncStorage, ScrollView, Alert } from 'react-native'
+import { Text, View, StyleSheet, Button, TouchableOpacity, AsyncStorage, ScrollView, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as firebase from 'firebase';
 

@@ -26,6 +26,7 @@ import Regression from './screens/Regression';
 import PerioperativeOptions from './screens/PerioperativeOptions';
 import About from './screens/About';
 import DiabetesCharts from './screens/DiabetesCharts';
+import TensorflowModel from './tensorflow/TensorflowModel';
 
 export default class App extends React.Component {
 
@@ -265,6 +266,7 @@ const bottomTab = createBottomTabNavigator({
       }
     },
     
+    
   
   },
   {
@@ -297,9 +299,9 @@ const bottomTab = createBottomTabNavigator({
             icon = <Icon name = "stethoscope" size = {25} color = {tintColor} />
             break;
 
-          case "PreopResult":
-            title = "Result"
-            icon = <Icon name = "book" size = {25} color = {tintColor} />
+          case "TensorflowModel":
+            title = "Model"
+            icon = <Icon name = "pie-chart" size = {25} color = {tintColor} />
             break;
 
           case "Settings":
@@ -434,6 +436,13 @@ const rootStack = createStackNavigator (
         headerStyle: {
           backgroundColor: '#fafafa',
         }
+      }
+    },
+    TensorflowModel: {
+      screen: TensorflowModel,
+      navigationOptions: {
+        headerTitle: 'Model',
+        title: 'Model'
       }
     },
 

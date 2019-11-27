@@ -35,7 +35,7 @@ export default class DiabetesCharts extends Component {
                     >
                         <View style={{ top: 230 }}>
 
-                            <Text style={styles.title}> Diabetes Data </Text>
+                            <Text style={styles.title}> Other Features </Text>
                             <View style={{ marginVertical: 10, top: -30 }}>
                                 <Text style={{
                                     alignItems: 'center',
@@ -47,7 +47,7 @@ export default class DiabetesCharts extends Component {
                                     justifyContent: 'center',
                                     marginVertical: 10,
                                     top: 0
-                                }}> Select charts </Text>
+                                }}> Select options </Text>
                             </View>
 
                             <View style={{ flexDirection: 'row', padding: 10, paddingRight: 20, top: -50 }}>
@@ -63,12 +63,12 @@ export default class DiabetesCharts extends Component {
 
                                 <TouchableOpacity
                                     style={styles.button}
-                                    onPress={() => {}}
+                                    onPress={() => this.props.navigation.navigate('TensorflowModel')}
                                 >
                                     <View style={{ marginTop: 0, top: -5 }}>
                                         <Icon name="pie-chart" size={25} color="white" />
                                     </View>
-                                    <Text style={styles.buttonText}> Pie Chart </Text>
+                                    <Text style={styles.buttonText}> ML Model </Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
