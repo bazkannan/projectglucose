@@ -1,6 +1,7 @@
 import * as tf from '@tensorflow/tfjs';
 import * as mobilenetModule from '@tensorflow-models/mobilenet';
 import * as knnClassifier from '@tensorflow-models/knn-classifier';
+import * as ui from './ui/';
 
 const classifier = knnClassifier.create();
 

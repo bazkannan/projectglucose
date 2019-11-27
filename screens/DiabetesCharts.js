@@ -58,7 +58,7 @@ export default class DiabetesCharts extends Component {
                                     <View style={{ marginTop: 0, top: -5 }}>
                                         <Icon name="line-chart" size={25} color="white" />
                                     </View>
-                                    <Text style={styles.buttonText}> Logistic Regression </Text>
+                                    <Text style={styles.buttonText}> Linear Regression </Text>
                                 </TouchableOpacity>
 
                                 <TouchableOpacity

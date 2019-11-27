@@ -5,40 +5,27 @@ import { VictoryBar, VictoryLine, VictoryChart, VictoryPie, VictoryTheme } from 
 
 export default class Regression extends Component {
     static navigationOptions = {
-        title: 'Display',
-        headerTitle: 'Display',
+        title: 'Linear Regression',
+        headerTitle: 'Linear Regression',
         headerStyle: { backgroundColor: '#179bbd' },
         headerTitleStyle: { color: 'white' }
     };
     constructor(props) {
         super(props);
         this.state = {
-            myKey: '',
-            token: '',
             data: [
-                { first: 'Preoperative', second: 0 },
-                { first: 'OnTheDay', second: 0 },
+                { first: 50, second: 148 },
+                { first: 31, second: 85 },
+                { first: 32, second: 183 },
+                { first: 21, second: 89 },
+                { first: 33, second: 137 },
             ],
-            // data for regression
         };
         
     }
 
     linearRegression(dataArray) {
-		/*
-			y = a + bx;
-			where a is y intercept
-			and b is the slope
-			here we have to find the value of x;
-	
-			slope(b) = r *sy/sx
-			where
-			r is the correlation coefficient
-			sy is the standard deviation of data x
-			sx is the standard deviation of data x
-	
-			a = mean(y) - b *mean(x)
-		*/
+		
         const second = dataArray.map(item => item.second);
         const first = dataArray.map(item => item.first);
         const slope = this.calculateSlope(first, second);
@@ -52,19 +39,9 @@ export default class Regression extends Component {
 
     calculateSlope(x, y) {
         if (x.length !== y.length) {
-            throw new Error('sample size of first and second should be same');
+            throw new Error('size of first and second should be same');
         }
-        /*
-            slope(b) = r *sy/sx
-        where
-        r is the correlation coefficient
-        sy is the standard deviation of sample data x
-        sx is the standard deviation of sample data x
-*/
-        /*
-            in order to calculate Correlation Coefficient
-                r = sumation ( (x-mean(x)) * (y -mean(y)) ) / underRoot( sum((x-mean(x)) ^2) * sum((y-mean(y)) ^2)
-            */
+       
         const meanOfx = this.findMean(x);
 
         const meanOfy = this.findMean(y);
@@ -88,7 +65,7 @@ export default class Regression extends Component {
         if (isNaN(pearsonCorrelationCoefficient)) {
             pearsonCorrelationCoefficient = 0;
         }
-        // standard devaition of x is  = underRoot(sum((x - meanOfx)^2) / n -1) where n is the size of array
+   
         const standardDeviationOfx = Math.sqrt(sumOfxMinusXMeanSquare / (x.length - 1));
         const standardDeviationOfy = Math.sqrt(sumOfyMinusYMeanSquare / (y.length - 1))
 
@@ -100,7 +77,7 @@ export default class Regression extends Component {
     }
 
     calculateYintercept(slope, second, first) {
-        // a = mean(y) - b *mean(x)
+        
 
         const meanOfy = this.findMean(second);
         const meanOfX = this.findMean(first);
@@ -161,22 +138,24 @@ export default class Regression extends Component {
         return (
             <ScrollView style = {styles.container}>
                 <View style={styles.container}>
-                    <Text style={{ fontSize: 15, textAlign: 'center', color: '#109bad', marginTop: 15 }}> Perioperative Assessment Chart </Text>
-                    <Text style={{ color: '#585759', marginLeft: 5 }}> X-Variable </Text>
+                    <Text style={{ fontSize: 15, textAlign: 'center', color: '#109bad', marginTop: 15 }}> Glucose & Age Correlation </Text>
+                    <Text style={{ color: '#585759', marginLeft: 5, top: 55 }}> Glucose Levels </Text>
+                    <Text style={{ color: '#585759', marginRight: 0, top: 310, left: 335 }}> Age </Text>
 
-                    {/* <VictoryChart theme={VictoryTheme.material}>
+                    <VictoryChart theme={VictoryTheme.material}>
                         <VictoryLine
                             style={{
                                 data: { stroke: "#c43a31" },
                                 parent: { border: "1px solid #ccc" }
                             }}
                             data={this.state.data}
-                            x="first"
-                            y="second"
+                            x="Age"
+                            y="Glucose"
                         
                         />
-                    </VictoryChart> */}
+                    </VictoryChart>
                     
+                    <Text style={{ fontSize: 15, textAlign: 'center', color: '#109bad', marginBottom: 15 }}> Dataset: Kaggle Diabetes2.csv </Text>
 
                     </View>
             </ScrollView>

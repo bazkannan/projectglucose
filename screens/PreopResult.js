@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, StyleSheet, Keyboard, TouchableOpacity, Button, ActivityIndicator, ScrollView} from 'react-native';
+import { View, Text, TextInput, StyleSheet, Keyboard, TouchableOpacity, Button, ActivityIndicator, ScrollView, TouchableHighlight} from 'react-native';
 import axios from 'axios';
+import RNHTMLtoPDF from 'react-native-html-to-pdf';
 
 export default class PreopResult extends Component {
     static navigationOptions = {
@@ -14,6 +15,17 @@ export default class PreopResult extends Component {
         this.state = ({
             result: null
         });
+    }
+
+    async createPDF() {
+        let options = {
+            html: '<h1> Pre-Op Results </h1>',
+            fileName: 'preopresults',
+            directory: 'Documents',
+        };
+
+        let file = await RNHTMLtoPDF.convert(options)
+        alert(file.filePath);
     }
 
     async componentDidMount() {
@@ -48,6 +60,10 @@ export default class PreopResult extends Component {
                 <View style = {styles.container}>
                     <Text style = {styles.title}> Pre-Operative Clinic Results: </Text>
                     {display}
+
+                <TouchableHighlight onPress = {this.createPDF}>
+                <Text style = {{fontSize: 24, fontWeight: "300", color: 'white', textAlign: 'center', margin: '1%'}}> Create PDF </Text>
+                </TouchableHighlight>
                 </View>
                 </ScrollView>
             );

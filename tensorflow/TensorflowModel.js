@@ -202,6 +202,7 @@ const styles = StyleSheet.create({
     poweredBy: {
         fontSize: 20,
         color: 'white',
-        marginBottom: 30
+        marginBottom: 30,
+        top: -50
     }
 });
