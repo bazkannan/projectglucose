@@ -76,6 +76,14 @@ export default class TensorflowModel extends React.Component {
         }
     }
 
+    renderPrediction = prediction => {
+        return (
+            <Text key = {prediction.className} style = {styles.text}>
+                {prediction.className}
+            </Text>
+        )
+    }
+
     async componentDidMount() {
         await tf.ready();
         this.setState({
@@ -100,7 +108,7 @@ export default class TensorflowModel extends React.Component {
                     <Text style={{ color: 'white' }}> TFJS ready? {this.state.isTfReady ? <Text> ✅ </Text> : ''}</Text>
 
                     <View style = {styles.loadingModelContainer}>
-                        <Text style={styles.text}> Model ready? </Text>
+                        <Text style={styles.text}> ML Model loaded? </Text>
                         
                         {this.state.isModelReady ? (<Text style={styles.text}> ✅ </Text>) : (<ActivityIndicator size = 'small' /> )}
                         
@@ -119,7 +127,7 @@ export default class TensorflowModel extends React.Component {
                     <View style = {styles.predictionWrapper}>
                         {this.state.isModelReady && image && (
                             <Text style = {styles.text}>
-                                Predictions: {predictions ? '' : 'Predicting...'}
+                                Analysis: {predictions ? '' : 'Analysing Image...'}
                             </Text>
                         )}
                         {isModelReady &&
