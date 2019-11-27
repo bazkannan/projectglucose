@@ -20,12 +20,13 @@ export const DestinationButton = function(props) {
         style = {styles.container}
         >
             <View style = {styles.leftCol}>
-                <Text style = {{fontSize: 8}}>{'\u25A0'}</Text>
+                {/* <Text style = {{fontSize: 8}}>{'\u25A0'}</Text> */}
+                <Icon name = "search" color = "#000000" size = {25} />
             </View>
             
             <View style = {styles.centerCol}>
                 <Text style = {{fontFamily: 'sans-serif-thin', fontSize: 21, color: '#545454'}}>
-                    Where to?
+                    Search for patients
                 </Text>
             </View>
 
