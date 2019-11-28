@@ -8,6 +8,11 @@ import MapView from 'react-native-maps';
 import { DestinationButton } from '../components/DestinationButton';
 import { CurrentLocationButton } from '../components/CurrentLocationButton';
 import { Driver } from '../components/Driver';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Constants from 'expo-constants';
+import axios from 'axios';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
+
 
 const WIDTH = Dimensions.get('window').width;
 
@@ -22,7 +27,6 @@ export default class Booking extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             region: null
         }
@@ -90,22 +94,6 @@ export default class Booking extends Component {
         );
     }
 
-
-    // renderApp() {
-    //     const initialState = window.__INITIAL_STATE__;
-    //     const store = createStore(initialState);
-
-    //     return (
-            
-    //         <View>
-    //             <AppContainer store = {store} />
-    //         </View>
-    //     );
-    // }
-
-    // render() {
-    //     return this.renderApp();
-    // }
 }
 
 const styles = StyleSheet.create({

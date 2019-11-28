@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
         padding: 20,
         alignItems: 'center',
         borderRadius: 5,
-        fontWeight: 60,
+        fontWeight: '100',
         width: 335,
         shadowRadius: 20,
         shadowColor: 'rgba(0, 0, 0, 0.75)'
@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
         padding: 20,
         alignItems: 'center',
         borderRadius: 5,
-        fontWeight: 60,
+        fontWeight: '100',
         top: 5,
         shadowRadius: 20,
         shadowColor: 'rgba(0, 0, 0, 0.75)'

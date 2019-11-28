@@ -155,7 +155,7 @@ export default class Regression extends Component {
                         />
                     </VictoryChart>
                     
-                    <Text style={{ fontSize: 15, textAlign: 'center', color: '#109bad', marginBottom: 15 }}> Dataset: Kaggle Diabetes2.csv </Text>
+                    <Text style={{ fontSize: 12, textAlign: 'center', color: '#109bad', marginBottom: 15 }}> Dataset: https://www.kaggle.com/johndasilva/diabetes </Text>
 
                     </View>
             </ScrollView>

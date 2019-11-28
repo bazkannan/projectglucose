@@ -11,7 +11,7 @@ import {
     Switch, 
     ScrollView,
     Platform, 
-    SafeAreaView
+    SafeAreaView, Alert
 } from "react-native";
 import { CheckBox } from 'react-native-elements';
 import { FlatList } from "react-native-gesture-handler";
@@ -67,26 +67,66 @@ export default class Preoperative extends Component {
             alert("You need to input your HbA1c level!")
         } else if (this.state.patient == false) {
             alert ("If you answered 'No' for the first question, please note this section is only for diabetics on medication!")
+        } else if (this.state.metformin == false && this.state.shortInsulin == false && this.state.intermediateInsulin == false && 
+            this.state.alpha == false && this.state.dppFour == false && this.state.glpReceptor == false &&
+            this.state.meglitinides == false && this.state.sgltTwo == false 
+            && this.state.sulphonyureas == false && this.state.thiasolidinediones == false) {
+            alert("Please choose at least one medication from the list")
         } else if (this.state.temp < 31 || this.state.temp > 125) {
             alert ("Values must be within the range (31 - 125) mmol / mol")
         } else {
-            this.props.navigation.navigate('PreopResult', {
-                levels: this.state.levels, 
-                temp: this.state.temp, 
-                patient: this.state.patient,
-                surgery: this.state.surgery,
-                anaesthesia: this.state.anaesthesia,
-                metformin: this.state.metformin,
-                shortInsulin: this.state.shortInsulin,
-                intermediateInsulin: this.state.intermediateInsulin,
-                alpha: this.state.alpha,
-                dppFour: this.state.dppFour,
-                glpReceptor: this.state.glpReceptor,
-                meglitinides: this.state.meglitinides,
-                sgltTwo: this.state.sgltTwo,
-                sulphonyureas: this.state.sulphonyureas,
-                thiasolidinediones: this.state.thiasolidinediones
-            })
+            Alert.alert(
+                'Alert',
+                'Please check your answers before submitting. Are you sure you want to proceed?',
+                [
+                    {
+                        text: 'Yes',
+                        onPress: () => this.props.navigation.navigate('PreopResult', {
+                        levels: this.state.levels,
+                        temp: this.state.temp,
+                        patient: this.state.patient,
+                        surgery: this.state.surgery,
+                        anaesthesia: this.state.anaesthesia,
+                        metformin: this.state.metformin,
+                        shortInsulin: this.state.shortInsulin,
+                        intermediateInsulin: this.state.intermediateInsulin,
+                        alpha: this.state.alpha,
+                        dppFour: this.state.dppFour,
+                        glpReceptor: this.state.glpReceptor,
+                        meglitinides: this.state.meglitinides,
+                        sgltTwo: this.state.sgltTwo,
+                        sulphonyureas: this.state.sulphonyureas,
+                        thiasolidinediones: this.state.thiasolidinediones,
+                        }),
+                        style: 'cancel' 
+                    },
+                    {
+                        text: 'No',
+                        onPress: () => { return null },
+
+                    },
+                ],
+                { cancelable: false },
+            );
+
+
+            // this.props.navigation.navigate('PreopResult', {
+            //     levels: this.state.levels, 
+            //     temp: this.state.temp, 
+            //     patient: this.state.patient,
+            //     surgery: this.state.surgery,
+            //     anaesthesia: this.state.anaesthesia,
+            //     metformin: this.state.metformin,
+            //     shortInsulin: this.state.shortInsulin,
+            //     intermediateInsulin: this.state.intermediateInsulin,
+            //     alpha: this.state.alpha,
+            //     dppFour: this.state.dppFour,
+            //     glpReceptor: this.state.glpReceptor,
+            //     meglitinides: this.state.meglitinides,
+            //     sgltTwo: this.state.sgltTwo,
+            //     sulphonyureas: this.state.sulphonyureas,
+            //     thiasolidinediones: this.state.thiasolidinediones
+            // })
         }
     }
 
@@ -150,37 +190,30 @@ export default class Preoperative extends Component {
                         fontWeight: "bold",
                         fontStyle: "italic",
                         color: "red",
-                        top: -10,
+                        top: 0,
                         textAlign: 'center',
                         alignItems: 'center'}}> --PRE-OPERATIVE CLINIC-- </Text>
 
-                    <Text style={{
-                        fontSize: 32,
-                        fontWeight: "600",
-                        color: "white",
-                        top: 20,
-                        textAlign: 'center',
-                        alignItems: 'center'
-                        }}> Tap on the toggle to select your choice </Text>
+                    
 
-                <Text style={styles.choiceText}> Patient is taking medications for diabetes? </Text>
+                {/* <Text style={styles.choiceText}> Patient is taking medications for diabetes? </Text>
                 <View style = {toggle.container}>
                     <TouchableOpacity style = {toggle.patientToggle}
                     onPress = {this.handleSetState("patient")}>
-                    {/* onPress = {this.diabetesQuestion("patient")}>  */}
+                    
                         <Text style = {toggle.toggleLabel}> {this.state.patient ? 'Yes' : 'No' } </Text>
                     </TouchableOpacity>
-                </View>
+                </View> */}
 
                 
-                    <Text style={styles.choiceText}> Medications (including drug combinations) </Text>
-                    <Text style={{
+                    <Text style={styles.choiceText}> Choose all the medications the patient is on (including drug combinations) </Text>
+                    {/* <Text style={{
                         fontSize: 15,
                         fontWeight: "bold",
                         color: "white",
                         textAlign: 'center',
                         top: -15,
-                        }}> Choose all that apply </Text>
+                        }}> Choose all that apply </Text> */}
 
                     <View>
                         
@@ -276,8 +309,16 @@ export default class Preoperative extends Component {
                             checked={this.state.thiasolidinediones}
                         />
                     </View>
-                    
 
+                    <Text style={{
+                        fontSize: 32,
+                        fontWeight: "600",
+                        color: "white",
+                        top: 20,
+                        textAlign: 'center',
+                        alignItems: 'center'
+                    }}> Tap on the toggle to select your choice </Text>
+                    
                     <Text style={styles.choiceText}> HbA1c levels done within last 3 months? </Text>
                 <View style = {toggle.container} >
                     <TouchableOpacity style = {toggle.levelsToggle}
@@ -376,7 +417,6 @@ const styles = StyleSheet.create({
     },
     container2: {
         flex: 1,
-        alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
         alignItems: 'center',

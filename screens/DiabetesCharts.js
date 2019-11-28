@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 18,
         textAlign: 'center',
-        alignItems: 'space-between'
+        alignItems: 'center'
     },
     title: {
         alignItems: 'center',

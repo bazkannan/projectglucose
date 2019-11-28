@@ -34,7 +34,7 @@ export default class PreopResult extends Component {
             const patient = await JSON.stringify(navigation.getParam('patient', 'null'));
             const temp = await navigation.getParam('temp', 'null');
             const levels = await JSON.stringify(navigation.getParam('levels', 'null'));
-            const response = await axios.post('http://192.168.0.39:3000/preoperative', {
+            const response = await axios.post('http://localhost:3000/preoperative', {
                 "patient": patient,
                 "temp": temp,
                 "levels": levels,
@@ -61,9 +61,9 @@ export default class PreopResult extends Component {
                     <Text style = {styles.title}> Pre-Operative Clinic Results: </Text>
                     {display}
 
-                <TouchableHighlight onPress = {this.createPDF}>
+                <TouchableOpacity onPress = {this.createPDF}>
                 <Text style = {{fontSize: 24, fontWeight: "300", color: 'white', textAlign: 'center', margin: '1%'}}> Create PDF </Text>
-                </TouchableHighlight>
+                </TouchableOpacity>
                 </View>
                 </ScrollView>
             );

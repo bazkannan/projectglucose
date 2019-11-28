@@ -61,9 +61,9 @@ export default class OnTheDayResult extends Component {
                     <Text style={styles.title}> On-The-Day Clinic Results: </Text>
                     {display}
 
-                    <TouchableHighlight onPress={this.createPDF}>
+                    <TouchableOpacity onPress={this.createPDF}>
                         <Text style={{ fontSize: 24, fontWeight: "300", color: 'white', textAlign: 'center', margin: '1%' }}> Create PDF </Text>
-                    </TouchableHighlight>
+                    </TouchableOpacity>
                 </View>
             </ScrollView>
         );

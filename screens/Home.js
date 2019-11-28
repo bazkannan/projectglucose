@@ -195,11 +195,11 @@ const styles = StyleSheet.create({
         fontWeight: 'bold', 
         fontSize: 18,
         textAlign: 'center',
-        alignItems: 'space-between'
+        alignItems: 'center'
     }, 
     title: {
         alignItems: 'center', 
-        fontWeight: "580", 
+        fontWeight: "600", 
         fontSize: 12,
         textAlign: 'center',
         color: 'white',
@@ -209,7 +209,7 @@ const styles = StyleSheet.create({
     }, 
     subtitle: {
         alignItems: 'center', 
-        fontWeight: "40",
+        fontWeight: "normal",
         fontSize: 12, 
         textAlign: 'center', 
         color: 'white', 

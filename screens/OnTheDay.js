@@ -11,7 +11,7 @@ import {
     Switch,
     ScrollView,
     Platform,
-    SafeAreaView
+    SafeAreaView, Alert
 } from "react-native";
 
 export default class OnTheDay extends Component {
@@ -40,13 +40,35 @@ export default class OnTheDay extends Component {
         if (this.state.glucose == "") {
             alert("Please enter a numeric value for glucose levels");
         } else {
-            this.props.navigation.navigate('OnTheDayResult'
-            , {
-                cancer: this.state.cancer,
-                glucose: this.state.glucose,
-                bloodPressure: this.state.bloodPressure,
+            Alert.alert(
+                'Alert',
+                'Please check your answers before submitting. Are you sure you want to proceed?',
+                [
+                    {
+                        text: 'Yes',
+                        onPress: () => this.props.navigation.navigate('OnTheDayResult', {
+                            cancer: this.state.cancer,
+                            glucose: this.state.glucose,
+                            bloodPressure: this.state.bloodPressure, 
+                        }),
+                        style: 'cancel'
+                    },
+                    {
+                        text: 'No',
+                        onPress: () => { return null },
+
+                    },
+                ],
+                { cancelable: false },
+            );
+
+            // this.props.navigation.navigate('OnTheDayResult'
+            // , {
+            //     cancer: this.state.cancer,
+            //     glucose: this.state.glucose,
+            //     bloodPressure: this.state.bloodPressure,
                 
-            })
+            // })
         }
     }
 

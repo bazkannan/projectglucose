@@ -208,8 +208,8 @@ const MyApp = createDrawerNavigator({
   DiabetesCharts: {
     screen: DiabetesCharts,
     navigationOptions: {
-      headerTitle: 'Diabetes Charts',
-      title: 'Diabetes Charts',
+      headerTitle: 'Other Features',
+      title: 'Other Features',
       drawerIcon: ({ tintColor }) => <Icon name="line-chart" size={25} color={tintColor} />
     }
   },
