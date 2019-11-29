@@ -31,13 +31,38 @@ export default class PreopResult extends Component {
     async componentDidMount() {
         try {
             const { navigation } = this.props;
-            const patient = await JSON.stringify(navigation.getParam('patient', 'null'));
-            const temp = await navigation.getParam('temp', 'null');
             const levels = await JSON.stringify(navigation.getParam('levels', 'null'));
-            const response = await axios.post('http://localhost:3000/preoperative', {
-                "patient": patient,
-                "temp": temp,
+            const temp = await navigation.getParam('temp', 'null');
+            const patient = await JSON.stringify(navigation.getParam('patient', 'null'));
+            const surgery = await JSON.stringify(navigation.getParam('surgery', 'null'));
+            const anaesthesia = await JSON.stringify(navigation.getParam('anaesthesia', 'null'));
+            const metformin = await JSON.stringify(navigation.getParam('metformin', 'null'));
+            const shortInsulin = await JSON.stringify(navigation.getParam('shortInsulin', 'null'));
+            const intermediateInsulin = await JSON.stringify(navigation.getParam('intermediateInsulin', 'null'));
+            const alpha = await JSON.stringify(navigation.getParam('alpha', 'null'));
+            const dppFour = await JSON.stringify(navigation.getParam('dppFour', 'null'));
+            const glpReceptor = await JSON.stringify(navigation.getParam('glpReceptor', 'null'));
+            const meglitinides = await JSON.stringify(navigation.getParam('meglitinides', 'null'));
+            const sgltTwo = await JSON.stringify(navigation.getParam('sgltTwo', 'null'));
+            const sulphonyureas = await JSON.stringify(navigation.getParam('sulphonyureas', 'null'));
+            const thiasolidinediones = await JSON.stringify(navigation.getParam('thiasolidinediones', 'null'));
+
+            const response = await axios.post('http://localhost:3001/preoperative', {
                 "levels": levels,
+                "temp": temp,
+                "patient": patient,
+                "surgery": surgery,
+                "anaesthesia": anaesthesia,
+                "metformin": metformin,
+                "shortInsulin": shortInsulin,
+                "intermediateInsulin": intermediateInsulin,
+                "alpha": alpha,
+                "dppFour": dppFour,
+                "glpReceptor" : glpReceptor,
+                "meglitinides": meglitinides,
+                "sgltTwo": sgltTwo,
+                "sulphonyureas": sulphonyureas,
+                "thiasolidinediones": thiasolidinediones
                 
             })
             this.setState({result: response.data.response})

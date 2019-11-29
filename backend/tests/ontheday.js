@@ -6,8 +6,10 @@ const basic = (req, res) => {
     } else {
         if (cancer == "true" && glucose > 38 && bloodPressure == "true") {
             res.status(200).send({ response: 'You have the flu' });
-        } else if (glucose < 36 || glucose > 37.2) {
-            res.status(200).send({ response: 'Your temperature is abnormal' });
+        } else if (glucose < 12) {
+            res.status(200).send({ response: '- Proceed with surgery \n - Check blood glucose hourly \n - Return to routine antidiabetics with first full meal' });
+        } else if (glucose > 12) {
+            res.status(200).send({ response: 'check Urine / Capillary Ketones' });
         } else {
             res.status(200).send({ response: 'You are healthy' });
         }

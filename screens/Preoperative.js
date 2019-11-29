@@ -54,17 +54,10 @@ export default class Preoperative extends Component {
         })
     };
 
-    diabetesQuestion = state => event => {
-        if (this.state.patient === false) {
-            alert("If you've selected 'No', please note this section is only for diabetics on medication!")
-        } else {
-            this.handleSetState;
-        }
-    }
 
     goToResults = () => {
-        if (this.state.temp == "") {
-            alert("You need to input your HbA1c level!")
+        if (this.state.levels == false) {
+            alert("Please repeat HBA1C, input the result and run the app.")
         } else if (this.state.patient == false) {
             alert ("If you answered 'No' for the first question, please note this section is only for diabetics on medication!")
         } else if (this.state.metformin == false && this.state.shortInsulin == false && this.state.intermediateInsulin == false && 
