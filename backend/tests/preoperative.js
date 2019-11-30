@@ -20,7 +20,7 @@ const basic = (req, res) => {
         } else if ( shortInsulin == "true" || meglitinides == "true" || sgltTwo == "true" || sulphonyureas == "true") {
             res.status(200).send({ response: 'OMIT' });
         } else if ( intermediateInsulin == "true") {
-            res.status(200).send({ response: intermediateInsulin + 'HALF DOSE IN MORNING'})
+            res.status(200).send({ response: 'HALF DOSE IN MORNING'})
         } else if ( anaesthesia == "false") {
             res.status(200).send({ response: '1). No fasting required \n 2). Take anti-diabetic medication as normal including Insulin \n 3). INR required if on Warfarin. No other tests needed.'})
         } else if ( anaesthesia == "true") {

@@ -9,5 +9,5 @@ app.use(express.json());
 
 server.listen(port, () => console.log('Server running on port: ' + port));
 
-app.post('preoperative', preoperative.basic);
-app.post('ontheday', ontheday.basic);
+app.post('/preoperative', preoperative.basic);
+app.post('/ontheday', ontheday.basic);
