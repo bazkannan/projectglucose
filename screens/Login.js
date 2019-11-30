@@ -145,7 +145,7 @@
                         <Text style = {{ color: 'red', textAlign: 'center', alignItems: 'center', justifyContent: 'center', top: 10 }}> {this.state.errorMessage} </Text>
                             
                         
-                                    <Text style={{ color: 'white', alignItems: 'center', fontSize: 18, fontWeight: '60', textAlign: 'center', top: 20, textShadowRadius: 10,}}
+                                    <Text style={{ color: 'white', alignItems: 'center', fontSize: 18, fontWeight: 'bold', textAlign: 'center', top: 20, textShadowRadius: 10,}}
                         
                         > Don't have an account? Create one now! </Text>
                         
