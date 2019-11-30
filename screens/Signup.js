@@ -68,7 +68,7 @@ export default class Signup extends Component {
         .auth()
         .createUserWithEmailAndPassword(this.state.email, this.state.passWord)
             .then(() => 
-                this.props.navigation.navigate('AccountCreated'))
+                this.props.navigation.navigate('Home'))
                 .catch(error => this.setState({ errorMessage: error.message}))
         }
     

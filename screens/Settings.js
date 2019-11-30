@@ -24,7 +24,7 @@ export default class Settings extends Component {
                 onPress: () => AsyncStorage.clear()
                 
                 .then(() => this.props.navigation.navigate('Login'))
-                .then(console.log('Signed out')),
+                .then(console.log('Signed out')).catch((err) => console.log(err)),
                 style: 'cancel'
                 },
                 {

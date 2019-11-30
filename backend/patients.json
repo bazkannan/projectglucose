@@ -1,0 +1,39 @@
+[
+  {
+    "id": 1,
+    "name": "James Long",
+    "latitude": "40.6710729",
+    "longitude": "-73.9988001",
+    "symptoms": "coughing"
+  },
+  {
+    "id": 2,
+    "name": "Timothy Singh",
+    "latitude": "40.6942861",
+    "longitude": "-73.9988001",
+    "symptoms": "wheezing"
+  },
+  {
+    "id": 3,
+    "name": "Daniel Jones",
+    "latitude": "40.6577799",
+    "longitude": "-73.9988001",
+    "symptoms": "sneezing"
+  },
+  {
+    "id": 4,
+    "name": "Raja Sood",
+    "latitude": "52.449788",
+    "longitude": "-1.935474",
+    "symptoms": "sick",
+    "age": "23"
+  },
+  {
+    "id": 5,
+    "name": "Rocky Taral",
+    "latitude": "51.449788",
+    "longitude": "-1.935474",
+    "symptoms": "virgin",
+    "age": "27"
+  }
+]

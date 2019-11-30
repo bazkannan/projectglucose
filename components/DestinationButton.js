@@ -13,17 +13,17 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const WIDTH = Dimensions.get('window').width;
 
 export const DestinationButton = function(props) {
-    
+    const cb = props.cb ? props.cb : console.log('Cb function not working for getDestinationButton()')
     return(
-        <TouchableOpacity 
-        onPress={() => {}}
-        style = {styles.container}
+        <TouchableOpacity
+        onPress={() => { cb() }}
+        style = {styles.containerbutton}
         >
             <View style = {styles.leftCol}>
                 {/* <Text style = {{fontSize: 8}}>{'\u25A0'}</Text> */}
                 <Icon name = "search" color = "#000000" size = {25} />
             </View>
-            
+
             <View style = {styles.centerCol}>
                 <Text style = {{fontFamily: 'sans-serif-thin', fontSize: 21, color: '#545454'}}>
                     Search for patients
@@ -40,7 +40,7 @@ export const DestinationButton = function(props) {
 
 
 const styles = StyleSheet.create({
-    container: {
+    containerbutton: {
         zIndex: 9,
         position: 'absolute',
         flexDirection: 'row',

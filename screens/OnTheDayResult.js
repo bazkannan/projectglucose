@@ -34,7 +34,7 @@ export default class OnTheDayResult extends Component {
             const cancer = await JSON.stringify(navigation.getParam('cancer', 'null'));
             const glucose = await navigation.getParam('glucose', 'null');
             const bloodPressure = await JSON.stringify(navigation.getParam('bloodPressure', 'null'));
-            const response = await axios.post('http://192.168.0.39:3001/ontheday', {
+            const response = await axios.post('http://localhost:3001/ontheday', {
                 "cancer": cancer,
                 "glucose": glucose,
                 "bloodPressure": bloodPressure,
@@ -61,9 +61,9 @@ export default class OnTheDayResult extends Component {
                     <Text style={styles.title}> On-The-Day Clinic Results: </Text>
                     {display}
 
-                    <TouchableOpacity onPress={this.createPDF}>
-                        <Text style={{ fontSize: 24, fontWeight: "300", color: 'white', textAlign: 'center', margin: '1%' }}> Create PDF </Text>
-                    </TouchableOpacity>
+                    {/*<TouchableOpacity onPress={this.createPDF}>*/}
+                    {/*    <Text style={{ fontSize: 24, fontWeight: "300", color: 'white', textAlign: 'center', margin: '1%' }}> Create PDF </Text>*/}
+                    {/*</TouchableOpacity>*/}
                 </View>
             </ScrollView>
         );

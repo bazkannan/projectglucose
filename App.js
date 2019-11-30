@@ -66,7 +66,7 @@ logout = () => {
         onPress: () => AsyncStorage.clear()
 
           .then(() => this.props.navigation.navigate('Login'))
-          .then(console.log('Signed out')),
+          .then(console.log('Signed out')).catch((err) => console.log(err)),
         style: 'cancel'
       },
       {
@@ -205,14 +205,6 @@ const MyApp = createDrawerNavigator({
       drawerIcon: ({ tintColor }) => <Icon name="stethoscope" size={25} color={tintColor} />
     }
   },
-  DiabetesCharts: {
-    screen: DiabetesCharts,
-    navigationOptions: {
-      headerTitle: 'Other Features',
-      title: 'Other Features',
-      drawerIcon: ({ tintColor }) => <Icon name="line-chart" size={25} color={tintColor} />
-    }
-  },
   Booking: {
     screen: Booking, 
     navigationOptions: {
@@ -220,6 +212,14 @@ const MyApp = createDrawerNavigator({
       headerTransparent: true,
       title: 'Attend Requests',
       drawerIcon: ({ tintColor }) => <Icon name="medkit" size={25} color={tintColor} />
+    }
+  },
+  DiabetesCharts: {
+    screen: DiabetesCharts,
+    navigationOptions: {
+      headerTitle: 'Other Features',
+      title: 'Other Features',
+      drawerIcon: ({ tintColor }) => <Icon name="line-chart" size={25} color={tintColor} />
     }
   },
   Settings: {
@@ -396,7 +396,7 @@ const rootStack = createStackNavigator (
       screen: MyApp,
       navigationOptions: ({navigation}) => ({
         
-        headerLeft: <TouchableOpacity style={{ marginLeft: 15, marginTop: 3 }} onPress={() => navigation.openDrawer()}><Icon name="bars" style={{}} size={24} /></TouchableOpacity>,
+        headerLeft: <TouchableOpacity style={{ marginLeft: 15, marginTop: 3 }} onPress={() => navigation.toggleDrawer()}><Icon name="bars" style={{}} size={24} /></TouchableOpacity>,
         headerTitle: 'FastAID',
         headerRight: <TouchableOpacity style={{ marginRight: 15, marginTop: 3 }} onPress={() => navigation.navigate('Settings')}><Icon name="gear" style={{}} size={24} /></TouchableOpacity>,
         headerTransparent: true,
