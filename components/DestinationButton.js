@@ -25,8 +25,8 @@ export const DestinationButton = function(props) {
             </View>
 
             <View style = {styles.centerCol}>
-                <Text style = {{fontFamily: 'sans-serif-thin', fontSize: 21, color: '#545454'}}>
-                    Search for patients
+                <Text style = {{fontFamily: 'sans-serif-thin', fontSize: 18, color: '#545454'}}>
+                    Tap to search for patients
                 </Text>
             </View>
 
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
         height: 60,
         top: 110,
         left: 20,
-        borderRadius: 2,
+        borderRadius: 5,
         backgroundColor: 'white',
         alignItems: 'center',
         shadowColor: '#000000',
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     },
     rightCol: {
         flex: 1,
-        borderLeftWidth: 1,
+        borderLeftWidth: 0,
         borderColor: '#ededed',
     },
 });

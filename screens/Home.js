@@ -91,7 +91,7 @@ export default class Home extends React.Component {
                             <View style={{ marginTop: 0, top: -5 }}>
                                 <Icon name="medkit" size={25} color="white" />
                             </View>
-                        <Text style={styles.buttonText}> Attend Requests </Text>
+                        <Text style={styles.buttonText}> Patient Search </Text>
                     </TouchableOpacity>
                    
                 <TouchableOpacity

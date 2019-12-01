@@ -84,89 +84,74 @@ export default class Signup extends Component {
                     
                         <Text style = {styles.heading}> Sign Up to FastAID! </Text>
 
-                        {/* <TextInput style = {styles.input} 
-                        placeholder = "Username"
-                        onChangeText = {(text) => this.validation(text, 'username')}
-                        returnKeyType = "next"
-                        onPress = {Keyboard.dismiss}
-                        autoCapitalize = "none"
-                        onSubmitEditing = {() => this.firstNameInput.focus()}
-                        /> */}
-
                         <TextInput style = {styles.input} placeholder = "First Name"
-                        // onChangeText = {(text) => this.validation(text, 'FirstName')}
+
                         onChangeText = {firstName => this.setState({firstName})}
                         value={this.state.firstName}
                         returnKeyType = "next"
-                        // ref = {(input) => this.firstNameInput = input}
+
 
                         onPress={Keyboard.dismiss}
                         autoCapitalize = "none"
-                        // onSubmitEditing = {() => this.lastNameInput.focus()}
+
                         />
 
                         <TextInput style = {styles.input} placeholder = "Last Name"
-                        // onChangeText={(text) => this.validation(text, 'LastName')}
+
                         onChangeText = {lastName => this.setState({lastName})}
                         value = {this.state.lastName}
                         returnKeyType = "next"
-                        // ref = {(input) => this.lastNameInput = input}
+
                         onPress={Keyboard.dismiss}
                         autoCapitalize = "none"
-                        // onSubmitEditing = {() => this.passwordInput.focus()}
+
                         /> 
 
                             <TextInput
                                 style={styles.input}
                                 placeholder="E-mail"
-                                // onChangeText = {(text) => this.validation(text, 'Email')}
+
                                 onChangeText={email => this.setState({ email })}
                                 value={this.state.email}
                                 returnKeyType="next"
                                 onPress={Keyboard.dismiss}
                                 autoCapitalize="none"
-                                // ref={(input) => this.emailInput = input}
+
 
                             />
-
-                        {/* <Text style = {styles.passwordText}> Password must contain at least one letter and number </Text> */}
 
                         <TextInput 
                         style={styles.input} 
                         placeholder="Password"
-                        // onChangeText={(text) => this.validation(text, 'Password')}
+
                         onChangeText = {passWord => this.setState({ passWord })}
                         value = {this.state.passWord}
                         secureTextEntry={true}
-                        // returnKeyType="next"
+                        returnKeyType="next"
                         onPress={Keyboard.dismiss}
                         autoCapitalize = "none"
-                        // ref={(input) => this.passwordInput = input}
-                        // onSubmitEditing={() => this.emailInput.focus()}
 
                         />
 
                         <TextInput 
                         style = {styles.input} 
                         placeholder = "Confirm Password"
-                        // onChangeText = {(text) => this.validation(text, 'RetypePassword')}
                         onChangeText = {reTypePassword => this.setState({reTypePassword})}
                         value = {this.state.reTypePassword}
                         secureTextEntry={true}
-                        returnKeyType = "next"
+                        returnKeyType = "done"
                         onPress={Keyboard.dismiss}
                         autoCapitalize = "none"
-                        // ref = {(input) => this.repasswordInput = input}
-                        // onSubmitEditing = {() => this.emailInput.focus()}
+
 
                         />
 
                         {/* <TextInput style={styles.input} placeholder="Phone"
-                        onChangeText={(text) => this.validation(text, 'Phone')}
+
                         returnKeyType="done"
                         keyboardType = "numeric"
                         onPress={Keyboard.dismiss}
-                        ref={(input) => this.phoneInput = input}
+
 
                         /> */}
 

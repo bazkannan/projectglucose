@@ -24,95 +24,6 @@ export default class Regression extends Component {
         
     }
 
-    linearRegression(dataArray) {
-		
-        const second = dataArray.map(item => item.second);
-        const first = dataArray.map(item => item.first);
-        const slope = this.calculateSlope(first, second);
-
-        const yIntercept = this.calculateYintercept(slope, second, first);
-        const average = this.findMean(first);
-        
-        return yIntercept + (slope * average);
-
-    }
-
-    calculateSlope(x, y) {
-        if (x.length !== y.length) {
-            throw new Error('size of first and second should be same');
-        }
-       
-        const meanOfx = this.findMean(x);
-
-        const meanOfy = this.findMean(y);
-        const xMinusXMean = this.subtract(x, meanOfx);
-        const yMinusYMean = this.subtract(y, meanOfy);
-
-        
-        const xMinusXMeanMultiplyYMinusYMean = this.multiply(xMinusXMean, yMinusYMean);
-        
-        const sumOfxMinusXMeanMultiplyYMinusYMean = this.sum(xMinusXMeanMultiplyYMinusYMean);
-
-        const xMinusXMeanSquare = this.square(xMinusXMean);
-        const yMinusYMeanSquare = this.square(yMinusYMean);
-
-        const sumOfxMinusXMeanSquare = this.sum(xMinusXMeanSquare);
-        const sumOfyMinusYMeanSquare = this.sum(yMinusYMeanSquare);
-
-        const denominator = (Math.sqrt(sumOfxMinusXMeanSquare * sumOfyMinusYMeanSquare));
-        let pearsonCorrelationCoefficient = sumOfxMinusXMeanMultiplyYMinusYMean / denominator;
-
-        if (isNaN(pearsonCorrelationCoefficient)) {
-            pearsonCorrelationCoefficient = 0;
-        }
-   
-        const standardDeviationOfx = Math.sqrt(sumOfxMinusXMeanSquare / (x.length - 1));
-        const standardDeviationOfy = Math.sqrt(sumOfyMinusYMeanSquare / (y.length - 1))
-
-        let slope = pearsonCorrelationCoefficient * (standardDeviationOfy / standardDeviationOfx);
-        if (isNaN(slope)) {
-            slope = 0;
-        }
-        return slope;
-    }
-
-    calculateYintercept(slope, second, first) {
-        
-
-        const meanOfy = this.findMean(second);
-        const meanOfX = this.findMean(first);
-        return meanOfy - (slope * meanOfX);
-
-    }
-
-    findMean(a) {
-        return this.sum(a) / a.length;
-    }
-
-    subtract(a, subtractBy) {
-        return a.map(num => num - subtractBy);
-    }
-
-    multiply(a, b) {
-        const result = [];
-        a.forEach((item, index) => {
-            result[index] = item * b[index];
-        });
-        return result;
-    }
-
-    sum(a) {
-        let total = 0;
-        a.forEach(num => {
-            total = total + num
-        });
-        return total;
-    }
-
-    square(a) {
-        return a.map(item => item * item)
-    }
-
     render() {
         this.state.data.forEach((element) => {
             if (element.first === 1) {
@@ -126,14 +37,6 @@ export default class Regression extends Component {
             return;
         }
         });
-        
-        const databaseData = this.state.data
-
-        const firstAverage = this.findMean(this.state.data.map(item => item.first));
-        const secondAverage = this.findMean(this.state.data.map(item => item.second));
-        const secondArray = this.state.data.map(item => item.second)
-        const MinimumSecond = Math.min(...secondArray);
-        const MaximumSecond = Math.max(...secondArray);
 
         return (
             <ScrollView style = {styles.container}>
@@ -168,7 +71,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#000d1a'
     },
-    forecasteBox: {
+    forecastBox: {
         backgroundColor: "#0059b3",
         marginLeft: 5,
         marginRight: 5,

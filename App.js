@@ -201,7 +201,7 @@ const MyApp = createDrawerNavigator({
     navigationOptions: {
       headerTitle: 'On-Call',
       headerTransparent: true,
-      title: 'Attend Requests',
+      title: 'Patient Search',
       drawerIcon: ({ tintColor }) => <Icon name="medkit" size={25} color={tintColor} />
     }
   },

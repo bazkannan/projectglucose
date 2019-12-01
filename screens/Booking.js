@@ -123,15 +123,23 @@ export default class Booking extends Component {
 
 
     render() {
+        let display;
         let directionsbutton = null;
         let cancelbutton = null;
+
+        if (this.state.markers == null) {
+            display = <ActivityIndicator size = "large" color = "black" />;
+        } else {
+            display = this.getPatients;
+        }
+
         if (this.state.showButton == true && this.state.showCancelButton == true) {
             directionsbutton = (
                 <TouchableOpacity
                     style={styles.goToPatientButton}
                     onPress={() => this.showGoogleMaps(this.state.selectedLocation[0], this.state.selectedLocation[1])}
                 >
-                    <Text style={styles.bottomButtonText}>Go to patient</Text>
+                    <Text style={styles.bottomButtonText}>Get Directions</Text>
                 </TouchableOpacity>
             );
             cancelbutton = (
@@ -139,7 +147,7 @@ export default class Booking extends Component {
                     style={styles.cancelButton}
                     onPress={()=> this.cancelButton()}
                 >
-                    <Text style={styles.bottomButtonText}>Cancel button</Text>
+                    <Text style={styles.bottomButtonText}>Cancel</Text>
                 </TouchableOpacity>
             );
         }
@@ -163,8 +171,8 @@ export default class Booking extends Component {
                     {this.state.markers.map(marker => (
                         <Marker
                             coordinate={{ latitude: marker.latitude, longitude: marker.longitude}}
-                            title={marker.name}
-                            description={ "Symptoms: " + marker.symptoms + ", age: " + marker.age}
+                            title={"PATIENT NAME: " + marker.name}
+                            description={ "SYMPTOMS: " + marker.symptoms + "\nAGE: " + marker.age}
                             onPress={() => this.selectedPatient(marker.latitude, marker.longitude)}
                         >
                             <Image source={require('../assets/patient.png')} style={{height: 40, width:40 }} />
@@ -173,8 +181,10 @@ export default class Booking extends Component {
 
                     ))}
                 </MapView>
+
                 {directionsbutton}
                 {cancelbutton}
+
             </View>
         );
     }
@@ -201,6 +211,7 @@ const styles = StyleSheet.create({
         marginTop: "auto",
         margin: 30,
         top: 250,
+        left: -70,
         padding: 15,
         zIndex: 10,
         elevation: 10,
@@ -208,20 +219,27 @@ const styles = StyleSheet.create({
         paddingRight: 30,
         alignSelf: "center",
         textAlign: "center",
-        borderRadius:6
+        borderRadius: 3,
+        shadowRadius: 5,
+        shadowOpacity: 1
+
     },
     cancelButton: {
-        backgroundColor: "red",
+        backgroundColor: "maroon",
         marginTop: "auto",
         margin: 30,
         padding: 15,
         zIndex: 10,
+        top: -83,
+        left: 100,
         elevation: 10,
         paddingLeft: 30,
         paddingRight: 30,
         alignSelf: "center",
         textAlign: "center",
-        borderRadius:6
+        borderRadius: 3,
+        shadowRadius: 5,
+        shadowOpacity: 1
     },
     bottomButtonText: {
         fontSize: 20,
