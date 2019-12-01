@@ -49,11 +49,23 @@ export default class Settings extends Component {
                 </View>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress = {() => this.props.navigation.navigate('About')}>
-                <View style={styles.border}>
-                    <Text style={styles.textStyle}> <Icon name="question-circle" size={25} /> About </Text>
-                </View>
-            </TouchableOpacity>
+            {/*<TouchableOpacity onPress = {() => this.props.navigation.navigate('About')}>*/}
+            {/*    <View style={styles.border}>*/}
+            {/*        <Text style={styles.textStyle}> <Icon name="question-circle" size={25} /> About </Text>*/}
+            {/*    </View>*/}
+            {/*</TouchableOpacity>*/}
+
+            {/*    <TouchableOpacity onPress = {() => this.props.navigation.navigate('Booking')}>*/}
+            {/*        <View style={styles.border}>*/}
+            {/*            <Text style={styles.textStyle}> <Icon name="medkit" size={25} /> Patient Search </Text>*/}
+            {/*        </View>*/}
+            {/*    </TouchableOpacity>*/}
+
+            {/*    <TouchableOpacity onPress = {() => this.props.navigation.navigate('PerioperativeOptions')}>*/}
+            {/*        <View style={styles.border}>*/}
+            {/*            <Text style={styles.textStyle}> <Icon name="stethoscope" size={25} /> Perioperative Assessment </Text>*/}
+            {/*        </View>*/}
+            {/*    </TouchableOpacity>*/}
 
                 <TouchableOpacity style={styles.buttonContainer} onPress={() => { this.logout() }}>
                     <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
