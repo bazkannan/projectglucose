@@ -33,7 +33,15 @@
     "name": "Rocky Taral",
     "latitude": "51.449788",
     "longitude": "-1.935474",
-    "symptoms": "virgin",
+    "symptoms": "dislocated arm",
     "age": "27"
+  },
+  {
+    "id": 6,
+    "name": "Tony Jaa",
+    "latitude": "50.449788",
+    "longitude": "-1.935474",
+    "symptoms": "broken legs",
+    "age": "30"
   }
 ]

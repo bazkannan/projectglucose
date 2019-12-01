@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View, TouchableOpacity, TouchableHighlight, Dimensions, Image, Button, SaveAreaView, SafeAreaView, ScrollView, Alert} from 'react-native';
+import { AppRegistry, StyleSheet, Text, View, TouchableOpacity, TouchableHighlight, Dimensions, Image, Button, SaveAreaView, SafeAreaView, ScrollView, Alert, AsyncStorage} from 'react-native';
 import { createAppContainer, NavigationBar, createSwitchNavigator, withNavigation, DrawerNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
@@ -58,14 +58,13 @@ componentWillMount() {
 logout = () => {
 
   Alert.alert(
-    'Warning!',
+    'Alert',
     'Are you sure you want to log out?',
     [
       {
         text: 'Yes',
         onPress: () => AsyncStorage.clear()
-
-          .then(() => this.props.navigation.navigate('Login'))
+          .then(() => this.navigation.navigate('Login'))
           .then(console.log('Signed out')).catch((err) => console.log(err)),
         style: 'cancel'
       },
@@ -197,6 +196,15 @@ const MyApp = createDrawerNavigator({
       drawerIcon: ({ tintColor }) => <Icon name="question-circle" size={25} color={tintColor} />
     }
   },
+  Booking: {
+    screen: Booking,
+    navigationOptions: {
+      headerTitle: 'On-Call',
+      headerTransparent: true,
+      title: 'Attend Requests',
+      drawerIcon: ({ tintColor }) => <Icon name="medkit" size={25} color={tintColor} />
+    }
+  },
   PerioperativeOptions: {
     screen: PerioperativeOptions,
     navigationOptions: {
@@ -205,23 +213,14 @@ const MyApp = createDrawerNavigator({
       drawerIcon: ({ tintColor }) => <Icon name="stethoscope" size={25} color={tintColor} />
     }
   },
-  Booking: {
-    screen: Booking, 
-    navigationOptions: {
-      headerTitle: 'On-Call',
-      headerTransparent: true,
-      title: 'Attend Requests',
-      drawerIcon: ({ tintColor }) => <Icon name="medkit" size={25} color={tintColor} />
-    }
-  },
-  DiabetesCharts: {
-    screen: DiabetesCharts,
-    navigationOptions: {
-      headerTitle: 'Other Features',
-      title: 'Other Features',
-      drawerIcon: ({ tintColor }) => <Icon name="line-chart" size={25} color={tintColor} />
-    }
-  },
+  // DiabetesCharts: {
+  //   screen: DiabetesCharts,
+  //   navigationOptions: {
+  //     headerTitle: 'Other Features',
+  //     title: 'Other Features',
+  //     drawerIcon: ({ tintColor }) => <Icon name="line-chart" size={25} color={tintColor} />
+  //   }
+  // },
   Settings: {
     screen: Settings,
     navigationOptions: {
@@ -230,6 +229,8 @@ const MyApp = createDrawerNavigator({
       drawerIcon: ({ tintColor }) => <Icon name="gear" size={25} color={tintColor} />
     }
   },
+
+
   
     
 });
@@ -257,14 +258,14 @@ const bottomTab = createBottomTabNavigator({
         title: 'On-The-Day'
       }
     },
-    Regression: {
-      screen: Regression,
-      navigationOptions: {
-        headerLeft: null,
-        headerTitle: 'Display',
-        title: 'Display'
-      }
-    },
+    // Regression: {
+    //   screen: Regression,
+    //   navigationOptions: {
+    //     headerLeft: null,
+    //     headerTitle: 'Display',
+    //     title: 'Display'
+    //   }
+    // },
     
     
   
@@ -436,6 +437,13 @@ const rootStack = createStackNavigator (
         headerStyle: {
           backgroundColor: '#fafafa',
         }
+      }
+    },
+    Regression: {
+      screen: Regression,
+      navigationOptions: {
+        headerTitle: 'Graph',
+        title: 'Graph'
       }
     },
     TensorflowModel: {
