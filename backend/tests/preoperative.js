@@ -26,7 +26,7 @@ const basic = (req, res) => {
         } else if ( anaesthesia == "true") {
             res.status(200).send({ response: '1). Fasting as per 1 - 2 - 6 rule \n 2). Antidiabetic instruction as per their choice / red amber green \n 3). FBC, U&E and other tests as indicated.'});
         } else {
-            res.status(200).send({ response: 'Continue' });
+            res.status(200).send({ response: 'CONTINUE' });
         }
     }
 }

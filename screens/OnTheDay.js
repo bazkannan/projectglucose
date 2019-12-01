@@ -39,6 +39,8 @@ export default class OnTheDay extends Component {
     goToResults = () => {
         if (this.state.glucose == "") {
             alert("Please enter a numeric value for glucose levels");
+        } else if (this.state.glucose <= 0) {
+            alert("Please enter a positive integer");
         } else {
             Alert.alert(
                 'Alert',
@@ -127,33 +129,18 @@ export default class OnTheDay extends Component {
                         alignItems: 'center'
                     }}> --ON THE DAY CLINIC-- </Text>
 
-                    <Text style={{
-                        fontSize: 32,
-                        fontWeight: "600",
-                        color: "white",
-                        top: 20,
-                        textAlign: 'center',
-                        alignItems: 'center'
-                    }}> Tap on the toggle to select your choice </Text>
 
-                    <Text style={styles.choiceText}> Question One </Text>
-                    <View style={toggle.container}>
-                        <TouchableOpacity style={toggle.cancerToggle}
-                            onPress={this.handleSetState("cancer")}>
-                            {/* onPress = {this.diabetesQuestion("patient")}>  */}
-                            <Text style={toggle.toggleLabel}> {this.state.cancer ? 'Yes' : 'No'} </Text>
-                        </TouchableOpacity>
-                    </View>
 
-                    <Text style={styles.choiceText}> Question Two </Text>
-                    <View style={toggle.container} >
-                        <TouchableOpacity style={toggle.bloodPressureToggle}
-                            onPress={this.handleSetState("bloodPressure")}>
-                            <Text style={toggle.toggleLabel}> {this.state.bloodPressure ? 'Yes' : 'No'} </Text>
-                        </TouchableOpacity>
-                    </View>
+                    {/*<Text style={styles.choiceText}> Question One </Text>*/}
+                    {/*<View style={toggle.container}>*/}
+                    {/*    <TouchableOpacity style={toggle.cancerToggle}*/}
+                    {/*        onPress={this.handleSetState("cancer")}>*/}
+                    {/*        /!* onPress = {this.diabetesQuestion("patient")}>  *!/*/}
+                    {/*        <Text style={toggle.toggleLabel}> {this.state.cancer ? 'Yes' : 'No'} </Text>*/}
+                    {/*    </TouchableOpacity>*/}
+                    {/*</View>*/}
 
-                    <Text style={styles.choiceText}> Question Three </Text>
+                    <Text style={styles.choiceText}> Today's blood glucose value </Text>
                     <View style={{ flexDirection: 'row' }}>
                         <TextInput
                             style={{ height: 40, backgroundColor: 'white', borderColor: 'white', borderWidth: 2, borderRadius: 5, width: '15%', padding: 3 }}
@@ -173,7 +160,24 @@ export default class OnTheDay extends Component {
                             color: "white",
                             top: 8,
                             left: 5
-                        }}> mmol / mol </Text>
+                        }}> mmol </Text>
+                    </View>
+
+                    <Text style={{
+                        fontSize: 32,
+                        fontWeight: "600",
+                        color: "white",
+                        top: 20,
+                        textAlign: 'center',
+                        alignItems: 'center'
+                    }}> Tap on the toggle to select your choice </Text>
+
+                    <Text style={styles.choiceText}> If today's blood glucose value > 12, select Urine / Capillary Ketones value </Text>
+                    <View style={toggle.container} >
+                        <TouchableOpacity style={toggle.bloodPressureToggle}
+                                          onPress={this.handleSetState("bloodPressure")}>
+                            <Text style={toggle.toggleLabel}> {this.state.bloodPressure ? '3+' : '2 or less'} </Text>
+                        </TouchableOpacity>
                     </View>
 
                     <View style={{ flexDirection: 'row', top: -10 }}>
