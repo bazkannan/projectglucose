@@ -21,18 +21,18 @@ export const DestinationButton = function(props) {
         >
             <View style = {styles.leftCol}>
                 {/* <Text style = {{fontSize: 8}}>{'\u25A0'}</Text> */}
-                <Icon name = "search" color = "#000000" size = {25} />
+                <Icon name = "search" color = "#fff" size = {25} />
             </View>
 
             <View style = {styles.centerCol}>
-                <Text style = {{fontFamily: 'sans-serif-thin', fontSize: 18, color: '#545454'}}>
-                    Tap to search for patients
+                <Text style = {{fontFamily: 'sans-serif-thin', fontSize: 18, color: '#fff'}}>
+                    Tap to scan for patients
                 </Text>
             </View>
 
             <View style = {styles.rightCol}>
                  {/* <IonIcons name = "md-car" color = "#000000" size = {25} style = {{alignSelf: 'center'}} />  */}
-                 <Icon name = "medkit" color = "#000000" size = {25} style = {{alignSelf: 'center'}}/>
+                 <Icon name = "medkit" color = "#fff" size = {25} style = {{alignSelf: 'center'}}/>
             </View>
         </TouchableOpacity>
         );
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         top: 110,
         left: 20,
         borderRadius: 5,
-        backgroundColor: 'white',
+        backgroundColor: 'black',
         alignItems: 'center',
         shadowColor: '#000000',
         elevation: 7,

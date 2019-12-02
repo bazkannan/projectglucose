@@ -12,21 +12,37 @@ const basic = (req, res) => {
         + req.body.meglitinides + req.body.sgltTwo + req.body.sulphonyureas + req.body.thiasolidinediones);
     } else {
         if (levels == "false") {
-            res.status(200).send({ response: 'Please repeat HBA1C, input the result and run the app.' });
-        } else if ( temp >= 70 ) {
-            res.status(200).send({ response: 'HBA1C outside recommended guideline. Proceed if benefit outweighs risk' });
-        } else if ( metformin == "true" || alpha == "true" || dppFour == "true" || glpReceptor == "true" || thiasolidinediones == "true") {
-            res.status(200).send({ response: 'CONTINUE ' });
-        } else if ( shortInsulin == "true" || meglitinides == "true" || sgltTwo == "true" || sulphonyureas == "true") {
-            res.status(200).send({ response: 'OMIT' });
-        } else if ( intermediateInsulin == "true") {
-            res.status(200).send({ response: 'HALF DOSE IN MORNING'})
+            res.status(200).send({ response: 'Please repeat HBA1C, input the value and run the app.' });
+        } else if (levels == "true" && temp > 90 ) {
+            res.status(200).send({ response: 'Please go back and check your values then repeat the test.'});
+        } else if ( levels == "true" && temp >= 70 ) {
+            res.status(200).send({ response: 'HBA1C outside recommended guideline for surgery. Proceed if benefit outweighs risks (e.g. urgent / cancer surgery)' });
         } else if ( anaesthesia == "false") {
-            res.status(200).send({ response: '1). No fasting required \n 2). Take anti-diabetic medication as normal including Insulin \n 3). INR required if on Warfarin. No other tests needed.'})
+            res.status(200).send({ response: '1) No fasting required \n2) Take anti-diabetic medication as normal including insulin \n3) INR required if on Warfarin. No other tests needed.'});
+        } else if ( anaesthesia == "true" && metformin == "true") {
+            res.status(200).send({ response: '1). Fasting as per 1 - 2 - 6 rule \n 2). FBC, U& E and other tests as indicated. \n 3). Instructions for antidiabetic medications. \nMetformin - CONTINUE ' });
+        } else if ( anaesthesia == "true" && shortInsulin == "true") {
+            res.status(200).send({ response: '1). Fasting as per 1 - 2 - 6 rule \n 2). FBC, U& E and other tests as indicated. \n 3). Instructions for antidiabetic medications. \nShort acting Insulin (Humulin S, apidra, Novorapid) - OMIT' });
+        } else if ( anaesthesia == "true" && intermediateInsulin == "true") {
+            res.status(200).send({ response: '1). Fasting as per 1 - 2 - 6 rule \n 2). FBC, U& E and other tests as indicated. \n 3). Instructions for antidiabetic medications, \nIntermediate or Long acting Insulin - HALF DOSE IN MORNING'});
+        } else if ( anaesthesia == "true" && alpha == "true") {
+            res.status(200).send({ response: '1). Fasting as per 1 - 2 - 6 rule \n 2). FBC, U& E and other tests as indicated. \n 3). Instructions for antidiabetic medications, \nAlpha Glucosidase Inhibitors (Acarbose) - CONTINUE'});
+        } else if ( anaesthesia == "true" && dppFour == "true") {
+            res.status(200).send({ response: '1). Fasting as per 1 - 2 - 6 rule \n 2). FBC, U& E and other tests as indicated. \n 3). Instructions for antidiabetic medications, \nDPP 4 Inhibitors (Gliptins) - CONTINUE'});
+        } else if ( anaesthesia == "true" && glpReceptor == "true") {
+            res.status(200).send({ response: '1). Fasting as per 1 - 2 - 6 rule \n 2). FBC, U& E and other tests as indicated. \n 3). Instructions for antidiabetic medications, \nGLP receptor antagonists (Glutides and Exenatides) - CONTINUE'});
+        } else if ( anaesthesia == "true" && meglitinides == "true") {
+            res.status(200).send({ response: '1). Fasting as per 1 - 2 - 6 rule \n 2). FBC, U& E and other tests as indicated. \n 3). Instructions for antidiabetic medications, \nMeglitinides (Glinides) - OMIT'});
+        } else if ( anaesthesia == "true" && sgltTwo == "true") {
+            res.status(200).send({ response: '1). Fasting as per 1 - 2 - 6 rule \n 2). FBC, U& E and other tests as indicated. \n 3). Instructions for antidiabetic medications, \nSGLT 2 inhibitors (Flozins) - OMIT'});
+        } else if ( anaesthesia == "true" && sulphonyureas == "true") {
+            res.status(200).send({ response: '1). Fasting as per 1 - 2 - 6 rule \n 2). FBC, U& E and other tests as indicated. \n 3). Instructions for antidiabetic medications, \nSulphonyureas - OMIT'});
+        } else if ( anaesthesia == "true" && thiasolidinediones == "true") {
+            res.status(200).send({ response: '1). Fasting as per 1 - 2 - 6 rule \n 2). FBC, U& E and other tests as indicated. \n 3). Instructions for antidiabetic medications, \nGlitazones - CONTINUE'});
         } else if ( anaesthesia == "true") {
-            res.status(200).send({ response: '1). Fasting as per 1 - 2 - 6 rule \n 2). Antidiabetic instruction as per their choice / red amber green \n 3). FBC, U&E and other tests as indicated.'});
+            res.status(200).send({ response: '1). Fasting as per 1 - 2 - 6 rule \n 2). FBC, U& E and other tests as indicated. \n 3). Instructions for antidiabetic medications'});
         } else {
-            res.status(200).send({ response: 'CONTINUE' });
+            res.status(200).send({ response: 'Please repeat HBA1C, input the value and run the app' });
         }
     }
 }

@@ -60,7 +60,7 @@ export default class Preoperative extends Component {
             alert("Please repeat HBA1C, input the result and run the app.")
         } else if (this.state.patient == false) {
             alert ("If you answered 'No' for the first question, please note this section is only for diabetics on medication!")
-        } else if (this.state.metformin == false && this.state.shortInsulin == false && this.state.intermediateInsulin == false && 
+        } else if (this.state.metformin == false && this.state.shortInsulin == false && this.state.intermediateInsulin == false &&
             this.state.alpha == false && this.state.dppFour == false && this.state.glpReceptor == false &&
             this.state.meglitinides == false && this.state.sgltTwo == false 
             && this.state.sulphonyureas == false && this.state.thiasolidinediones == false) {
@@ -198,110 +198,6 @@ export default class Preoperative extends Component {
                     </TouchableOpacity>
                 </View> */}
 
-                
-                    <Text style={styles.choiceText}> 1. Choose all the medications the patient is on (including drug combinations) </Text>
-                    {/* <Text style={{
-                        fontSize: 15,
-                        fontWeight: "bold",
-                        color: "white",
-                        textAlign: 'center',
-                        top: -15,
-                        }}> Choose all that apply </Text> */}
-
-                    <View>
-                        
-                        <CheckBox 
-                        left
-                        title= "Metformin"
-                        onPress = {() => this.setState({metformin: !this.state.metformin})}
-                        checkedIcon = 'dot-circle-o'
-                        uncheckedIcon = 'circle-o'
-                        style = {{alignItems: 'left', textAlign: 'left'}}
-                        checked={this.state.metformin}
-                        />
-
-                        <CheckBox
-                            left
-                            title="Short acting Insulin (e.g. Humulin S, Apidra, Novorapid)"
-                            style = {{alignItems: 'left'}}
-                            checkedIcon='dot-circle-o'
-                            uncheckedIcon='circle-o'
-                            onPress = {() => this.setState({shortInsulin: !this.state.shortInsulin})}
-                            checked={this.state.shortInsulin}
-                        />
-
-                        <CheckBox
-                            left
-                            title="Intermediate or Long acting Insulin (incl combination insulins)"
-                            checkedIcon='dot-circle-o'
-                            uncheckedIcon='circle-o'
-                            onPress = {() => this.setState({intermediateInsulin: !this.state.intermediateInsulin})}
-                            checked={this.state.intermediateInsulin}
-                        />
-
-                        <CheckBox
-                            left
-                            title="Alpha Glucosidase inhibitors (Acarbose, Miglitol)"
-                            checkedIcon='dot-circle-o'
-                            uncheckedIcon='circle-o'
-                            onPress = {() => this.setState({alpha: !this.state.alpha})}
-                            checked={this.state.alpha}
-                        />
-
-                        <CheckBox
-                            left
-                            title="DPP 4 inhibitors (Gliptins)"
-                            checkedIcon='dot-circle-o'
-                            uncheckedIcon='circle-o'
-                            onPress={() => this.setState({ dppFour: !this.state.dppFour })}
-                            checked={this.state.dppFour}
-                        />
-
-                        <CheckBox
-                            left
-                            title="GLP receptor antagonists (Glutides and Exenatide)"
-                            checkedIcon='dot-circle-o'
-                            uncheckedIcon='circle-o'
-                            onPress={() => this.setState({ glpReceptor: !this.state.glpReceptor })}
-                            checked={this.state.glpReceptor}
-                        />
-
-                        <CheckBox
-                            left
-                            title="Meglitinides (Glinides like Nateglinide etc)"
-                            checkedIcon='dot-circle-o'
-                            uncheckedIcon='circle-o'
-                            onPress={() => this.setState({ meglitinides: !this.state.meglitinides })}
-                            checked={this.state.meglitinides}
-                        />
-
-                        <CheckBox
-                            left
-                            title="SGLT 2 inhibitors (Flozins)"
-                            checkedIcon='dot-circle-o'
-                            uncheckedIcon='circle-o'
-                            onPress={() => this.setState({ sgltTwo: !this.state.sgltTwo })}
-                            checked={this.state.sgltTwo}
-                        />
-
-                        <CheckBox
-                            left
-                            title="Sulphonyureas (Glicazide, Glipizide, Glibanclamide, Glyburide, Glimepiride)"
-                            checkedIcon='dot-circle-o'
-                            uncheckedIcon='circle-o'
-                            onPress={() => this.setState({ sulphonyureas: !this.state.sulphonyureas })}
-                            checked={this.state.sulphonyureas}
-                        />
-
-                        <CheckBox
-                            left
-                            title="Thiasolidinediones (Glitazones)"
-                            checkedIcon='dot-circle-o'
-                            uncheckedIcon='circle-o'
-                            onPress={() => this.setState({ thiasolidinediones: !this.state.thiasolidinediones })}
-                            checked={this.state.thiasolidinediones}
-                        />
-                    </View>
 
                     <Text style={{
                         fontSize: 32,
@@ -312,7 +208,7 @@ export default class Preoperative extends Component {
                         alignItems: 'center'
                     }}> Tap on the toggle to select your choice </Text>
                     
-                    <Text style={styles.choiceText}> 2. HbA1c levels done within last 3 months? </Text>
+                    <Text style={styles.choiceText}> 1. HbA1c levels done within last 3 months? </Text>
                 <View style = {toggle.container} >
                     <TouchableOpacity style = {toggle.levelsToggle}
                     onPress={this.handleSetState("levels")}>
@@ -320,7 +216,7 @@ export default class Preoperative extends Component {
                     </TouchableOpacity>
                 </View>
 
-                    <Text style={styles.choiceText}> 3. If 'Yes' to the previous question, input the HbA1c level (Accepted values 31 - 125)</Text>
+                    <Text style={styles.choiceText}> 2. If 'Yes' to the previous question, input the HbA1c level (Accepted values 31 - 125)</Text>
                     <View style = {{flexDirection: 'row'}}>
                     <TextInput
                         style={{ height: 40, backgroundColor: 'white', borderColor: 'white', borderWidth: 2, borderRadius: 5, width: '15%', padding: 3 }}
@@ -343,7 +239,7 @@ export default class Preoperative extends Component {
                          }}> mmol / mol </Text>
                     </View>
 
-                    <Text style={styles.choiceText}> 4. Type of Surgery (TAP TO SELECT) </Text>
+                    <Text style={styles.choiceText}> 3. Type of Surgery (TAP TO SELECT) </Text>
                     <View style={toggle.container2} >
                         <TouchableOpacity style={toggle.surgeryToggle}
                             onPress={this.handleSetState("surgery")}>
@@ -351,13 +247,117 @@ export default class Preoperative extends Component {
                         </TouchableOpacity>
                     </View>
 
-                    <Text style={styles.choiceText}> 5. Type of Anaesthesia (TAP TO SELECT) </Text>
+                    <Text style={styles.choiceText}> 4. Type of Anaesthesia (TAP TO SELECT) </Text>
                     <View style={toggle.container2} >
                         <TouchableOpacity style={toggle.anaesthesiaToggle}
                             onPress={this.handleSetState("anaesthesia")}>
                             <Text style={toggle.toggleLabel}> {this.state.anaesthesia ? 'General / Regional Anaesthesia / Deep sedation' : 'Local anaesthesia (including eye blocks) / Conscious sedation'} </Text>
                         </TouchableOpacity>
                     </View>
+
+                <Text style={styles.choiceText}> 5. Please choose patient's current anti-diabetic medications from the list below (Choose all that apply) </Text>
+                {/* <Text style={{
+                        fontSize: 15,
+                        fontWeight: "bold",
+                        color: "white",
+                        textAlign: 'center',
+                        top: -15,
+                        }}> Choose all that apply </Text> */}
+
+                <View>
+
+                    <CheckBox
+                        left
+                        title= "Metformin"
+                        onPress = {() => this.setState({metformin: !this.state.metformin})}
+                        checkedIcon = 'dot-circle-o'
+                        uncheckedIcon = 'circle-o'
+                        style = {{alignItems: 'left', textAlign: 'left'}}
+                        checked={this.state.metformin}
+                    />
+
+                    <CheckBox
+                        left
+                        title="Short acting Insulin (e.g. Humulin S, Apidra, Novorapid)"
+                        style = {{alignItems: 'left'}}
+                        checkedIcon='dot-circle-o'
+                        uncheckedIcon='circle-o'
+                        onPress = {() => this.setState({shortInsulin: !this.state.shortInsulin})}
+                        checked={this.state.shortInsulin}
+                    />
+
+                    <CheckBox
+                        left
+                        title="Intermediate or Long acting Insulin (incl combination insulins)"
+                        checkedIcon='dot-circle-o'
+                        uncheckedIcon='circle-o'
+                        onPress = {() => this.setState({intermediateInsulin: !this.state.intermediateInsulin})}
+                        checked={this.state.intermediateInsulin}
+                    />
+
+                    <CheckBox
+                        left
+                        title="Alpha Glucosidase inhibitors (Acarbose, Miglitol)"
+                        checkedIcon='dot-circle-o'
+                        uncheckedIcon='circle-o'
+                        onPress = {() => this.setState({alpha: !this.state.alpha})}
+                        checked={this.state.alpha}
+                    />
+
+                    <CheckBox
+                        left
+                        title="DPP 4 inhibitors (Gliptins)"
+                        checkedIcon='dot-circle-o'
+                        uncheckedIcon='circle-o'
+                        onPress={() => this.setState({ dppFour: !this.state.dppFour })}
+                        checked={this.state.dppFour}
+                    />
+
+                    <CheckBox
+                        left
+                        title="GLP receptor antagonists (Glutides and Exenatide)"
+                        checkedIcon='dot-circle-o'
+                        uncheckedIcon='circle-o'
+                        onPress={() => this.setState({ glpReceptor: !this.state.glpReceptor })}
+                        checked={this.state.glpReceptor}
+                    />
+
+                    <CheckBox
+                        left
+                        title="Meglitinides (Glinides like Nateglinide etc)"
+                        checkedIcon='dot-circle-o'
+                        uncheckedIcon='circle-o'
+                        onPress={() => this.setState({ meglitinides: !this.state.meglitinides })}
+                        checked={this.state.meglitinides}
+                    />
+
+                    <CheckBox
+                        left
+                        title="SGLT 2 inhibitors (Flozins)"
+                        checkedIcon='dot-circle-o'
+                        uncheckedIcon='circle-o'
+                        onPress={() => this.setState({ sgltTwo: !this.state.sgltTwo })}
+                        checked={this.state.sgltTwo}
+                    />
+
+                    <CheckBox
+                        left
+                        title="Sulphonyureas (Glicazide, Glipizide, Glibanclamide, Glyburide, Glimepiride)"
+                        checkedIcon='dot-circle-o'
+                        uncheckedIcon='circle-o'
+                        onPress={() => this.setState({ sulphonyureas: !this.state.sulphonyureas })}
+                        checked={this.state.sulphonyureas}
+                    />
+
+                    <CheckBox
+                        left
+                        title="Thiasolidinediones (Glitazones)"
+                        checkedIcon='dot-circle-o'
+                        uncheckedIcon='circle-o'
+                        onPress={() => this.setState({ thiasolidinediones: !this.state.thiasolidinediones })}
+                        checked={this.state.thiasolidinediones}
+                    />
+                </View>
 
             
                 <View style = {{flexDirection: 'row', top: -10}}>

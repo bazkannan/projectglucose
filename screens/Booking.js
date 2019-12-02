@@ -172,7 +172,7 @@ export default class Booking extends Component {
                         <Marker
                             coordinate={{ latitude: marker.latitude, longitude: marker.longitude}}
                             title={"PATIENT NAME: " + marker.name}
-                            description={ "SYMPTOMS: " + marker.symptoms + "\nAGE: " + marker.age + "\nCONDITION: " + marker.condition}
+                            description={ "SYMPTOMS: " + marker.symptoms + "\nAGE: " + marker.age + "\nCONDITION: " + marker.condition + "\nCONTACT DETAILS: " + marker.contact + "\nE-MAIL: " + marker.email}
                             onPress={() => this.selectedPatient(marker.latitude, marker.longitude)}
                         >
                             <Image source={require('../assets/patient.png')} style={{height: 40, width:40 }} />
