@@ -140,7 +140,7 @@ export default class OnTheDay extends Component {
                     {/*    </TouchableOpacity>*/}
                     {/*</View>*/}
 
-                    <Text style={styles.choiceText}> Today's blood glucose value </Text>
+                    <Text style={styles.choiceText}> 1. Today's blood glucose value </Text>
                     <View style={{ flexDirection: 'row' }}>
                         <TextInput
                             style={{ height: 40, backgroundColor: 'white', borderColor: 'white', borderWidth: 2, borderRadius: 5, width: '15%', padding: 3 }}
@@ -172,7 +172,7 @@ export default class OnTheDay extends Component {
                         alignItems: 'center'
                     }}> Tap on the toggle to select your choice </Text>
 
-                    <Text style={styles.choiceText}> If today's blood glucose value > 12, select Urine / Capillary Ketones value </Text>
+                    <Text style={styles.choiceText}> 2. If today's blood glucose value > 12, select Urine / Capillary Ketones value </Text>
                     <View style={toggle.container} >
                         <TouchableOpacity style={toggle.bloodPressureToggle}
                                           onPress={this.handleSetState("bloodPressure")}>

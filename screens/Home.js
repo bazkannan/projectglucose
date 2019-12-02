@@ -146,7 +146,8 @@ const styles = StyleSheet.create({
         padding: 10,
         backgroundColor: '#000d1a',
         alignItems: 'center',
-        top: 0
+        top: 0,
+        marginTop: 10
         
     },
     container: {

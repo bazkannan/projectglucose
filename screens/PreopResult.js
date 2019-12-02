@@ -47,7 +47,7 @@ export default class PreopResult extends Component {
             const sulphonyureas = await JSON.stringify(navigation.getParam('sulphonyureas', 'null'));
             const thiasolidinediones = await JSON.stringify(navigation.getParam('thiasolidinediones', 'null'));
 
-            const response = await axios.post('http://localhost:3001/preoperative', {
+            const response = await axios.post('http://192.168.0.39:3001/preoperative', {
                 "levels": levels,
                 "temp": temp,
                 "patient": patient,

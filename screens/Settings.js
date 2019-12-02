@@ -42,7 +42,7 @@ export default class Settings extends Component {
         return (
             <ScrollView style = {styles.container}>
             <View style={styles.container}>
-            <View style = {{flex: 1, marginTop: 50}}>
+            <View style = {{flex: 1, marginTop: 80}}>
             <TouchableOpacity onPress = {() => this.props.navigation.navigate('Home')}>
                 <View style={styles.border}>
                     <Text style={styles.textStyle}> <Icon name="home" size={25} /> Home  </Text>

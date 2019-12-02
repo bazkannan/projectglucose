@@ -85,7 +85,7 @@ export default class Booking extends Component {
 
     getPatients = async () => {
         console.log('get patients');
-        const response = await axios.get('http://localhost:3001/getpatients').catch(err => console.log(err));
+        const response = await axios.get('http://192.168.0.39:3001/getpatients').catch(err => console.log(err));
         await this.setState({markers: response.data});
     }
 
@@ -172,7 +172,7 @@ export default class Booking extends Component {
                         <Marker
                             coordinate={{ latitude: marker.latitude, longitude: marker.longitude}}
                             title={"PATIENT NAME: " + marker.name}
-                            description={ "SYMPTOMS: " + marker.symptoms + "\nAGE: " + marker.age}
+                            description={ "SYMPTOMS: " + marker.symptoms + "\nAGE: " + marker.age + "\nCONDITION: " + marker.condition}
                             onPress={() => this.selectedPatient(marker.latitude, marker.longitude)}
                         >
                             <Image source={require('../assets/patient.png')} style={{height: 40, width:40 }} />
@@ -181,10 +181,10 @@ export default class Booking extends Component {
 
                     ))}
                 </MapView>
-
+                <View style = {{top: 400, alignItems: 'center', justifyContent: 'center'}}>
                 {directionsbutton}
                 {cancelbutton}
-
+                </View>
             </View>
         );
     }
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
         backgroundColor: "black",
         marginTop: "auto",
         margin: 30,
-        top: 250,
+        top: 84,
         left: -70,
         padding: 15,
         zIndex: 10,
@@ -218,7 +218,9 @@ const styles = StyleSheet.create({
         paddingLeft: 30,
         paddingRight: 30,
         alignSelf: "center",
+        alignItems: 'center',
         textAlign: "center",
+        justifyContent: 'center',
         borderRadius: 3,
         shadowRadius: 5,
         shadowOpacity: 1
@@ -230,13 +232,15 @@ const styles = StyleSheet.create({
         margin: 30,
         padding: 15,
         zIndex: 10,
-        top: -83,
+        top: 0,
         left: 100,
         elevation: 10,
         paddingLeft: 30,
         paddingRight: 30,
         alignSelf: "center",
+        alignItems: 'center',
         textAlign: "center",
+        justifyContent: 'center',
         borderRadius: 3,
         shadowRadius: 5,
         shadowOpacity: 1

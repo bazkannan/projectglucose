@@ -199,7 +199,7 @@ export default class Preoperative extends Component {
                 </View> */}
 
                 
-                    <Text style={styles.choiceText}> Choose all the medications the patient is on (including drug combinations) </Text>
+                    <Text style={styles.choiceText}> 1. Choose all the medications the patient is on (including drug combinations) </Text>
                     {/* <Text style={{
                         fontSize: 15,
                         fontWeight: "bold",
@@ -312,7 +312,7 @@ export default class Preoperative extends Component {
                         alignItems: 'center'
                     }}> Tap on the toggle to select your choice </Text>
                     
-                    <Text style={styles.choiceText}> HbA1c levels done within last 3 months? </Text>
+                    <Text style={styles.choiceText}> 2. HbA1c levels done within last 3 months? </Text>
                 <View style = {toggle.container} >
                     <TouchableOpacity style = {toggle.levelsToggle}
                     onPress={this.handleSetState("levels")}>
@@ -320,7 +320,7 @@ export default class Preoperative extends Component {
                     </TouchableOpacity>
                 </View>
 
-                    <Text style={styles.choiceText}> If 'Yes' to the previous question, input the HbA1c level (Accepted values 31 - 125)</Text>
+                    <Text style={styles.choiceText}> 3. If 'Yes' to the previous question, input the HbA1c level (Accepted values 31 - 125)</Text>
                     <View style = {{flexDirection: 'row'}}>
                     <TextInput
                         style={{ height: 40, backgroundColor: 'white', borderColor: 'white', borderWidth: 2, borderRadius: 5, width: '15%', padding: 3 }}
@@ -343,7 +343,7 @@ export default class Preoperative extends Component {
                          }}> mmol / mol </Text>
                     </View>
 
-                    <Text style={styles.choiceText}> Type of Surgery (TAP TO SELECT) </Text>
+                    <Text style={styles.choiceText}> 4. Type of Surgery (TAP TO SELECT) </Text>
                     <View style={toggle.container2} >
                         <TouchableOpacity style={toggle.surgeryToggle}
                             onPress={this.handleSetState("surgery")}>
@@ -351,7 +351,7 @@ export default class Preoperative extends Component {
                         </TouchableOpacity>
                     </View>
 
-                    <Text style={styles.choiceText}> Type of Anaesthesia (TAP TO SELECT) </Text>
+                    <Text style={styles.choiceText}> 5. Type of Anaesthesia (TAP TO SELECT) </Text>
                     <View style={toggle.container2} >
                         <TouchableOpacity style={toggle.anaesthesiaToggle}
                             onPress={this.handleSetState("anaesthesia")}>
