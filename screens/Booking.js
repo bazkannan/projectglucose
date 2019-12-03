@@ -133,7 +133,7 @@ export default class Booking extends Component {
             display = this.getPatients;
         }
 
-        if (this.state.showButton == true && this.state.showCancelButton == true) {
+        if (this.state.showButton === true && this.state.showCancelButton === true) {
             directionsbutton = (
                 <TouchableOpacity
                     style={styles.goToPatientButton}
@@ -154,7 +154,7 @@ export default class Booking extends Component {
 
         return (
             <View style = {styles.container}>
-                <DestinationButton cb={()=> { this.getPatients() }}/>
+                <DestinationButton cb={()=> { this.getPatients().then(() => { this.centerMap().catch((err) => console.log(err))}) }}/>
                 <CurrentLocationButton cb={() => { this.centerMap() }} />
 
                 <MapView
