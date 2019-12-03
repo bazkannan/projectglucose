@@ -6,9 +6,9 @@ const basic = (req, res) => {
     } else {
         if (glucose <= 12) {
             res.status(200).send({ response: '- Proceed with surgery \n - Check blood glucose hourly \n - Return to routine antidiabetics with first full meal' });
-        } if (glucose > 12 && bloodPressure == "true") {
+        } if (glucose > 12 && bloodPressure === "true") {
             res.status(200).send({ response: '- Cancel procedure \n - Consult Acute Medicine. ' });
-        } if (glucose > 12 && bloodPressure == "false") {
+        } if (glucose > 12 && bloodPressure === "false") {
             res.status(200).send({response: '- Proceed with surgery. ' +
                     '\n - Give subcut rapid acting insulin (1 unit for 3 mmol Glucose reduction). Max 6 units ' +
                     '\n - Check blood glucose hourly ' +

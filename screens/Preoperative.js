@@ -56,16 +56,16 @@ export default class Preoperative extends Component {
 
 
     goToResults = () => {
-        if (this.state.levels == false) {
-            alert("Please repeat HBA1C, input the result and run the app.")
-        } else if (this.state.patient == false) {
+        if (this.state.patient === false) {
             alert ("If you answered 'No' for the first question, please note this section is only for diabetics on medication!")
-        } else if (this.state.metformin == false && this.state.shortInsulin == false && this.state.intermediateInsulin == false &&
-            this.state.alpha == false && this.state.dppFour == false && this.state.glpReceptor == false &&
-            this.state.meglitinides == false && this.state.sgltTwo == false 
-            && this.state.sulphonyureas == false && this.state.thiasolidinediones == false) {
+        } else if (this.state.levels === false) {
+            alert("Please repeat HBA1C, input the value and run the app.")
+        } else if (this.state.metformin === false && this.state.shortInsulin === false && this.state.intermediateInsulin === false &&
+            this.state.alpha === false && this.state.dppFour === false && this.state.glpReceptor === false &&
+            this.state.meglitinides === false && this.state.sgltTwo === false
+            && this.state.sulphonyureas === false && this.state.thiasolidinediones === false) {
             alert("Please choose at least one medication from the list")
-        } else if (this.state.temp < 31 || this.state.temp > 125) {
+        } else if (this.state.levels === true && this.state.temp < 31 || this.state.temp > 125) {
             alert ("Values must be within the range (31 - 125) mmol / mol")
         } else {
             Alert.alert(
