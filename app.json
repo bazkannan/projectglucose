@@ -26,20 +26,23 @@
     "ios": {
       "supportsTablet": true,
       "config": {
-          "googleMapsApiKey": "AIzaSyBfkbWPaJV1iNKuPv7XxTJkHpRM2hwqfpo"
+        "googleMapsApiKey": "AIzaSyBfkbWPaJV1iNKuPv7XxTJkHpRM2hwqfpo"
       }
     },
     "description": "Description here",
     "android": {
       "package": "com.packagename",
       "config": {
-        "googleMaps": { "apiKey": "AIzaSyBfkbWPaJV1iNKuPv7XxTJkHpRM2hwqfpo" }
+        "googleMaps": {
+          "apiKey": "AIzaSyBfkbWPaJV1iNKuPv7XxTJkHpRM2hwqfpo"
+        }
       },
       "versionCode": 15,
       "permissions": [
         "ACCESS_COARSE_LOCATION",
-        "ACCESS_FINE_LOCATION",
+        "ACCESS_FINE_LOCATION"
       ]
-    }
+    },
+    "githubUrl": "https://github.com/bazkannan"
   }
 }
