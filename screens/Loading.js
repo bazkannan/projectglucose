@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import { View, Text, ActivityIndicator, StyleSheet, ScrollView } from 'react-native';
 import * as firebase from 'firebase';
 
+/**
+ * This is a loading screen which will display once the user has entered their login details.
+ * If the user is found on the database records, they will be authenticated and automatically
+ * taken to the Homepage of the app.
+ */
+
 export default class Loading extends Component {
     componentDidMount() {
         firebase.auth().onAuthStateChanged(user => {

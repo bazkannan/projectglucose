@@ -3,6 +3,11 @@ import * as mobilenetModule from '@tensorflow-models/mobilenet';
 import * as knnClassifier from '@tensorflow-models/knn-classifier';
 import * as ui from './ui/';
 
+/**
+ * This screen shows the code for the K-Nearest Neighbour classifier which can be
+ * used to help predict Diabetes. This uses the Tensorflow Javascript library.
+ */
+
 const classifier = knnClassifier.create();
 
 const mobilenet = await mobilenetModule.load();

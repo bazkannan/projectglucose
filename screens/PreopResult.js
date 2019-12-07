@@ -3,6 +3,17 @@ import { View, Text, TextInput, StyleSheet, Keyboard, TouchableOpacity, Button, 
 import axios from 'axios';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 
+/**
+ * This screen will display the results for the Pre-operative clinic assessment. Based on the options the
+ * user selects, a set of instructions will be displayed on the screen for the doctor to follow
+ * and advise their patients.
+ * When the submit button is pressed, a RESTApi request is sent to the backend and then communicated
+ * back to the user a particular result dependent on the options the user has selected.
+ * This screen has Checkbox options so depending on what the user selects, a result for that
+ * particular medication will be displayed on whether or not the user should continue
+ * with the medication or omit the medication.
+ */
+
 export default class PreopResult extends Component {
     static navigationOptions = {
         headerTransparent: true,

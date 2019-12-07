@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import {View, Text, StyleSheet, ImageBackground, TouchableOpacity, ScrollView, Dimensions} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+/**
+ * This is the About page for the app which details what the App is about and its main purpose.
+ * A combination of View and Text elements are used here to display information.
+ * In this case, this screen explains how the app is meant to solve a real world problem in the healthcare industry.
+ */
+
 export default class About extends Component {
 
 

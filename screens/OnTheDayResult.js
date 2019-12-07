@@ -3,6 +3,14 @@ import { View, Text, TextInput, StyleSheet, Keyboard, TouchableHighlight, Toucha
 import axios from 'axios';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 
+/**
+ * This screen will display the results for the On-The-Day clinic assessment. Based on the options the
+ * user selects, a set of instructions will be displayed on the screen for the doctor to follow
+ * and advise their patients.
+ * When the submit button is pressed, a RESTApi request is sent to the backend and then communicated
+ * back to the user a particular result dependent on the options the user has selected.
+ */
+
 export default class OnTheDayResult extends Component {
     static navigationOptions = {
         headerTransparent: true,

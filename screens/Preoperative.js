@@ -16,6 +16,16 @@ import {
 import { CheckBox } from 'react-native-elements';
 import { FlatList } from "react-native-gesture-handler";
 
+/**
+ * This is the screen for the Preoperative Clinic. Here the user can input a value for the Hb1Ac levels
+ * as well as selecting the toggle options for the questions. There is also a checkbox component
+ * where the user can select all the combinations of medications the diabetic patient is on.
+ * A reset button is shown at the bottom which will reset all the state variables to its default value.
+ * The submit button when clicked on will display a confirmation in which it will prompt the user
+ * to check their answers before submitting.
+ * Data validation is also implemented where the user can only input the values that are allowed
+ * as well as ensuring that at least one medication is selected before the user can proceed.
+ */
 
 export default class Preoperative extends Component {
 

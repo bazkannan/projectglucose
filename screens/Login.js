@@ -1,7 +1,9 @@
 /**
- * Login class used for login to the system. 
- * Doctors, nurses and medical students can register.
- * Users will need a valid username and password to sign in
+ * Login class used for login to the system.
+ * The system will check whether the user is registered in the database and will authenticate
+ * if found.
+ * Doctors, nurses and medical professionals can register.
+ * Users will need a valid email (in the correct format) and password to sign in
  */
 
  import React, { Component } from 'react';

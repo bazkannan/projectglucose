@@ -31,6 +31,21 @@ import _ from 'lodash';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import * as Permissions from 'expo-permissions';
 
+/**
+ * This screen will display a Map using the Google Maps API.
+ * There is a button to scan for patients in the area and when that button is pressed,
+ * the map will zoom into the area the user is in with permissions enabled for the location
+ * and the patients will be displayed on the map.
+ * When a user clicks on a patient, a Marker will appear that will display their details
+ * (name, age, symptoms, contact details) and the options for 'Cancel' and 'Get Directions' will appear.
+ * If the doctor decides they want to help aid the patient, they can click on the Get Directions button
+ * which will take the user to the Google Maps app where the route is calculated from the Doctor's
+ * current location to the patient's location via Satellite Navigation. This will exit the app.
+ * This is a feature that can be used for the doctors to aid a patient that is requesting medical attention
+ * depending on the severity of their conditions. More serious and critical conditions will make
+ * the doctor more likely to attend the patient compared to someone with more minor conditions.
+ */
+
 
 const WIDTH = Dimensions.get('window').width;
 

@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, TouchableHighlight, ScrollView, AppDrawerNavigator, ImageBackground } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+/**
+ * This screen is mainly a way to navigate between the options of choosing between the Regression chart and the Machine Learning Tensorflow model.
+ * This can be accessible from the side Drawer menu or the Home screen.
+ */
+
 export default class DiabetesCharts extends Component {
     static navigationOptions = ({ navigation }) => {
         return {

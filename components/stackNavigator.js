@@ -6,6 +6,10 @@ import OnTheDay from '../screens/OnTheDay';
 import PreopResult from '../screens/PreopResult';
 import Settings from '../screens/Settings';
 
+/**
+ * This is the component for navigation screens.
+ */
+
 export const HomeNavigation = createStackNavigator({
     Home: Home,
    

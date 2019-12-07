@@ -3,6 +3,14 @@ import { Text, View, StyleSheet, Button, TouchableOpacity, AsyncStorage, ScrollV
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as firebase from 'firebase';
 
+/**
+ * This is the page where the user is at the Settings page. So here there is the button
+ * which will sign the User out of the system. If the user clicks the button,
+ * an alert box will pop up asking the user if they are sure they want to log out.
+ * If they cancel, the dialogue box disappears, otherwise the system will navigate
+ * to the Login page with a confirmation message that the user has successfully logged out.
+ */
+
 export default class Settings extends Component {
 
     static navigationOptions = {
@@ -24,6 +32,7 @@ export default class Settings extends Component {
                 onPress: () => AsyncStorage.clear()
                 
                 .then(() => this.props.navigation.navigate('Login'))
+                    .then(() => alert('You have successfully logged out'))
                 .then(console.log('Signed out')).catch((err) => console.log(err)),
                 style: 'cancel'
                 },

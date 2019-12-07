@@ -28,6 +28,19 @@ import About from './screens/About';
 import DiabetesCharts from './screens/DiabetesCharts';
 import TensorflowModel from './tensorflow/TensorflowModel';
 
+/**
+ * This is the main app file in which all the components and screens are imported and implemented into
+ * the overall app functionality. I have connected the app to the Firebase servers and databases where
+ * if the user is found on the database, the user will be authenticated and taken to the Homepage.
+ * Different navigators are used to construct this app and help with the UI/UX and smooth navigation
+ * between screens.
+ * A drawer navigator is used to navigate between the main screens whilst the Tab navigator is used to select
+ * between the Pre-operative clinic and On-the-day clinic. Both navigators have been nested into the
+ * stack navigator to create a fairly complex navigation system. Headers have also been customised appropriately
+ * for each individual screen. The whole thing is working under the App Container which allows the user
+ * to navigate throughout the app to begin with.
+ */
+
 export default class App extends React.Component {
 
 

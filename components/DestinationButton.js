@@ -9,6 +9,10 @@ import {
 import IonIcons from '@expo/vector-icons';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+/**
+ * This is the component for the Scan Patient button. When the user clicks on this button,
+ * it will call the center map function and display all the patients on the map from the database.
+ */
 
 const WIDTH = Dimensions.get('window').width;
 

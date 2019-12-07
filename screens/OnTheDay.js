@@ -14,6 +14,16 @@ import {
     SafeAreaView, Alert
 } from "react-native";
 
+/**
+ * This is the screen which will display the options for the On-The-Day clinic. A user
+ * can input the value of the blood glucose level along with the toggle option for the
+ * Ketone value. The reset button will reset the states to the default values and
+ * the submit button will pop up with a confirmation message before the user proceeds
+ * to the result screen. When the user clicks 'Ok', they will be taken to the
+ * results screen which will display a set of instructions for the doctor to follow
+ * dependent on the options the User has selected.
+ */
+
 export default class OnTheDay extends Component {
     static navigationOptions = {
         headerTransparent: true,
@@ -25,8 +35,8 @@ export default class OnTheDay extends Component {
         super();
         this.state = ({
             cancer: true,
+            glucose: "",
             bloodPressure: true,
-            glucose: ""
         });
     }
 
@@ -37,7 +47,7 @@ export default class OnTheDay extends Component {
     };
 
     goToResults = () => {
-        if (this.state.glucose == "") {
+        if (this.state.glucose === "") {
             alert("Please enter a numeric value for glucose levels");
         } else if (this.state.glucose <= 0) {
             alert("Please enter a positive integer");
@@ -72,7 +82,7 @@ export default class OnTheDay extends Component {
                 
             // })
         }
-    }
+    };
 
     render() {
         const toggle = StyleSheet.create({
@@ -233,7 +243,6 @@ const styles = StyleSheet.create({
     },
     container2: {
         flex: 1,
-        alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
         alignItems: 'center',

@@ -8,6 +8,15 @@ import * as Permissions from 'expo-permissions';
 import * as jpeg from 'jpeg-js';
 import * as ImagePicker from 'expo-image-picker';
 
+/**
+ * This screen shows the functionality of an Image classifier where the user can
+ * upload Images from their Camera Roll onto the app and once uploaded, the algorithm
+ * will analyse the image and list data it can detect from the image.
+ * In this case, the doctor can upload an image and if there was a data of symptoms trained
+ * alongside the model, the ML model can analyse the image for symptoms it can detect and
+ * list them once completed.
+ */
+
 export default class TensorflowModel extends React.Component {
     constructor(props) {
         super(props);

@@ -2,6 +2,13 @@ import React, { Component } from 'react'
 import { Text, View, StyleSheet, ScrollView, AsyncStorage } from 'react-native'
 import { VictoryBar, VictoryLine, VictoryChart, VictoryPie, VictoryTheme } from "victory-native";
 
+/**
+ * This page displays a chart which shows the correlation between glucose and age. The dataset
+ * is taken from this source: https://www.kaggle.com/johndasilva/diabetes
+ * This screen the user can see the relationship between glucose levels and age which can help
+ * them to analyse and predict the likelihood of diabetes in a patient.
+ * The data is taken from the dataset and hardcoded into the graph.
+ */
 
 export default class Regression extends Component {
     static navigationOptions = {

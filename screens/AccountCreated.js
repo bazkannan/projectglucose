@@ -3,6 +3,11 @@ import { View, Text, StyleSheet, TouchableOpacity, Button, ScrollView } from 're
 import Login from '../screens/Login';
 import * as firebase from 'firebase';
 
+/**
+ * This is the screen which would be displayed when a user has successfully created their account
+ * on the system.
+ */
+
 export default class AccountCreated extends Component {
 
     static navigationOptions = ({ navigation }) => {

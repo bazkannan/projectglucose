@@ -8,6 +8,13 @@ import { Button, Container, Header, Content, Left } from 'native-base';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as firebase from 'firebase';
 
+/**
+ * This is the homepage where the user will be directed to once logged into the system and authenticated.
+ * The top left will show an icon of bars in which the user can click on it and navigate between the
+ * different screens. The top right will show a Settings Icon in which the user can log out of the application
+ * and be taken back to the Login page.
+ */
+
 export default class Home extends React.Component {
     static navigationOptions = ({navigation}) => {
         return {

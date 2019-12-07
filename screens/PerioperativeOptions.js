@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet, TouchableHighlight, ScrollView, AppDrawerNavigator, ImageBackground } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+/**
+ * This is the screen that is part of the DrawerNavigator component. This is where the
+ * doctor can decide which type of Perioperative Assessment they can undertake.
+ * So there are options for Pre-Operative Clinic and On-The-Day Clinic and the
+ * doctor can navigate to either one of these pages from this screen.
+ */
+
 export default class PerioperativeOptions extends Component {
     static navigationOptions = ({ navigation }) => {
         return {

@@ -1,3 +1,8 @@
+/**
+ * This is the RESTApi for the On-The-Day clinic results, depending on what the user selects, the display output
+ * is coded using nested IF statements.
+ */
+
 const basic = (req, res) => {
     const { cancer, glucose, bloodPressure } = req.body;
     if (!cancer || !glucose || !bloodPressure) {
@@ -16,7 +21,7 @@ const basic = (req, res) => {
                     '\n - If blood glucose > 12 mmol 2 hours after second Insulin dose and patient not likely to be able to take meals, start Variable rate Intravenous Insulin Infusion (VRIII) as per guidelines. ' +
                     '\n - If blood glucose > 12 mmol 2 hours after second Insulin dose and patient likely to be able to take meals, start routine antidiabetic regimen'});
         } else {
-            res.status(200).send({ response: 'check Urine / Capillary Ketones' });
+            res.status(200).send({ response: 'Please check your blood glucose value and try again' });
         }
     }
 }

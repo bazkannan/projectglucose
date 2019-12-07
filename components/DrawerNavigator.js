@@ -5,6 +5,10 @@ import { createDrawerNavigator, createAppContainer } from 'react-navigation';
 import Home from '../screens/Home';
 import Login from '../screens/Login';
 
+/**
+ * A component for DrawerNavigator
+ */
+
 const WIDTH = Dimensions.get('window').width;
 
 const DrawerConfig = {

@@ -1,3 +1,8 @@
+/**
+ * This is the RESTApi for the Preoperative results, depending on what the user selects, the display output
+ * is coded using nested IF statements.
+ */
+
 const basic = (req, res) => {
     const { levels, temp, patient, surgery, anaesthesia, 
         metformin, shortInsulin, intermediateInsulin, alpha, 

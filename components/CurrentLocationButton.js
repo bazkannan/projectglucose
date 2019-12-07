@@ -10,6 +10,11 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 const WIDTH = Dimensions.get('window').width; 
 const HEIGHT = Dimensions.get('window').height;
 
+/**
+ * This is a component for the Current Location button with all the styling adjusted to it. When
+ * a user clicks on this button, it will call the center location button.
+ */
+
 export const CurrentLocationButton = function(props) {
     
     const cb = props.cb ? props.cb : () => console.log('Callback function not passed to CurrentLocationButton!');

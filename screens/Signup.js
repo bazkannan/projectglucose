@@ -17,6 +17,16 @@ import {
 import Icon from 'react-native-vector-icons/FontAwesome';
 import * as firebase from 'firebase';
 
+/**
+ * This is the sign up page where if the user does not have an account registered in the database,
+ * they will be prompted to create an account using their email address and password.
+ * A validation check is implemented where the user is required to type their password twice
+ * to confirm it. This is to ensure that the user can remember the password they have put in.
+ * If the passwords don't match, an alert message will display notifying the user that
+ * the passwords do not match.
+ * When the Create Account button is pressed, it will register the user onto the database and
+ * store the information whilst also navigating to the Homepage of the app.
+ */
 
 export default class Signup extends Component {
 
